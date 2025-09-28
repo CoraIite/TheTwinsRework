@@ -1,0 +1,22 @@
+Items: {
+	TheTwinsReworkSummon: {
+		DisplayName: The Twins Rework Summon
+		Tooltip: ""
+	}
+}
+
+NPCs: {
+	CircleLimit.DisplayName: Circle Limit
+	FireEye.DisplayName: Fire Eye
+	LaserEye.DisplayName: Laser Eye
+}
+
+Projectiles: {
+	SlowFireBall.DisplayName: Slow Fire Ball
+	DeathLaserNoTileCollide.DisplayName: Death Laser No Tile Collide
+	Boom.DisplayName: Boom
+	P2FireBall.DisplayName: P2 Fire Ball
+	P2Laser.DisplayName: P2 Laser
+	LaserLine.DisplayName: Laser Line
+	FireBreath.DisplayName: Fire Breath
+}
