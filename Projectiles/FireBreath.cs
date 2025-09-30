@@ -29,20 +29,29 @@ namespace TheTwinsRework.Projectiles
             Projectile.friendly = false;
             Projectile.hostile = true;
             Projectile.alpha = 255;
-            Projectile.penetrate = 4;
+            Projectile.penetrate = 1;
             Projectile.extraUpdates = 2;
-            Projectile.DamageType = DamageClass.Magic;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = -1;
             Projectile.tileCollide = false;
         }
 
+        public override bool? CanDamage()
+        {
+            if (Timer>ShootTime)
+            {
+                return false;
+            }
+
+            return null;
+        }
+
         public override void AI()
         {
-            if (!CircleIndex.GetNPCOwner(out NPC circle,Projectile.Kill))
+            if (!CircleIndex.GetNPCOwner(out NPC circle, Projectile.Kill))
                 return;
 
-            if (Timer < ShootTime && Vector2.Distance(Projectile.Center,circle.Center)>CircleLimit.MaxLength)
+            if (Timer < ShootTime && Vector2.Distance(Projectile.Center, circle.Center) > CircleLimit.MaxLength)
             {
                 Timer = ShootTime;
             }
@@ -95,6 +104,14 @@ namespace TheTwinsRework.Projectiles
                 Projectile.frameCounter = 0;
                 if (Projectile.frame < 7)
                     Projectile.frame++;
+            }
+        }
+
+        public override void ModifyHitPlayer(Player target, ref Player.HurtModifiers modifiers)
+        {
+            if (Timer < ShootTime + 1)
+            {
+                Timer = ShootTime + 1;
             }
         }
 

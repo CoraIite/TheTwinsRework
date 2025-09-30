@@ -1,5 +1,8 @@
-﻿using System;
+﻿using ReLogic.Utilities;
+using System;
+using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 
@@ -217,48 +220,37 @@ namespace Coralite.Helpers
             ;
         }
 
-        /// <summary>
-        /// 需要提前设置好bools
-        /// </summary>
-        /// <param name="tag"></param>
-        /// <param name="bools"></param>
-        /// <param name="name"></param>
-        public static void LoadBools(this TagCompound tag, bool[] bools, string name)
+        public static SlotId PlayPitched(string path, float volume, float pitch, Vector2? position = null)
         {
-            int length = bools.Length;
-            int count = length / 8 + 1;
+            if (Main.netMode==NetmodeID.Server)
+                return SlotId.Invalid;
 
-            int k = 0;
-
-            for (int i = 0; i < count; i++)
+            var style = new SoundStyle($"{nameof(TheTwinsRework)}/Sounds/{path}")
             {
-                if (!tag.TryGet(name + i.ToString(), out byte b1))
-                    continue;
+                Volume = volume,
+                Pitch = pitch,
+                MaxInstances = 0
+            };
 
-                BitsByte b = b1;
-
-                for (int j = 0; j < 8; j++)
-                {
-                    bools[k] = b[j];
-                    k++;
-                    if (k > length - 1)
-                        return;
-                }
-            }
+            return SoundEngine.PlaySound(style, position);
         }
 
-        /// <summary>
-        /// 一个bool数组内是否全部为true
-        /// </summary>
-        /// <param name="bools"></param>
-        /// <returns></returns>
-        public static bool AllTrue(this bool[] bools)
+        public static SlotId PlayPitched(SoundStyle style, Vector2? position = null, float? volume = null, float? pitch = null, float volumeAdjust = 0, float pitchAdjust = 0)
         {
-            foreach (var c in bools)
-                if (!c)
-                    return false;
+            if (Main.netMode == NetmodeID.Server)
+                return SlotId.Invalid;
 
-            return true;
+            if (volume.HasValue)
+                style.Volume = volume.Value;
+
+            if (pitch.HasValue)
+                style.Pitch = pitch.Value;
+
+            style.Volume += volumeAdjust;
+            style.Pitch += pitchAdjust;
+
+            return SoundEngine.PlaySound(style, position);
         }
+
     }
 }

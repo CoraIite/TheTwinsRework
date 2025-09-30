@@ -19,4 +19,5 @@ Projectiles: {
 	P2Laser.DisplayName: P2 Laser
 	LaserLine.DisplayName: Laser Line
 	FireBreath.DisplayName: Fire Breath
+	FireBreathLine.DisplayName: Fire Breath Line
 }

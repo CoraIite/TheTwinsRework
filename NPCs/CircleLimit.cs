@@ -23,7 +23,7 @@ namespace TheTwinsRework.NPCs
         public ref float Timer => ref NPC.localAI[0];
         private Player Target => Main.player[NPC.target];
 
-        public static float MaxLength = 560;
+        public static float MaxLength = 580;
 
         public static Asset<Texture2D> TwistTex { get; private set; }
 
@@ -235,16 +235,16 @@ namespace TheTwinsRework.NPCs
                     Music = MusicID.Boss2;
                     break;
                 case BaseTwin.AIPhase.P1:
-                    Music = MusicLoader.GetMusicSlot(Mod, "Music/p1");
+                    Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/H181ClockworkDancers1stPhase");
                     break;
                 case BaseTwin.AIPhase.P2:
-                    Music = MusicLoader.GetMusicSlot(Mod, "Music/p2");
+                    Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/H181ClockworkDancers2ndPhase");
                     break;
                 case BaseTwin.AIPhase.P3:
-                    Music = MusicLoader.GetMusicSlot(Mod, "Music/p3");
+                    Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/H181ClockworkDancers3rdPhase");
                     break;
                 case BaseTwin.AIPhase.P4:
-                    Music = MusicLoader.GetMusicSlot(Mod, "Music/p4");
+                    Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/H181ClockworkDancers4thPhase");
                     break;
                 default:
                     break;

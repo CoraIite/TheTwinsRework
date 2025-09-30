@@ -1,4 +1,5 @@
 ﻿using Coralite.Helpers;
+using Steamworks;
 using System;
 using Terraria.ModLoader;
 using TheTwinsRework.Dusts;
@@ -92,8 +93,17 @@ namespace TheTwinsRework.NPCs
                 if (realTime % time == 0)
                 {
                     Recorder2 = NPC.rotation;
-                    if (realTime < halfTime * 0.45f)
-                        TickSound();
+                    switch (realTime / time)
+                    {
+                        default:
+                            break;
+                        case 0:
+                            HaloSound();
+                            break;
+                        case 1:
+                            TickSound();
+                            break;
+                    }
                 }
 
                 float factor = Helper.HeavyEase(realTime % time / time);
@@ -155,8 +165,17 @@ namespace TheTwinsRework.NPCs
                 if (realTime % time == 0)
                 {
                     Recorder2 = NPC.rotation;
-                    if (realTime < halfTime * 0.45f)
-                        TickSound();
+                    switch (realTime / time)
+                    {
+                        default:
+                            break;
+                        case 0:
+                            HaloSound();
+                            break;
+                        case 1:
+                            TickSound();
+                            break;
+                    }
                 }
 
                 float factor = Helper.HeavyEase(realTime % time / time);
@@ -239,8 +258,17 @@ namespace TheTwinsRework.NPCs
                 if (realTime % time == 0)
                 {
                     Recorder2 = NPC.rotation;
-                    if (realTime < Time * 0.45f)
-                        TickSound();
+                    switch (realTime / time)
+                    {
+                        default:
+                            break;
+                        case 0:
+                            HaloSound();
+                            break;
+                        case 1:
+                            TickSound();
+                            break;
+                    }
                 }
 
                 float factor = Helper.HeavyEase(realTime % time / time);
@@ -282,6 +310,38 @@ namespace TheTwinsRework.NPCs
                 NPC.NewProjectileInAI<P2Laser>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
                     , velocity, Helper.GetProjDamage(100, 125, 150)
                     , 4, ai0: CircleLimitIndex);
+            }
+        }
+
+        public override void CombineP3Attack(NPC controller, int readyTime)
+        {
+            int count = 5;
+
+            Vector2 startPos = NPC.Center + NPC.rotation.ToRotationVector2() * 85;
+            float rot = NPC.rotation;
+
+            for (int i = 0; i < count; i++)
+            {
+                Projectile proj = NPC.NewProjectileDirectInAI<LaserLine>(startPos, NPC.rotation.ToRotationVector2()
+                     , Helper.GetProjDamage(100, 100, 100), 0, -1, CircleLimitIndex
+                     , readyTime+i*5);
+
+                (proj.ModProjectile as LaserLine).ShootTime = 25;
+
+                float length = GetLength(startPos, rot.ToRotationVector2(), controller);
+                Vector2 temp = startPos;
+                startPos += rot.ToRotationVector2() * length;
+                Vector2 toCenter = (startPos - temp).SafeNormalize(Vector2.Zero);
+                float angle = Utils.AngleTo(rot.ToRotationVector2(), toCenter);
+
+
+                rot += angle * 2 + MathHelper.Pi;
+
+                //随机加减角度
+                rot += Main.rand.Next(-1, 2) * MathHelper.PiOver4 / 2;
+                //防止最终角度垂直于半径
+                if (Vector2.Dot(rot.ToRotationVector2(), toCenter) < 0.001f)
+                    rot -= angle;
             }
         }
 

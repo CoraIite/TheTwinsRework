@@ -110,10 +110,12 @@ namespace TheTwinsRework.Projectiles
                             State = 1;
                             Timer = 0;
 
-                            SoundEngine.PlaySound(CoraliteSoundID.LaserShoot_Item33, Projectile.Center);
-
                             if (Main.netMode != NetmodeID.Server)
                             {
+                                SoundEngine.PlaySound(CoraliteSoundID.LaserShoot_Item33, Projectile.Center);
+                                Helper.PlayPitched("Lightning_Zap" + Main.rand.Next(1, 4).ToString()
+                                    , 0.9f, 0, Projectile.Center);
+
                                 thunderTrails = new ThunderTrail[4];
                                 var tex = ModContent.Request<Texture2D>(AssetDirectory.Assets + "ThunderTrailB2");
 
@@ -194,6 +196,9 @@ namespace TheTwinsRework.Projectiles
                         {
                             LaserWidth = Helper.Lerp(30, 0, (Timer - time * 0.8f) / (time * 0.2f));
                         }
+
+                        if (Timer % 25 == 0 && Main.rand.NextBool())
+                            Helper.PlayPitched("LightningAntic", 0.8f, 0, Projectile.Center);
 
                         Timer++;
                         if (Timer >= time)

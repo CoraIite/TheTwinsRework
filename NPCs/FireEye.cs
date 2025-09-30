@@ -17,6 +17,18 @@ namespace TheTwinsRework.NPCs
             Lighting.AddLight(NPC.Center, Color.Lime.ToVector3() * 0.5f);
         }
 
+
+        public void FireShootSound()
+        {
+            Helper.PlayPitched("FireBall", 0.5f, 0, NPC.Center);
+        }
+
+        public void FireBreathSound()
+        {
+            Helper.PlayPitched("FireBreath", 1f, 0, NPC.Center);
+        }
+
+
         public override void P1AI(NPC conrtoller)
         {
             int currState = (int)State % 8;
@@ -95,8 +107,17 @@ namespace TheTwinsRework.NPCs
                 if (realTime % time == 0)
                 {
                     Recorder2 = NPC.rotation;
-                    if (realTime < halfTime * 0.45f)
-                        TickSound();
+                    switch (realTime / time)
+                    {
+                        default:
+                            break;
+                        case 0:
+                            HaloSound();
+                            break;
+                        case 1:
+                            TickSound();
+                            break;
+                    }
                 }
 
                 float factor = Helper.HeavyEase(realTime % time / time);
@@ -119,6 +140,7 @@ namespace TheTwinsRework.NPCs
 
             if (realTime % 5 == 0)
             {
+                FireShootSound();
                 float velRot = MathF.Sin((realTime - halfTime * 2 / 3) / (halfTime / 3) * MathHelper.TwoPi) * MathHelper.PiOver4 / 8;
                 Vector2 velocity = (NPC.rotation + velRot).ToRotationVector2() * 4;
 
@@ -159,8 +181,17 @@ namespace TheTwinsRework.NPCs
                 if (realTime % time == 0)
                 {
                     Recorder2 = NPC.rotation;
-                    if (realTime < halfTime * 0.45f)
-                        TickSound();
+                    switch (realTime / time)
+                    {
+                        default:
+                            break;
+                        case 0:
+                            HaloSound();
+                            break;
+                        case 1:
+                            TickSound();
+                            break;
+                    }
                 }
 
                 float factor = Helper.HeavyEase(realTime % time / time);
@@ -190,6 +221,8 @@ namespace TheTwinsRework.NPCs
 
             if (realTime % 5 == 0)
             {
+                FireShootSound();
+
                 Vector2 velocity = NPC.rotation.ToRotationVector2() * 4f;
                 NPC.NewProjectileInAI<P2FireBall>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
                     , velocity, Helper.GetProjDamage(100, 125, 150)
@@ -237,8 +270,17 @@ namespace TheTwinsRework.NPCs
                 if (Time % time == 0)
                 {
                     Recorder2 = NPC.rotation;
-                    if (Time < halfTime * 0.45f)
-                        TickSound();
+                    switch (Time / time)
+                    {
+                        default:
+                            break;
+                        case 0:
+                            HaloSound();
+                            break;
+                        case 1:
+                            TickSound();
+                            break;
+                    }
                 }
 
                 float factor = Helper.HeavyEase(Time % time / time);
@@ -270,6 +312,8 @@ namespace TheTwinsRework.NPCs
             //喷火器类火焰
             if (Time % 2 == 0)
             {
+                if (Time % 10 == 0)
+                    FireBreathSound();
                 float speed = MathF.Sin(Time * 0.6f) * 2 + 7;
                 float exRot = MathF.Sin(Time * 0.5f) * 0.2f;
                 int time = (int)(MathF.Sin(Time * 0.4f) * 10) + 40;
@@ -280,9 +324,9 @@ namespace TheTwinsRework.NPCs
             }
 
             //火球
-            if (Time % 16 == 0)
+            if (Time % 10 == 0)
             {
-                float speed = MathF.Sin(Time * 0.2f) * 2 + 5;
+                float speed = MathF.Sin(Time * 0.2f) * 3 + 6;
                 float exRot = MathF.Sin(Time * 0.4f) * 0.4f;
                 Vector2 velocity = (NPC.rotation + exRot).ToRotationVector2() * speed;
                 NPC.NewProjectileInAI<P2FireBall>(NPC.Center + NPC.rotation.ToRotationVector2() * 75
@@ -298,10 +342,42 @@ namespace TheTwinsRework.NPCs
         {
             if (Timer % 4 == 0)
             {
+                FireShootSound();
+
                 Vector2 velocity = NPC.rotation.ToRotationVector2() * 5.5f;
                 NPC.NewProjectileInAI<P2FireBall>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
                     , velocity, Helper.GetProjDamage(100, 125, 150)
                     , 4, ai0: CircleLimitIndex);
+            }
+        }
+
+        public override void CombineP3Attack(NPC controller, int readyTime)
+        {
+            int count = 5;
+
+            Vector2 startPos = NPC.Center + NPC.rotation.ToRotationVector2() * 85;
+            float rot = NPC.rotation;
+
+            for (int i = 0; i < count; i++)
+            {
+                NPC.NewProjectileInAI<FireBreathLine>(startPos, NPC.rotation.ToRotationVector2()
+                     , Helper.GetProjDamage(100, 100, 100), 0, -1, CircleLimitIndex
+                     , readyTime+i*5, 25);
+
+                float length = GetLength(startPos, rot.ToRotationVector2(), controller);
+                Vector2 temp = startPos;
+                startPos += rot.ToRotationVector2() * length;
+                Vector2 toCenter = (startPos - temp).SafeNormalize(Vector2.Zero);
+                float angle = Utils.AngleTo(rot.ToRotationVector2(), toCenter);
+
+
+                rot += angle * 2 + MathHelper.Pi;
+
+                //随机加减角度
+                rot += Main.rand.Next(-2, 3) * MathHelper.PiOver4 / 2;
+                //防止最终角度垂直于半径
+                if (Vector2.Dot(rot.ToRotationVector2(), toCenter) < 0.001f)
+                    rot -= angle;
             }
         }
 

@@ -1,3 +1,4 @@
 displayName = 双子舞者
 author = Coralite
-version = 0.1
+version = 1.0
+buildIgnore = Olds/*

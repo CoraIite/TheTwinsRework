@@ -1,10 +1,5 @@
 ﻿using Coralite.Helpers;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,7 +7,7 @@ using TheTwinsRework.NPCs;
 
 namespace TheTwinsRework.Projectiles
 {
-    public class FireBreathLine:ModProjectile
+    public class FireBreathLine : ModProjectile
     {
         public override string Texture => AssetDirectory.Assets + "Line";
 
@@ -23,6 +18,8 @@ namespace TheTwinsRework.Projectiles
         public ref float LengthRecord => ref Projectile.localAI[0];
         public ref float Timer => ref Projectile.localAI[1];
         public ref float State => ref Projectile.localAI[2];
+
+        private bool Record = true;
 
         public override void SetDefaults()
         {
@@ -61,89 +58,25 @@ namespace TheTwinsRework.Projectiles
 
                             if (Main.netMode != NetmodeID.Server)
                             {
-                                thunderTrails = new ThunderTrail[4];
-                                var tex = ModContent.Request<Texture2D>(AssetDirectory.Assets + "ThunderTrailB2");
-
-                                for (int i = 0; i < 2; i++)
-                                {
-                                    thunderTrails[i] = new ThunderTrail(tex
-                                        , f => Helper.SinEase(f) * 25, ThunderColorFuncBack, GetAlpha);
-
-                                    thunderTrails[i].CanDraw = false;
-                                    thunderTrails[i].UseNonOrAdd = true;
-                                    thunderTrails[i].SetRange((10, 25));
-                                    thunderTrails[i].SetExpandWidth(4);
-                                    thunderTrails[i].BasePositions =
-                                    [
-                                    Projectile.Center,Projectile.Center,Projectile.Center
-                                    ];
-                                }
-                                for (int i = 2; i < 4; i++)
-                                {
-                                    thunderTrails[i] = new ThunderTrail(tex
-                                        , f => Helper.SinEase(f) * 15, ThunderColorFuncRed, GetAlpha);
-
-                                    thunderTrails[i].CanDraw = false;
-                                    //thunderTrails[i].UseNonOrAdd = true;
-
-                                    thunderTrails[i].SetRange((0, 30));
-                                    thunderTrails[i].SetExpandWidth(4);
-                                    thunderTrails[i].BasePositions =
-                                    [
-                                    Projectile.Center,Projectile.Center,Projectile.Center
-                                    ];
-                                }
                             }
                         }
                     }
                     break;
                 case 1://激光射射射
                     {
-                        if (Main.netMode != NetmodeID.Server)
+                        if (Timer % 3 == 0)
                         {
-                            List<Vector2> pos = new()
-                            {
-                                Projectile.Center
-                            };
+                            float f = Timer / ShootTime;
 
-                            int count = (int)(LengthRecord / 55);
-                            for (int i = 1; i < count; i++)
-                            {
-                                pos.Add(Projectile.Center + Projectile.velocity * i * 55);
-                            }
+                            Vector2 pos = Projectile.Center + Projectile.velocity * LengthRecord * f;
 
-                            foreach (var trail in thunderTrails)
-                            {
-                                trail.UpdateThunderToNewPosition([.. pos]);
-                            }
-
-                            if (Timer % 4 == 0)
-                            {
-                                foreach (var trail in thunderTrails)
-                                {
-                                    trail.CanDraw = Main.rand.NextBool();
-                                    trail.RandomThunder();
-                                }
-                            }
-                        }
-
-                        Lighting.AddLight(Projectile.Center, new Vector3(1.5f, 0, 0) * LaserWidth / 40);
-                        int time = ShootTime;
-                        if (Timer < 10)
-                        {
-                            LaserWidth = Helper.Lerp(0, 80, Timer / 10);
-                        }
-                        else if (Timer < 15)
-                        {
-                            LaserWidth = Helper.Lerp(80, 30, (Timer - 10) / 5);
-                        }
-                        else if (Timer > time * 0.8f)
-                        {
-                            LaserWidth = Helper.Lerp(30, 0, (Timer - time * 0.8f) / (time * 0.2f));
+                            Projectile.NewProjectile(Projectile.GetSource_FromAI(), pos
+                                , Projectile.velocity * 4, ModContent.ProjectileType<FireBreath>(), Helper.GetProjDamage(100, 125, 150)
+                                , 4, ai0: CircleIndex, ai1: 40, ai2: 12);
                         }
 
                         Timer++;
-                        if (Timer >= time)
+                        if (Timer >= ShootTime)
                         {
                             Projectile.Kill();
                         }
@@ -177,6 +110,45 @@ namespace TheTwinsRework.Projectiles
             }
 
             LengthRecord = Vector2.Distance(pos, Projectile.Center);
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            switch (State)
+            {
+                default:
+                case 0:
+                    {
+                        Texture2D tex = Projectile.GetTexture();
+                        Vector2 position = Projectile.Center - Main.screenPosition;
+                        Vector2 origin = new Vector2(0, tex.Height / 2);
+                        Color c = Color.Red * Helper.SqrtEase(Timer / ReadyTime);
+
+                        float Length = LengthRecord;
+
+                        Vector2 scale = new Vector2(Length / tex.Width, 0.3f);
+                        if (Timer < 5)
+                        {
+                            scale = Vector2.Lerp(Vector2.Zero, new Vector2(scale.X * 0.2f, 4), Timer / 5);
+                        }
+                        else if (Timer < 10)
+                        {
+                            scale = Vector2.Lerp(new Vector2(scale.X * 0.2f, 4), scale, (Timer - 5) / 5);
+                        }
+
+                        Main.spriteBatch.Draw(tex, position, null
+                                , c * 0.5f, Projectile.rotation, origin, scale, 0, 0);
+                        Main.spriteBatch.Draw(tex, position, null
+                            , c with { A = 0 } * 0.5f, Projectile.rotation, origin, scale, 0, 0);
+                    }
+                    break;
+                case 1:
+                    {
+                    }
+                    break;
+            }
+
+            return false;
         }
 
     }

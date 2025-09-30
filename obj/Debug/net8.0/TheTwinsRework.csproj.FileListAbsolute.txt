@@ -1,8 +1,3 @@
-D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\obj\Debug\net8.0\TheTwinsRework.csproj.AssemblyReference.cache
-D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\obj\Debug\net8.0\TheTwinsRework.GeneratedMSBuildEditorConfig.editorconfig
-D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\obj\Debug\net8.0\TheTwinsRework.AssemblyInfoInputs.cache
-D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\obj\Debug\net8.0\TheTwinsRework.AssemblyInfo.cs
-D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\obj\Debug\net8.0\TheTwinsRework.csproj.CoreCompileInputs.cache
 D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\bin\Debug\net8.0\TheTwinsRework.deps.json
 D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\bin\Debug\net8.0\TheTwinsRework.dll
 D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\bin\Debug\net8.0\TheTwinsRework.pdb
@@ -224,6 +219,12 @@ D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\bin\Debug\net8.0\ru\Mi
 D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\obj\Debug\net8.0\TheTwinsRework.csproj.AssemblyReference.cache
+D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\obj\Debug\net8.0\TheTwinsRework.GeneratedMSBuildEditorConfig.editorconfig
+D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\obj\Debug\net8.0\TheTwinsRework.AssemblyInfoInputs.cache
+D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\obj\Debug\net8.0\TheTwinsRework.AssemblyInfo.cs
+D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\obj\Debug\net8.0\TheTwinsRework.csproj.CoreCompileInputs.cache
+D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\obj\Debug\net8.0\TheTwinsRework.sourcelink.json
 D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\obj\Debug\net8.0\TheTwins.E93DF630.Up2Date
 D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\obj\Debug\net8.0\TheTwinsRework.dll
 D:\My Games\Terraria\tModLoader\ModSources\TheTwinsRework\obj\Debug\net8.0\refint\TheTwinsRework.dll

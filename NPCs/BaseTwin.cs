@@ -390,14 +390,15 @@ namespace TheTwinsRework.NPCs
             NPC.dontTakeDamage = true;
             Timer++;
 
-            if (Timer < (int)(maxTime * 0.9f))
+            if (Timer < (int)(maxTime -10))
             {
                 Main.audioSystem.PauseAll();
                 for (int i = 0; i < Main.musicFade.Length; i++)
                     Main.musicFade[i] = 0;
             }
-            else if (Timer == (int)(maxTime * 0.95f))
+            else if (Timer == (int)(maxTime-10))
             {
+
                 Main.musicFade[Main.curMusic] = 1;
             }
 
@@ -498,7 +499,7 @@ namespace TheTwinsRework.NPCs
 
         #endregion
 
-        public void DashAttack(NPC controller, int attackTime, float speed, float pitch, float exRot = 0)
+        public void DashAttack(NPC controller, int attackTime, float speed, float pitch, float exRot = 0,bool playRoar=false)
         {
             if (Timer == 0)
             {
@@ -507,7 +508,7 @@ namespace TheTwinsRework.NPCs
 
                 if (Main.netMode != NetmodeID.Server)
                 {
-                    TickSound();
+                    HaloSound();
 
                     Dust d = Dust.NewDustPerfect(NPC.Center, ModContent.DustType<AimLine>()
                         , Vector2.Zero, 0, Color.White, 1);
@@ -555,7 +556,10 @@ namespace TheTwinsRework.NPCs
 
             if (Timer == attackTime / 2)
             {
-                SoundEngine.PlaySound(CoraliteSoundID.ForceRoar with { Pitch = pitch }, NPC.Center);
+                DashSound();
+
+                if (playRoar)
+                    SoundEngine.PlaySound(CoraliteSoundID.ForceRoar with { Pitch = pitch }, NPC.Center);
 
                 float targetRot = (controller.Center - NPC.Center).ToRotation() + SPRecorder + exRot;//最终目标方向
                 NPC.rotation = targetRot;
@@ -621,8 +625,8 @@ namespace TheTwinsRework.NPCs
                         }
 
                         Recorder3 = 2;
-                        TickSound();
-                        SoundEngine.PlaySound(CoraliteSoundID.BigBOOM_Item62 with { Pitch = -0.5f }, NPC.Center);
+                        Helper.PlayPitched("DashTogether", 0.6f, 0, NPC.Center);
+                        SoundEngine.PlaySound(CoraliteSoundID.Fleshy_NPCDeath1 with { Pitch = -0.5f }, NPC.Center);
                     }
                 }
             }
@@ -656,6 +660,7 @@ namespace TheTwinsRework.NPCs
                 {
                     NPC.velocity = Vector2.Zero;
 
+                    CenterCircleSound();
                     ShineLine(attackTime / 6, Color.White, NPC.whoAmI, (controller.Center - NPC.Center).ToRotation());
 
                     if (NPC.whoAmI < OtherEyeIndex)
@@ -700,6 +705,8 @@ namespace TheTwinsRework.NPCs
 
             if (Timer == attackTime / 12 * 3)//设置转转乐的初始值
             {
+                CenterMeetSound();
+
                 NPC.velocity = Vector2.Zero;
                 if (OtherEyeIndex > NPC.whoAmI)
                     Recorder3 = MathHelper.Pi;
@@ -767,6 +774,7 @@ namespace TheTwinsRework.NPCs
                 {
                     NPC.velocity = Vector2.Zero;
 
+                    CenterCircleSound();
                     ShineLine(attackTime / 2, Color.White, NPC.whoAmI, (controller.Center - NPC.Center).ToRotation());
 
                     if (NPC.whoAmI < OtherEyeIndex)
@@ -811,6 +819,8 @@ namespace TheTwinsRework.NPCs
 
             if (Timer == attackTime / 4 * 3)//设置转转乐的初始值
             {
+                CenterMeetSound();
+
                 NPC.velocity = Vector2.Zero;
                 if (OtherEyeIndex > NPC.whoAmI)
                     Recorder3 = MathHelper.Pi;
@@ -874,7 +884,7 @@ namespace TheTwinsRework.NPCs
 
         public void CombinwP3_Lines(NPC controller)
         {
-            int waitTime = P3AttackTime / 2;
+            int waitTime = P3AttackTime / 4;
             if (NPC.whoAmI > OtherEyeIndex)//多等一下
             {
                 waitTime += P3AttackTime / 2;
@@ -885,8 +895,6 @@ namespace TheTwinsRework.NPCs
                 if (Timer == 0)
                 {
                     NPC.velocity = Vector2.Zero;
-
-                    ShineLine(waitTime / 2, Color.White, NPC.whoAmI, (controller.Center - NPC.Center).ToRotation(), (int)CircleLimitIndex);
 
                     if (NPC.whoAmI > OtherEyeIndex)
                         SPRecorder = -MathHelper.PiOver4;
@@ -902,23 +910,57 @@ namespace TheTwinsRework.NPCs
 
             Timer++;
 
-            int readyTime = P3AttackTime;
+            int readyTime = (int)(P3AttackTime * 3f / 4);
 
             //准备生成
             if (Timer == waitTime)
             {
+                NPC.rotation = (controller.Center - NPC.Center).ToRotation() + SPRecorder;
 
+                CombineP3Attack(controller,readyTime);
             }
 
+            //准备时间
             if (Timer < waitTime + readyTime)
             {
 
             }
+
+
+            if (Timer > waitTime + readyTime + P3AttackTime / 2)
+                ExchangeState();
         }
 
-        public virtual void CombineP3Attack()
+        public virtual void CombineP3Attack(NPC controller,int readyTime)
         {
 
+        }
+
+        public float GetLength(Vector2 pos, Vector2 dir, NPC circle)
+        {
+            bool closer = true;
+
+            Vector2 posRecord = pos;
+
+            for (int i = 0; i < 100; i++)
+            {
+                if (closer)//还没远离的时候，记录由远到近
+                {
+                    if (Vector2.Distance(pos, circle.Center) < CircleLimit.MaxLength)
+                    {
+                        closer = false;
+                    }
+                }
+                else//近了之后远离
+                {
+                    if (Vector2.Distance(pos, circle.Center) > CircleLimit.MaxLength)
+                        break;
+                }
+
+                pos += dir * 16;
+            }
+
+            return Vector2.Distance(pos, posRecord);
         }
 
         public void Wait(int time)
@@ -936,7 +978,6 @@ namespace TheTwinsRework.NPCs
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                TickSound();
 
                 Dust d = Dust.NewDustPerfect(NPC.Center, ModContent.DustType<AimLine>()
                     , Vector2.Zero, 0, color, 1);
@@ -1004,10 +1045,41 @@ namespace TheTwinsRework.NPCs
 
         #endregion
 
+        #region 音效部分
+
+
+        public void CenterMeetSound()
+        {
+            Helper.PlayPitched("CenterMeet", 0.6f, 0, NPC.Center);
+        }
+
+        public void CenterCircleSound()
+        {
+            Helper.PlayPitched("CenterCircle", 0.8f, 0, NPC.Center);
+        }
+
+        public void DashSound()
+        {
+            Helper.PlayPitched("Dash", 0.7f, 0, NPC.Center);
+        }
+
+        public void HaloSound()
+        {
+            if (Phase == AIPhase.P1)
+                Helper.PlayPitched("HaloP1", 1f, 0, NPC.Center);
+            else
+            {
+                int value = Main.rand.Next(1, 5);
+                Helper.PlayPitched("HaloP2_"+value.ToString(), 1f, 0, NPC.Center);
+            }
+        }
+
         public void TickSound()
         {
             SoundEngine.PlaySound(CoraliteSoundID.Metal_NPCHit4 with { Pitch = -0.3f }, NPC.Center);
         }
+
+        #endregion
 
         public sealed override bool CanHitPlayer(Player target, ref int cooldownSlot)
         {

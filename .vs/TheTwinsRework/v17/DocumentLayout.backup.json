@@ -3,40 +3,40 @@
   "WorkspaceRootPath": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\thetwinsrework.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|solutionrelative:thetwinsrework.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\projectiles\\laserline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|solutionrelative:projectiles\\laserline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\projectiles\\firebreathline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|solutionrelative:projectiles\\firebreathline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\npcs\\basetwin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|solutionrelative:npcs\\basetwin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\npcs\\lasereye.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|solutionrelative:npcs\\lasereye.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\projectiles\\firebreath.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|solutionrelative:projectiles\\firebreath.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\npcs\\fireeye.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|solutionrelative:npcs\\fireeye.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\dusts\\scan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|solutionrelative:dusts\\scan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\npcs\\lasereye.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|solutionrelative:npcs\\lasereye.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\npcs\\basetwin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|solutionrelative:npcs\\basetwin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\npcs\\circlelimit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|solutionrelative:npcs\\circlelimit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\helpers\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|solutionrelative:helpers\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\thetwinsrework.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|solutionrelative:thetwinsrework.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\projectiles\\firebreathline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|solutionrelative:projectiles\\firebreathline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\projectiles\\firebreath.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|solutionrelative:projectiles\\firebreath.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EEBF2BC4-D2B3-4EDB-1789-CDC4D2282950}|TheTwinsRework.csproj|d:\\my games\\terraria\\tmodloader\\modsources\\thetwinsrework\\projectiles\\deathlasernotilecollide.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -74,7 +74,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 20,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -98,52 +98,51 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
+              "Title": "Helper.cs",
+              "DocumentMoniker": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\Helpers\\Helper.cs",
+              "RelativeDocumentMoniker": "Helpers\\Helper.cs",
+              "ToolTip": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\Helpers\\Helper.cs",
+              "RelativeToolTip": "Helpers\\Helper.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAAAKkAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-30T14:14:49.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "FireBreathLine.cs",
               "DocumentMoniker": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\Projectiles\\FireBreathLine.cs",
               "RelativeDocumentMoniker": "Projectiles\\FireBreathLine.cs",
               "ToolTip": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\Projectiles\\FireBreathLine.cs",
               "RelativeToolTip": "Projectiles\\FireBreathLine.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAACkAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-28T10:17:28.254Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Scan.cs",
-              "DocumentMoniker": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\Dusts\\Scan.cs",
-              "RelativeDocumentMoniker": "Dusts\\Scan.cs",
-              "ToolTip": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\Dusts\\Scan.cs",
-              "RelativeToolTip": "Dusts\\Scan.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAA4AAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T08:26:25.181Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "FireBreath.cs",
               "DocumentMoniker": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\Projectiles\\FireBreath.cs",
               "RelativeDocumentMoniker": "Projectiles\\FireBreath.cs",
               "ToolTip": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\Projectiles\\FireBreath.cs",
               "RelativeToolTip": "Projectiles\\FireBreath.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAAAwwC8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-28T05:25:45.95Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-28T05:25:45.95Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "LaserLine.cs",
               "DocumentMoniker": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\Projectiles\\LaserLine.cs",
               "RelativeDocumentMoniker": "Projectiles\\LaserLine.cs",
               "ToolTip": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\Projectiles\\LaserLine.cs",
               "RelativeToolTip": "Projectiles\\LaserLine.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAiwB0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAAAG4AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-27T05:07:05.755Z",
               "EditorCaption": ""
@@ -234,26 +233,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "FireEye.cs",
               "DocumentMoniker": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\NPCs\\FireEye.cs",
               "RelativeDocumentMoniker": "NPCs\\FireEye.cs",
               "ToolTip": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\NPCs\\FireEye.cs",
               "RelativeToolTip": "NPCs\\FireEye.cs",
-              "ViewState": "AgIAAAIBAAAAAAAAAIAwwBABAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAC8BAAAAAAAAAAAAADkBAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-11T03:52:49.913Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "LaserEye.cs",
               "DocumentMoniker": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\NPCs\\LaserEye.cs",
               "RelativeDocumentMoniker": "NPCs\\LaserEye.cs",
               "ToolTip": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\NPCs\\LaserEye.cs",
               "RelativeToolTip": "NPCs\\LaserEye.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAANoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsBAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-11T03:52:42.812Z",
               "EditorCaption": ""
@@ -266,26 +265,27 @@
               "RelativeDocumentMoniker": "NPCs\\BaseTwin.cs",
               "ToolTip": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\NPCs\\BaseTwin.cs",
               "RelativeToolTip": "NPCs\\BaseTwin.cs",
-              "ViewState": "AgIAAPUCAAAAAAAAAAAAAJgDAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAEDAAAAAAAAAAAtwAgDAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-11T03:43:13.811Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "CircleLimit.cs",
               "DocumentMoniker": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\NPCs\\CircleLimit.cs",
               "RelativeDocumentMoniker": "NPCs\\CircleLimit.cs",
               "ToolTip": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\NPCs\\CircleLimit.cs",
               "RelativeToolTip": "NPCs\\CircleLimit.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAANUAAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAAJsAAAAAAAAAAAAAAO0AAABlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T03:38:19.393Z"
+              "WhenOpened": "2025-09-11T03:38:19.393Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "TheTwinsRework.cs",
               "DocumentMoniker": "D:\\My Games\\Terraria\\tModLoader\\ModSources\\TheTwinsRework\\TheTwinsRework.cs",
               "RelativeDocumentMoniker": "TheTwinsRework.cs",
