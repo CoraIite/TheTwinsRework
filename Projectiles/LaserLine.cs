@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria.Audio;
+using Terraria.Graphics.CameraModifiers;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -65,6 +66,7 @@ namespace TheTwinsRework.Projectiles
             Projectile.friendly = false;
             Projectile.tileCollide = false;
             Projectile.hostile = true;
+            Projectile.penetrate = -1;
         }
 
         public override bool ShouldUpdatePosition() => false;
@@ -85,7 +87,10 @@ namespace TheTwinsRework.Projectiles
                 return;
 
             //确定长度
-            if (FollowIndex.GetNPCOwner(out NPC owner, () => { FollowIndex = -1; }))
+            if (FollowIndex > 0 && FollowIndex.GetNPCOwner(out NPC owner, () =>
+            {
+                FollowIndex = -1;
+            }))
             {
                 Projectile.rotation = owner.rotation;
                 Projectile.velocity = Projectile.rotation.ToRotationVector2();
@@ -98,12 +103,19 @@ namespace TheTwinsRework.Projectiles
 
                 float rot = Projectile.velocity.ToRotation();
                 SetLength(Projectile.velocity, Circle);
+                Projectile.rotation = rot;
             }
 
             switch (State)
             {
                 case 0://准备阶段，生成线条
                     {
+                        int startTime = 0;
+                        if (ReadyTime > 35)
+                            startTime += ((int)ReadyTime - 35) / 2;
+
+                        if (Timer==startTime)
+                            Helper.PlayPitched("MultiLine", 0.6f, 0, Projectile.Center);
                         Timer++;
                         if (Timer >= ReadyTime)
                         {
@@ -112,9 +124,11 @@ namespace TheTwinsRework.Projectiles
 
                             if (Main.netMode != NetmodeID.Server)
                             {
+                                Main.instance.CameraModifiers.Add(new PunchCameraModifier(Projectile.Center, Projectile.velocity
+                                    , 24, 6, 13, 600));
                                 SoundEngine.PlaySound(CoraliteSoundID.LaserShoot_Item33, Projectile.Center);
                                 Helper.PlayPitched("Lightning_Zap" + Main.rand.Next(1, 4).ToString()
-                                    , 0.9f, 0, Projectile.Center);
+                                    , 0.7f, 0, Projectile.Center);
 
                                 thunderTrails = new ThunderTrail[4];
                                 var tex = ModContent.Request<Texture2D>(AssetDirectory.Assets + "ThunderTrailB2");
@@ -197,8 +211,8 @@ namespace TheTwinsRework.Projectiles
                             LaserWidth = Helper.Lerp(30, 0, (Timer - time * 0.8f) / (time * 0.2f));
                         }
 
-                        if (Timer % 25 == 0 && Main.rand.NextBool())
-                            Helper.PlayPitched("LightningAntic", 0.8f, 0, Projectile.Center);
+                        if (Timer % 35 == 0 && Main.rand.NextBool())
+                            Helper.PlayPitched("LightningAntic", 0.4f, 0, Projectile.Center);
 
                         Timer++;
                         if (Timer >= time)
@@ -274,13 +288,22 @@ namespace TheTwinsRework.Projectiles
                         float Length = LengthRecord;
 
                         Vector2 scale = new Vector2(Length / tex.Width, 0.3f);
-                        if (Timer < 5)
+
+                        int startTime = 0;
+                        if (ReadyTime > 35)
+                            startTime += ((int)ReadyTime - 35) / 3;
+
+                        if (Timer < startTime)
                         {
-                            scale = Vector2.Lerp(Vector2.Zero, new Vector2(scale.X * 0.2f, 4), Timer / 5);
+                            scale = Vector2.Zero;
                         }
-                        else if (Timer < 10)
+                        else if (Timer < startTime + 5)
                         {
-                            scale = Vector2.Lerp(new Vector2(scale.X * 0.2f, 4), scale, (Timer - 5) / 5);
+                            scale = Vector2.Lerp(Vector2.Zero, new Vector2(scale.X * 0.2f, 4), (Timer - startTime) / 5);
+                        }
+                        else if (Timer < startTime + 10)
+                        {
+                            scale = Vector2.Lerp(new Vector2(scale.X * 0.2f, 4), scale, (Timer - startTime - 5) / 5);
                         }
 
                         Main.spriteBatch.Draw(tex, position, null

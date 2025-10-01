@@ -58,6 +58,7 @@ namespace TheTwinsRework.NPCs
         public ref float Timer => ref NPC.localAI[0];
         public ref float Recorder2 => ref NPC.localAI[1];
         public ref float Recorder3 => ref NPC.localAI[2];
+        public ref float WaitState => ref NPC.localAI[3];
 
         public static int P1AttackTime = 60 * 1 + 59;
         public static int P2AttackTime = 60 * 1 + 35;
@@ -437,7 +438,7 @@ namespace TheTwinsRework.NPCs
 
             if (Timer < maxTime * 3 / 5)
             {
-                NPC.rotation += Helper.Lerp(0.1f, 0.6f, (Timer - maxTime / 5) / (maxTime / 5));
+                NPC.rotation += Helper.Lerp(0.1f, 0.6f, (Timer - maxTime*2 / 5) / (maxTime / 5));
 
                 return;
             }
@@ -460,15 +461,19 @@ namespace TheTwinsRework.NPCs
                 }
 
                 ExchangeGore();
-
-                SoundEngine.PlaySound(CoraliteSoundID.NoUse_ScaryScream with { Pitch = -0.75f }, NPC.Center);
-                SoundEngine.PlaySound(CoraliteSoundID.ForceRoar with { Pitch = -0.5f }, NPC.Center);
             }
 
 
             if (Timer < maxTime * 3 / 5 + 30)
             {
                 NPC.rotation = NPC.rotation.AngleLerp((TargetPos - NPC.Center).ToRotation(), 0.1f);
+
+                return;
+            }
+
+            if (Timer == maxTime * 3 / 5 + 30)
+            {
+                SoundEngine.PlaySound(CoraliteSoundID.ForceRoar with { Pitch = -0.5f }, NPC.Center);
 
                 return;
             }
@@ -690,6 +695,8 @@ namespace TheTwinsRework.NPCs
                 float length = Vector2.Distance(NPC.Center, controller.Center);
                 float time = attackTime / 12;
 
+                DashSound();
+
                 CanDamage = true;
                 CanDrawTrail = true;
                 NPC.InitOldPosCache(10, false);
@@ -804,6 +811,7 @@ namespace TheTwinsRework.NPCs
                 float length = Vector2.Distance(NPC.Center, controller.Center);
                 float time = attackTime / 4;
 
+                DashSound();
                 CanDamage = true;
                 CanDrawTrail = true;
                 NPC.InitOldPosCache(10, false);
@@ -830,7 +838,7 @@ namespace TheTwinsRework.NPCs
                 SPRecorder = (Main.player[controller.target].Center - controller.Center).ToRotation() - MathHelper.PiOver4 * 3;
             }
 
-            if (Timer <= attackTime / 4 * 6)//转转乐
+            if (Timer < attackTime / 4 * 6)//转转乐
             {
                 float factor = Timer - attackTime / 4 * 3;
                 factor /= attackTime / 4 * 3;
@@ -858,9 +866,9 @@ namespace TheTwinsRework.NPCs
                 //旋转
                 float factor = Timer - attackTime / 4 * 6;
                 factor /= attackTime / 4 * 10;
-                factor = Helper.X3Ease(factor);
+                factor = Helper.X2Ease(factor);
 
-                float rot = SPRecorder + Recorder3 + factor * MathHelper.TwoPi * 2;// + MathHelper.PiOver2*3;
+                float rot = SPRecorder + Recorder3 + factor * MathHelper.TwoPi + MathHelper.PiOver2 * 3+MathHelper.PiOver4;
                 Vector2 targetPos = controller.Center + rot.ToRotationVector2() * 75;
 
                 NPC.Center = Vector2.SmoothStep(NPC.Center, targetPos, 0.2f + factor * 0.8f);
@@ -882,12 +890,152 @@ namespace TheTwinsRework.NPCs
             }
         }
 
-        public void CombinwP3_Lines(NPC controller)
+        public void CombineP3_Rot(NPC controller)
+        {
+            int attackTime = P3AttackTime;
+
+            if (Timer == 0)
+            {
+                if (Main.npc[(int)OtherEyeIndex].ai[2] < State)//多等一下
+                    return;
+
+                if (Main.npc[(int)OtherEyeIndex].localAI[0] < Timer)//多等一下
+                    return;
+            }
+
+            //朝向中间旋转
+            if (Timer <= attackTime / 4)
+            {
+                if (Timer == 0)//生成瞄准线
+                {
+                    NPC.velocity = Vector2.Zero;
+
+                    CenterCircleSound();
+                    ShineLine(attackTime / 2, Color.White, NPC.whoAmI, (controller.Center - NPC.Center).ToRotation());
+
+                    if (NPC.whoAmI < OtherEyeIndex)
+                    {
+                        Dust d = Dust.NewDustPerfect(controller.Center, ModContent.DustType<Circle>()
+                              , Vector2.Zero, newColor: Color.White, Scale: 0.1f);
+                        d.customData = attackTime / 2;
+                        SPRecorder = Main.rand.Next(8) * MathHelper.PiOver4;
+                        if (OtherEyeIndex.GetNPCOwner(out NPC other))
+                        {
+                            other.ai[3] = SPRecorder;
+                        }
+                    }
+
+                    Recorder2 = NPC.rotation;
+                }
+
+                float targetRot = (controller.Center - NPC.Center).ToRotation();//最终目标方向
+                NPC.rotation = Recorder2.AngleLerp(targetRot, Helper.SqrtEase(Timer / (attackTime / 4)));
+            }
+
+            Timer++;
+
+            //冲向中心点
+            if (Timer == attackTime / 4 * 2)
+            {
+                float length = Vector2.Distance(NPC.Center, controller.Center);
+                float time = attackTime / 4;
+
+                DashSound();
+                CanDamage = true;
+                CanDrawTrail = true;
+                NPC.InitOldPosCache(10, false);
+                NPC.InitOldRotCache(10);
+                NPC.velocity = (controller.Center - NPC.Center).SafeNormalize(Vector2.Zero) * length / time;
+                NPC.rotation = NPC.velocity.ToRotation();
+            }
+
+            if (Timer < attackTime / 4 * 3)
+            {
+                return;
+            }
+
+            if (Timer == attackTime / 4 * 3)//设置转转乐的初始值
+            {
+                CenterMeetSound();
+
+                NPC.velocity = Vector2.Zero;
+                if (OtherEyeIndex > NPC.whoAmI)
+                    Recorder3 = MathHelper.Pi;
+                else
+                    Recorder3 = 0;
+
+                SPRecorder = (Main.player[controller.target].Center - controller.Center).ToRotation() - MathHelper.PiOver4 * 3;
+            }
+
+            if (Timer < attackTime / 4 * 6)//转转乐
+            {
+                float factor = Timer - attackTime / 4 * 3;
+                factor /= attackTime / 4 * 3;
+                factor = Helper.X2Ease(factor);
+
+                float rot = SPRecorder + Recorder3 + factor * MathHelper.TwoPi;
+                Vector2 targetPos = controller.Center + rot.ToRotationVector2() * 75;
+
+                NPC.Center = Vector2.SmoothStep(NPC.Center, targetPos, 0.1f + factor * 0.9f);
+                NPC.rotation = NPC.rotation.AngleLerp((NPC.Center - controller.Center).ToRotation() + MathHelper.PiOver2, 0.25f);
+                return;
+            }
+
+            //旋转
+            int totalRotTime = attackTime / 4 * 22;
+            if (Timer == attackTime / 4 * 6)
+            {
+                CanDamage = true;
+                CanDrawTrail = true;
+                NPC.InitOldPosCache(10, false);
+                NPC.InitOldRotCache(10);
+
+                CombineP3_RotStart(controller, totalRotTime);
+            }
+
+            if (Timer <= attackTime / 4 * 6 + totalRotTime)
+            {
+                //旋转
+                float factor = Timer - attackTime / 4 * 6;
+                factor /= totalRotTime;
+                //factor = Helper.BezierEase(factor);
+
+                float rot = SPRecorder + Recorder3 + factor * MathHelper.TwoPi * 2;
+                Vector2 targetPos = controller.Center + rot.ToRotationVector2() * 75;
+
+                NPC.Center = Vector2.SmoothStep(NPC.Center, targetPos, 0.2f + factor * 0.8f);
+                NPC.rotation = NPC.rotation.AngleLerp((NPC.Center - controller.Center).ToRotation(), 0.25f);
+
+                if (Timer > attackTime / 4 * 8)
+                    CombineP3_Roting(controller);
+                return;
+            }
+
+            //{
+            //    Vector2 targetPos = controller.Center + (SPRecorder + Recorder3 + MathHelper.PiOver2).ToRotationVector2() * (CircleLimit.MaxLength - 60);
+            //    NPC.Center = Vector2.SmoothStep(NPC.Center, targetPos, 0.25f);
+            //}
+
+            if (Timer >= attackTime / 4 * 6 + totalRotTime + attackTime / 4)
+            {
+                combineMove = true;
+                ExchangeState();
+            }
+        }
+
+        public virtual void CombineP3_RotStart(NPC controller,int rotTime) { }
+        public virtual void CombineP3_Roting(NPC controller) { }
+
+        public void CombinwP3_Lines(NPC controller, bool setCombineSet)
         {
             int waitTime = P3AttackTime / 4;
-            if (NPC.whoAmI > OtherEyeIndex)//多等一下
+            if (Timer == 0)
             {
-                waitTime += P3AttackTime / 2;
+                if (Main.npc[(int)OtherEyeIndex].ai[2] < State)//多等一下
+                    return;
+
+                if (Main.npc[(int)OtherEyeIndex].localAI[0] < Timer)//多等一下
+                    return;
             }
 
             if (Timer < waitTime)
@@ -897,9 +1045,11 @@ namespace TheTwinsRework.NPCs
                     NPC.velocity = Vector2.Zero;
 
                     if (NPC.whoAmI > OtherEyeIndex)
-                        SPRecorder = -MathHelper.PiOver4;
+                        SPRecorder = MathHelper.PiOver4;
                     else
                         SPRecorder = -MathHelper.PiOver4;
+
+                    SPRecorder += MathF.Sin(State * MathHelper.PiOver2) * MathHelper.PiOver4;
 
                     Recorder2 = NPC.rotation;
                 }
@@ -917,7 +1067,7 @@ namespace TheTwinsRework.NPCs
             {
                 NPC.rotation = (controller.Center - NPC.Center).ToRotation() + SPRecorder;
 
-                CombineP3Attack(controller,readyTime);
+                CombineP3Attack(controller, readyTime);
             }
 
             //准备时间
@@ -927,8 +1077,12 @@ namespace TheTwinsRework.NPCs
             }
 
 
-            if (Timer > waitTime + readyTime + P3AttackTime / 2)
+            if (Timer > waitTime + readyTime + P3AttackTime)
+            {
+                if (setCombineSet)
+                    combineMove = true;
                 ExchangeState();
+            }
         }
 
         public virtual void CombineP3Attack(NPC controller,int readyTime)
@@ -966,9 +1120,12 @@ namespace TheTwinsRework.NPCs
         public void Wait(int time)
         {
             Timer++;
+            NPC.velocity = Vector2.Zero;
             if (Timer>=time)
             {
+                WaitState = 0;
                 ExchangeState();
+                State--;
             }
         }
 

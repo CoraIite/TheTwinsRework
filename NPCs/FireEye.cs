@@ -1,5 +1,7 @@
 ﻿using Coralite.Helpers;
 using System;
+using Terraria.Audio;
+using Terraria.ID;
 using Terraria.ModLoader;
 using TheTwinsRework.Dusts;
 using TheTwinsRework.Projectiles;
@@ -25,7 +27,7 @@ namespace TheTwinsRework.NPCs
 
         public void FireBreathSound()
         {
-            Helper.PlayPitched("FireBreath", 1f, 0, NPC.Center);
+            Helper.PlayPitched("FireBreath", 0.6f, 0, NPC.Center);
         }
 
 
@@ -57,26 +59,45 @@ namespace TheTwinsRework.NPCs
 
         public override void P3AI(NPC conrtoller)
         {
-            if (State == -1)
+            if (WaitState == 1)
             {
                 Wait(P3AttackTime / 2);
                 return;
             }
 
-            int currState = (int)State % 10;
+            int currState = (int)State % 30;
             //ShootFireP3(conrtoller);
             //return;
-            //0    1  2  3  4  5   6    7   8  9  10  11 12  13  14 15  16  17  18  19  20    21
-            //喷火 冲 冲 喷火 冲 冲 连连看 冲 喷火 冲 冲  喷火 冲 转圈 冲  冲 喷火 喷火 冲  冲 连连看 连连看
+            // 0 1  2 3  4   5  6  7  8   9      10  11  12 13 14  15 16 17 18     19  20  21 22  23  24 25 26 27  28    29
+            //冲 冲 冲 冲 喷火 冲 冲 冲 冲 连连看    冲  冲  冲 喷火 冲  冲 冲 冲 转圈    冲  冲  冲  冲  喷火 冲 冲 冲  冲 连连看 连连看
 
-            //if (currState == 0)
-            //    DashAttack(conrtoller, P2AttackTime, 30, 0.4f, MathHelper.Pi);
-            if (currState is 0 or 3 or 8 or 11 or 16 or 17)
-                ShootFireP3(conrtoller);
-            //else if (currState == 9)
-            //    CombineP2(conrtoller);
-            else
-                DashAttack(conrtoller, P3AttackTime, 40, 0.4f);
+            switch (currState)
+            {
+                default:
+                    DashAttackP3(conrtoller, P3AttackTime, 30);
+                    break;
+                case 4:
+                case 11:
+                case 15:
+                case 23:
+                    ShootFireP3(conrtoller);
+                    break;
+                case 18:
+                    CombineP3_Rot(conrtoller);
+                    break;
+                case 19:
+                    DashAttackP3(conrtoller, P3AttackTime, 30,MathHelper.Pi);
+                    break;
+                case 9:
+                    CombinwP3_Lines(conrtoller, true);
+                    break;
+                case 28://不添加额外偏移时间
+                    CombinwP3_Lines(conrtoller, false);
+                    break;
+                case 29://不添加额外前摇时间
+                    CombinwP3_Lines(conrtoller, true);
+                    break;
+            }
         }
 
 
@@ -338,6 +359,102 @@ namespace TheTwinsRework.NPCs
                 ExchangeState();
         }
 
+        public void DashAttackP3(NPC controller, int attackTime, float speed, float exRot = 0)
+        {
+            if (Timer == 0)
+            {
+                Recorder2 = NPC.rotation;
+                NPC.velocity = Vector2.Zero;
+
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    HaloSound();
+
+                    Dust d = Dust.NewDustPerfect(NPC.Center, ModContent.DustType<AimLine>()
+                        , Vector2.Zero, 0, Color.White, 1);
+                    d.customData = new AimLine.IncomeData()
+                    {
+                        index = NPC.whoAmI,
+                        circleIndex = (int)CircleLimitIndex,
+                        maxTime = attackTime / 2,
+                        rot = (controller.Center - NPC.Center).ToRotation() + SPRecorder + exRot
+                    };
+                }
+            }
+
+            Timer++;
+
+            if (Timer < attackTime / 2)//旋转向目标点
+            {
+                float targetRot = (controller.Center - NPC.Center).ToRotation() + SPRecorder + exRot;//最终目标方向
+                int time = attackTime / (2 * 2);
+
+                if (Timer % time == 0)
+                {
+                    Recorder2 = NPC.rotation;
+                    if (Timer < attackTime * 0.45f)
+                        TickSound();
+                }
+
+                float factor = Helper.HeavyEase(Timer % time / time);
+
+                //临时目标方向
+                float percent = (int)(Timer / time + 1) / 2f;
+                float targetRot2 = Recorder2.AngleLerp(targetRot, percent);
+
+                NPC.rotation = Recorder2.AngleLerp(targetRot2, factor);
+
+                return;
+            }
+
+            if (Timer == attackTime / 2)
+            {
+                DashSound();
+
+                SoundEngine.PlaySound(CoraliteSoundID.ForceRoar with { Pitch = 0.4f }, NPC.Center);
+
+                float targetRot = (controller.Center - NPC.Center).ToRotation() + SPRecorder + exRot;//最终目标方向
+                NPC.rotation = targetRot;
+                NPC.velocity = targetRot.ToRotationVector2() * speed;
+                NPC.rotation = targetRot;
+                CanDrawTrail = true;
+                CanDamage = true;
+                NPC.InitOldPosCache(10, false);
+                NPC.InitOldRotCache(10);
+                Recorder2 = 0;
+
+                return;
+            }
+
+            //喷火器类火焰
+            if (Timer % 2 == 0&& NPC.velocity.Length() > 1)
+            {
+                if (Timer % 12 == 0)
+                    FireBreathSound();
+                Vector2 velocity = NPC.rotation.ToRotationVector2() * 23;
+                NPC.NewProjectileInAI<FireBreath>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
+                    , velocity, Helper.GetProjDamage(100, 125, 150)
+                    , 4, ai0: CircleLimitIndex, ai1: 20, ai2: 12);
+            }
+
+            float distance = Vector2.Distance(NPC.Center, controller.Center);
+            if (Recorder2 == 0)
+            {
+                if (distance < CircleLimit.MaxLength - 60)
+                    Recorder2 = 1;
+            }
+            else if (distance >= CircleLimit.MaxLength - 60)
+            {
+                CanDamage = false;
+                NPC.Center = controller.Center + (NPC.Center - controller.Center).SafeNormalize(Vector2.Zero) * (CircleLimit.MaxLength - 59);
+                NPC.velocity = Vector2.Zero;
+                NPC.rotation += 0.03f;
+            }
+
+            if (Timer >= attackTime)
+                ExchangeState();
+        }
+
         public override void CombineP2Attack()
         {
             if (Timer % 4 == 0)
@@ -353,31 +470,64 @@ namespace TheTwinsRework.NPCs
 
         public override void CombineP3Attack(NPC controller, int readyTime)
         {
-            int count = 5;
+            int count = Helper.ScaleValueForDiffMode(3,3,5,7);
 
             Vector2 startPos = NPC.Center + NPC.rotation.ToRotationVector2() * 85;
             float rot = NPC.rotation;
 
             for (int i = 0; i < count; i++)
             {
-                NPC.NewProjectileInAI<FireBreathLine>(startPos, NPC.rotation.ToRotationVector2()
+                NPC.NewProjectileInAI<FireBreathLine>(startPos, rot.ToRotationVector2()
                      , Helper.GetProjDamage(100, 100, 100), 0, -1, CircleLimitIndex
-                     , readyTime+i*5, 25);
+                     , readyTime+i*6, 25);
 
                 float length = GetLength(startPos, rot.ToRotationVector2(), controller);
-                Vector2 temp = startPos;
+                //Vector2 temp = startPos;
                 startPos += rot.ToRotationVector2() * length;
-                Vector2 toCenter = (startPos - temp).SafeNormalize(Vector2.Zero);
+                startPos += (controller.Center - startPos).SafeNormalize(Vector2.Zero) * 9;
+                startPos = controller.Center + (startPos - controller.Center).SafeNormalize(Vector2.Zero) * (CircleLimit.MaxLength - 9);
+
+
+                Vector2 toCenter = (startPos - controller.Center).SafeNormalize(Vector2.Zero);
                 float angle = Utils.AngleTo(rot.ToRotationVector2(), toCenter);
 
 
                 rot += angle * 2 + MathHelper.Pi;
 
                 //随机加减角度
-                rot += Main.rand.Next(-2, 3) * MathHelper.PiOver4 / 2;
+                rot += Main.rand.Next(-3, 4) * MathHelper.PiOver4 / 2;
                 //防止最终角度垂直于半径
-                if (Vector2.Dot(rot.ToRotationVector2(), toCenter) < 0.001f)
-                    rot -= angle;
+                if (Vector2.Dot(rot.ToRotationVector2(), toCenter) > -0.2f)
+                    rot = (controller.Center - startPos).ToRotation() + MathF.Cos(i * MathHelper.PiOver2) * MathHelper.PiOver4;
+            }
+        }
+
+        public override void CombineP3_Roting(NPC controller)
+        {
+
+            //喷火器类火焰
+            if (Timer % 2 == 0)
+            {
+                if (Timer % 18 == 0)
+                    FireBreathSound();
+                float speed = MathF.Sin(Timer * 0.6f) * 2 + 5;
+                float exRot = MathF.Sin(Timer * 0.5f) * 0.2f;
+                int time = (int)(MathF.Sin(Timer * 0.4f) * 10) + 40;
+                Vector2 velocity = (NPC.rotation + exRot - SPRecorder * 4 / (Timer * 3 / 4)).ToRotationVector2() * speed;
+                NPC.NewProjectileInAI<FireBreath>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
+                    , velocity, Helper.GetProjDamage(100, 125, 150)
+                    , 4, ai0: CircleLimitIndex, ai1: time, ai2: 12);
+            }
+
+            //火球
+            if (Timer % 10 == 0)
+            {
+                float speed = MathF.Sin(Timer * 0.2f) * 4 + 6;
+                float exRot = MathF.Sin(Timer * 0.4f) * 0.4f;
+                Vector2 velocity = (NPC.rotation + exRot).ToRotationVector2() * speed;
+                NPC.NewProjectileInAI<P2FireBall>(NPC.Center + NPC.rotation.ToRotationVector2() * 75
+                    , velocity, Helper.GetProjDamage(100, 125, 150)
+                    , 4, ai0: CircleLimitIndex);
             }
         }
 
@@ -434,16 +584,23 @@ namespace TheTwinsRework.NPCs
             {
                 SPRecorder = 0;
             }
-
+            //Main.NewText(State, Color.Lime);
             State++;
             //State = 5;
 
             if (combineMove)
             {
                 combineMove = false;
-                if (NPC.whoAmI < OtherEyeIndex)
+                int state = (int)State % 2;
+                if (state == 0)
                 {
-                    State = -1;
+                    if (NPC.whoAmI < OtherEyeIndex)
+                        WaitState = 1;
+                }
+                else
+                {
+                    if (NPC.whoAmI > OtherEyeIndex)
+                        WaitState = 1;
                 }
             }
 
