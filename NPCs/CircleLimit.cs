@@ -5,8 +5,10 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
+using Terraria.Map;
 using Terraria.ModLoader;
 using TheTwinsRework.Misc;
+using TheTwinsRework.Projectiles;
 
 namespace TheTwinsRework.NPCs
 {
@@ -111,9 +113,10 @@ namespace TheTwinsRework.NPCs
                             State = 2;
                         }
 
+                        SetHealth(eye1);
+
                         if (eye1 != null)
                         {
-                            SetHealth(eye1);
                             SwitchPhase(eye1);
                         }
 
@@ -134,9 +137,27 @@ namespace TheTwinsRework.NPCs
                     break;
                 case 2://死亡
                     {
-                        CircleLength = Helper.Lerp(CircleLength, 0, 0.2f);
+                        CircleLength = Helper.Lerp(CircleLength, 0, 0.075f);
                         if (CircleLength < 1)
+                        {
                             NPC.Kill();
+
+                            Helper.PlayPitched("Defeat", 1, 0, NPC.Center);
+                        }
+                    }
+                    break;
+                case 3:
+                    {
+                        Main.audioSystem.PauseAll();
+                        for (int i = 0; i < Main.musicFade.Length; i++)
+                            Main.musicFade[i] = 0;
+
+                        Timer++;
+                        if (Timer > 160)
+                        {
+                            NPC.NewProjectileInAI<SoundControl>(NPC.Center, Vector2.Zero, 0, 0);
+                            State = 2;
+                        }
                     }
                     break;
             }
@@ -196,6 +217,7 @@ namespace TheTwinsRework.NPCs
                             eye1.life = eye2.life = life;
 
                             SwitchBGM(BaseTwin.AIPhase.P2);
+                            Helper.PlayPitched("Sting", 1, 0, NPC.Center);
                         }
 
                         break;
@@ -212,6 +234,7 @@ namespace TheTwinsRework.NPCs
                             eye1.life = eye2.life = life;
 
                             SwitchBGM(BaseTwin.AIPhase.P3);
+                            Helper.PlayPitched("Sting", 1, 0, NPC.Center);
                         }
 
                         break;

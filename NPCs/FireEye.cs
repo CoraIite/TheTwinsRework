@@ -80,7 +80,7 @@ namespace TheTwinsRework.NPCs
                 case 11:
                 case 15:
                 case 23:
-                    ShootFireP3(conrtoller);
+                    ShootFireP3(conrtoller, P3AttackTime);
                     break;
                 case 18:
                     CombineP3_Rot(conrtoller);
@@ -100,7 +100,26 @@ namespace TheTwinsRework.NPCs
             }
         }
 
+        public override void P4AI(NPC controller)
+        {
+            int currState = (int)State % 11;
 
+            switch (currState)
+            {
+                default:
+                    DashAttackP3(controller, P1AttackTime, 24);
+                    break;
+                case 5:
+                    ShootFireP3(controller, P1AttackTime);
+                    break;
+                case 9:
+                    CombineP4(controller);
+                    break;
+                case 10:
+                    DashAttackP3(controller, P1AttackTime, 24, MathHelper.Pi);
+                    break;
+            }
+        }
 
         public void ShootFireP1(NPC controller)
         {
@@ -256,10 +275,10 @@ namespace TheTwinsRework.NPCs
             }
         }
 
-        public void ShootFireP3(NPC controller)
+        public void ShootFireP3(NPC controller,int baseAttackTime)
         {
             //吐火
-            float halfTime = P3AttackTime * 2;
+            float halfTime = baseAttackTime * 2;
             float Time = Timer;
 
             if (Time == 0)//生成瞄准线
@@ -542,7 +561,7 @@ namespace TheTwinsRework.NPCs
             State++;
             //State = 5;
 
-            if (OtherEyeIndex.GetNPCOwner<LaserEye>(out NPC friend))
+            if (OtherEyeIndex.GetNPCOwner(out NPC friend))
             {
                 if (Vector2.Distance(friend.Center, NPC.Center) < 40)
                 {
@@ -565,7 +584,7 @@ namespace TheTwinsRework.NPCs
             State++;
             //State = 5;
 
-            if (OtherEyeIndex.GetNPCOwner<LaserEye>(out NPC friend))
+            if (OtherEyeIndex.GetNPCOwner(out NPC friend))
             {
                 if (Vector2.Distance(friend.Center, NPC.Center) < 40)
                 {
@@ -604,7 +623,7 @@ namespace TheTwinsRework.NPCs
                 }
             }
 
-            if (OtherEyeIndex.GetNPCOwner<LaserEye>(out NPC friend))
+            if (OtherEyeIndex.GetNPCOwner(out NPC friend))
             {
                 if (Vector2.Distance(friend.Center, NPC.Center) < 40)
                 {
@@ -622,6 +641,17 @@ namespace TheTwinsRework.NPCs
             {
                 Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center + Main.rand.NextVector2Circular(25, 25)
                     , Helper.NextVec2Dir(3, 6), 144,1.3f);
+            }
+        }
+
+        public override void KillGore()
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center + Main.rand.NextVector2Circular(25, 25)
+                    , Helper.NextVec2Dir(3, 6), 145, 1.3f);
+                Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center + Main.rand.NextVector2Circular(25, 25)
+                    , Helper.NextVec2Dir(3, 6), 9, 1.3f);
             }
         }
     }

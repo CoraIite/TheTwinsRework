@@ -1,7 +1,5 @@
 ﻿using Coralite.Helpers;
-using Steamworks;
 using System;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TheTwinsRework.Dusts;
@@ -46,7 +44,7 @@ namespace TheTwinsRework.NPCs
                 DashAttack(conrtoller, P2AttackTime, 30, 0.4f);
         }
 
-        public override void P3AI(NPC conrtoller)
+        public override void P3AI(NPC controller)
         {
             if (WaitState == 1)
             {
@@ -62,7 +60,7 @@ namespace TheTwinsRework.NPCs
             switch (currState)
             {
                 default:
-                    DashAttackP3(conrtoller, P3AttackTime, 30);
+                    DashAttackP3(controller, P3AttackTime, 30);
                     break;
                 case 2:
                 case 6:
@@ -70,22 +68,43 @@ namespace TheTwinsRework.NPCs
                 case 15:
                 case 21:
                 case 25:
-                    ShootLaserP3(conrtoller);
+                    ShootLaserP3(controller, P3AttackTime);
                     break;
                 case 18:
-                    CombineP3_Rot(conrtoller);
+                    CombineP3_Rot(controller);
                     break;
                 case 19:
-                    DashAttackP3(conrtoller, P3AttackTime, 30, MathHelper.Pi);
+                    DashAttackP3(controller, P3AttackTime, 30, MathHelper.Pi);
                     break;
                 case 9:
-                    CombinwP3_Lines(conrtoller, true);
+                    CombinwP3_Lines(controller, true);
                     break;
                 case 28://不添加额外偏移时间
-                    CombinwP3_Lines(conrtoller, false);
+                    CombinwP3_Lines(controller, false);
                     break;
                 case 29://不添加额外前摇时间
-                    CombinwP3_Lines(conrtoller, true);
+                    CombinwP3_Lines(controller, true);
+                    break;
+            }
+        }
+
+        public override void P4AI(NPC controller)
+        {
+            int currState = (int)State % 11;
+
+            switch (currState)
+            {
+                default:
+                    DashAttackP3(controller, P1AttackTime, 24);
+                    break;
+                case 5:
+                    ShootLaserP3(controller, P1AttackTime);
+                    break;
+                case 9:
+                    CombineP4(controller);
+                    break;
+                case 10:
+                    DashAttackP3(controller, P1AttackTime, 24, MathHelper.Pi);
                     break;
             }
         }
@@ -241,10 +260,9 @@ namespace TheTwinsRework.NPCs
             }
         }
 
-        public void ShootLaserP3(NPC controller)
+        public void ShootLaserP3(NPC controller,int attackTime)
         {
-            //分两次旋转射激光
-            float Time = P3AttackTime * 2;
+            float Time = attackTime * 2;
             float realTime = Timer;
 
             if (realTime == 0)//生成瞄准线
@@ -484,7 +502,7 @@ namespace TheTwinsRework.NPCs
             //State = 5;
 
 
-            if (OtherEyeIndex.GetNPCOwner<FireEye>(out NPC friend))
+            if (OtherEyeIndex.GetNPCOwner(out NPC friend))
             {
                 if (Vector2.Distance(friend.Center, NPC.Center) < 40)
                 {
@@ -492,7 +510,6 @@ namespace TheTwinsRework.NPCs
                         SPRecorder = MathHelper.PiOver4 / 2;
                 }
             }
-
         }
 
         public override void P2State()
@@ -506,8 +523,7 @@ namespace TheTwinsRework.NPCs
             State++;
             //State = 5;
 
-
-            if (OtherEyeIndex.GetNPCOwner<FireEye>(out NPC friend))
+            if (OtherEyeIndex.GetNPCOwner(out NPC friend))
             {
                 if (Vector2.Distance(friend.Center, NPC.Center) < 40)
                 {
@@ -547,7 +563,7 @@ namespace TheTwinsRework.NPCs
                 }
             }
 
-            if (OtherEyeIndex.GetNPCOwner<FireEye>(out NPC friend))
+            if (OtherEyeIndex.GetNPCOwner(out NPC friend))
             {
                 if (Vector2.Distance(friend.Center, NPC.Center) < 40)
                 {
@@ -564,6 +580,17 @@ namespace TheTwinsRework.NPCs
             {
                 Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center + Main.rand.NextVector2Circular(25, 25)
                     , Helper.NextVec2Dir(3, 6), 143,1.3f);
+            }
+        }
+
+        public override void KillGore()
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center + Main.rand.NextVector2Circular(25, 25)
+                    , Helper.NextVec2Dir(3, 6), 146, 1.3f);
+                Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center + Main.rand.NextVector2Circular(25, 25)
+                    , Helper.NextVec2Dir(3, 6), 9, 1.3f);
             }
         }
     }

@@ -92,6 +92,11 @@ namespace TheTwinsRework.Projectiles
                 FollowIndex = -1;
             }))
             {
+                if (owner.dontTakeDamage || owner.life < 2)
+                {
+                    Projectile.Kill();
+                    return;
+                }
                 Projectile.rotation = owner.rotation;
                 Projectile.velocity = Projectile.rotation.ToRotationVector2();
                 Projectile.Center = owner.Center + owner.rotation.ToRotationVector2() * 90;

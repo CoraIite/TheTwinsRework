@@ -109,6 +109,8 @@ namespace TheTwinsRework.Projectiles
 
         public override void ModifyHitPlayer(Player target, ref Player.HurtModifiers modifiers)
         {
+            target.AddBuff(BuffID.CursedInferno, 60 * 3);
+
             if (Timer < ShootTime + 1)
             {
                 Timer = ShootTime + 1;

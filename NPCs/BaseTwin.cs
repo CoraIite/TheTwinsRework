@@ -207,7 +207,6 @@ namespace TheTwinsRework.NPCs
 
         public virtual void P4AI(NPC controller)
         {
-            P1AI(controller);
         }
 
         #region 动画部分
@@ -230,6 +229,12 @@ namespace TheTwinsRework.NPCs
                     break;
                 case 2:
                     ExchangeAnmiP2ToP3(conrtoller);
+                    break;
+                case 3:
+                    ExchangeAnmiP3ToP4(conrtoller);
+                    break;
+                case 4:
+                    KillAnmi();
                     break;
             }
         }
@@ -270,8 +275,7 @@ namespace TheTwinsRework.NPCs
 
                     if (Timer == 0)
                     {
-                        SoundEngine.PlaySound(CoraliteSoundID.NoUse_ScaryScream with { Pitch = -0.75f }, NPC.Center);
-                        SoundEngine.PlaySound(CoraliteSoundID.ForceRoar with { Pitch = -0.5f }, NPC.Center);
+                        SoundEngine.PlaySound(CoraliteSoundID.ForceRoar with { Pitch = -0.25f }, NPC.Center);
                     }
 
                     if (Timer % 10 == 0)
@@ -324,6 +328,20 @@ namespace TheTwinsRework.NPCs
             Phase = AIPhase.Anmi;
         }
 
+        public void SwitchPhaseP3ToP4()
+        {
+            State = 0;
+            Timer = 0;
+            SPRecorder = 0;
+            Recorder2 = 3;
+            Recorder3 = 0;
+            CanDrawTrail = false;
+            CanDamage = false;
+            NPC.dontTakeDamage = true;
+
+            Phase = AIPhase.Anmi;
+        }
+
         public void ExchangeAnmiP1ToP2(NPC controller)
         {
             const int maxTime = 160;
@@ -351,7 +369,7 @@ namespace TheTwinsRework.NPCs
                 for (int i = 0; i < 3; i++)
                 {
                     Vector2 pos = Helper.NextVec2Dir(1, 25);
-                    Dust.NewDustPerfect(NPC.Center + pos, DustID.Blood, pos.SafeNormalize(Vector2.Zero) * Main.rand.NextFloat(2, 4)
+                    Dust.NewDustPerfect(NPC.Center + pos, DustID.Blood, pos.SafeNormalize(Vector2.Zero) * Main.rand.NextFloat(2, 7)
                       , Scale: Main.rand.NextFloat(1, 2.5f));
                 }
 
@@ -399,7 +417,6 @@ namespace TheTwinsRework.NPCs
             }
             else if (Timer == (int)(maxTime-10))
             {
-
                 Main.musicFade[Main.curMusic] = 1;
             }
 
@@ -422,6 +439,8 @@ namespace TheTwinsRework.NPCs
 
             if (Timer < maxTime * 2 / 5)
             {
+                NPC.rotation = NPC.rotation.AngleLerp((TargetPos - NPC.Center).ToRotation(), 0.1f);
+
                 if (NPC.whoAmI < OtherEyeIndex)
                     NPC.Center = Vector2.Lerp(NPC.Center
                         , TargetPos + (-MathHelper.PiOver4).ToRotationVector2() * (CircleLimit.MaxLength - 60), 0.1f);
@@ -438,7 +457,7 @@ namespace TheTwinsRework.NPCs
 
             if (Timer < maxTime * 3 / 5)
             {
-                NPC.rotation += Helper.Lerp(0.1f, 0.6f, (Timer - maxTime*2 / 5) / (maxTime / 5));
+                NPC.rotation += Helper.Lerp(0.1f, 0.6f, (Timer - maxTime * 2 / 5) / (maxTime / 5));
 
                 return;
             }
@@ -446,12 +465,13 @@ namespace TheTwinsRework.NPCs
             if (Timer == maxTime * 3 / 5)
             {
                 SteelPhase = true;
+                NPC.frame.Y = 3;
 
                 for (int i = 0; i < 30; i++)
                 {
                     Vector2 pos = Helper.NextVec2Dir(1, 25);
-                    Dust.NewDustPerfect(NPC.Center + pos, DustID.Blood, pos.SafeNormalize(Vector2.Zero) * Main.rand.NextFloat(2, 4)
-                      , Scale: Main.rand.NextFloat(1, 2.5f));
+                    Dust.NewDustPerfect(NPC.Center + pos, DustID.Blood, pos.SafeNormalize(Vector2.Zero) * Main.rand.NextFloat(2, 7)
+                      , Scale: Main.rand.NextFloat(1.5f, 2.5f));
                 }
 
                 for (int i = 0; i < 2; i++)
@@ -473,7 +493,7 @@ namespace TheTwinsRework.NPCs
 
             if (Timer == maxTime * 3 / 5 + 30)
             {
-                SoundEngine.PlaySound(CoraliteSoundID.ForceRoar with { Pitch = -0.5f }, NPC.Center);
+                SoundEngine.PlaySound(CoraliteSoundID.ForceRoar with { Pitch=0.5f}, NPC.Center);
 
                 return;
             }
@@ -495,6 +515,134 @@ namespace TheTwinsRework.NPCs
                 NPC.dontTakeDamage = false;
                 ExchangeState();
             }
+        }
+
+        public void ExchangeAnmiP3ToP4(NPC controller)
+        {
+            const int maxTime = 320;
+
+            NPC.velocity = Vector2.Zero;
+            if (Timer == 0)
+            {
+                (controller.ModNPC as CircleLimit).SwitchBGM(AIPhase.P4);
+            }
+            if (Timer < (maxTime - 10))
+            {
+                Main.audioSystem.PauseAll();
+                for (int i = 0; i < Main.musicFade.Length; i++)
+                    Main.musicFade[i] = 0;
+            }
+            else if (Timer == (maxTime - 10))
+            {
+                Main.musicFade[Main.curMusic] = 1;
+            }
+
+            Vector2 TargetPos = controller.Center;
+            if (Timer < maxTime - 160)
+            {
+                NPC.rotation = NPC.rotation.AngleLerp((TargetPos - NPC.Center).ToRotation(), 0.1f);
+
+                if (NPC.whoAmI < OtherEyeIndex)
+                    NPC.Center = Vector2.Lerp(NPC.Center
+                        , TargetPos + (-MathHelper.PiOver4).ToRotationVector2() * (CircleLimit.MaxLength - 60), 0.1f);
+                else
+                    NPC.Center = Vector2.Lerp(NPC.Center
+                        , TargetPos + (MathHelper.Pi + MathHelper.PiOver4).ToRotationVector2() * (CircleLimit.MaxLength - 60), 0.1f);
+            }
+
+            else if (Timer < maxTime - 40)
+            {
+                NPC.rotation += MathF.Sin((Timer - (maxTime - 160)) / 120 * MathHelper.Pi) * 0.6f;
+            }
+            else
+            {
+                NPC.rotation = NPC.rotation.AngleTowards((TargetPos - NPC.Center).ToRotation(), 0.1f);
+            }
+
+            Timer++;
+            if (Timer > maxTime)
+            {
+                Phase = AIPhase.P4;
+
+                NPC.dontTakeDamage = false;
+                ExchangeState();
+            }
+        }
+
+        public void SwitchPhaseKill()
+        {
+            NPC.life = 1;
+            State = 0;
+            Timer = 0;
+            SPRecorder = 0;
+            Recorder2 = 4;
+            Recorder3 = 0;
+            CanDrawTrail = false;
+            CanDamage = false;
+
+            Phase = AIPhase.Anmi;
+        }
+
+        public void KillAnmi()
+        {
+            Timer++;
+
+            NPC.velocity = Vector2.Zero;
+            NPC.rotation += MathF.Sin(Timer * 0.75f) * 0.3f;
+
+            for (int i = 0; i < 4; i++)
+            {
+                Vector2 pos = Helper.NextVec2Dir(1, 25);
+                Dust.NewDustPerfect(NPC.Center + pos, ModContent.DustType<Fog>(), pos.SafeNormalize(Vector2.Zero) * Main.rand.NextFloat(10, 30)
+                 , newColor: Color.White * 0.35f, Scale: Main.rand.NextFloat(2f, 4f));
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                Vector2 pos = Helper.NextVec2Dir(1, 30);
+                Dust.NewDustPerfect(NPC.Center + pos, DustID.SilverCoin, pos.SafeNormalize(Vector2.Zero) * Main.rand.NextFloat(3, 15)
+                  , Scale: Main.rand.NextFloat(0.6f, 1.3f));
+
+                pos = Helper.NextVec2Dir(20, 40);
+                Dust.NewDustPerfect(NPC.Center + pos, ModContent.DustType<SpeedLine>(), pos.SafeNormalize(Vector2.Zero) * Main.rand.NextFloat(7, 30)
+                  , newColor: Color.White, Scale: Main.rand.NextFloat(0.1f, 0.3f));
+            }
+
+            if (Timer % 10 == 0)
+            {
+                Dust.NewDustPerfect(NPC.Center, ModContent.DustType<RoaringWave>()
+                    , Vector2.Zero, 0, Color.White * 0.2f, 0.4f);
+            }
+
+            if (Timer % 20 == 0)
+            {
+                SoundEngine.PlaySound(CoraliteSoundID.Metal_NPCHit4, NPC.Center);
+            }
+
+            if (Timer > 160)
+            {
+                Helper.PlayPitched("DeathBoom", 1, 0, NPC.Center);
+
+                Dust.NewDustPerfect(NPC.Center, ModContent.DustType<CircleExplode>(), Vector2.Zero
+                    , newColor: Color.White * 0.75f, Scale: 0.1f);
+
+                for (int i = -9; i < 10; i++)
+                {
+                    if (i == 0)
+                        continue;
+                    Dust.NewDustPerfect(NPC.Center, ModContent.DustType<SpeedLine>()
+                        , new Vector2(0, MathF.Sign(i) * 0.1f + i * 2f)
+                      , newColor: Color.White * 0.3f, Scale: 1f - MathF.Abs(i) / 9f * 0.5f);
+                }
+
+                NPC.Kill();
+                KillGore();
+            }
+        }
+
+        public virtual void KillGore()
+        {
+
         }
 
         public virtual void ExchangeGore()
@@ -1090,6 +1238,88 @@ namespace TheTwinsRework.NPCs
 
         }
 
+        public void CombineP4(NPC controller)
+        {
+            int attackTime = P1AttackTime;
+
+            //朝向中间旋转
+            if (Timer <= attackTime / 4)
+            {
+                if (Timer == 0)//生成瞄准线
+                {
+                    NPC.velocity = Vector2.Zero;
+
+                    CenterCircleSound();
+                    ShineLine(attackTime / 2, Color.White, NPC.whoAmI, (controller.Center - NPC.Center).ToRotation());
+
+                    Dust d = Dust.NewDustPerfect(controller.Center, ModContent.DustType<Circle>()
+                          , Vector2.Zero, newColor: Color.White, Scale: 0.1f);
+                    d.customData = attackTime / 2;
+                    SPRecorder = Main.rand.Next(8) * MathHelper.PiOver4;
+                    if (OtherEyeIndex.GetNPCOwner(out NPC other))
+                    {
+                        other.ai[3] = SPRecorder;
+                    }
+
+                    Recorder2 = NPC.rotation;
+                }
+
+                float targetRot = (controller.Center - NPC.Center).ToRotation();//最终目标方向
+                NPC.rotation = Recorder2.AngleLerp(targetRot, Helper.SqrtEase(Timer / (attackTime / 4)));
+            }
+
+            Timer++;
+
+            //冲向中心点
+            if (Timer == attackTime / 4 * 2)
+            {
+                float length = Vector2.Distance(NPC.Center, controller.Center);
+                float time = attackTime / 4;
+
+                DashSound();
+                CanDamage = true;
+                CanDrawTrail = true;
+                NPC.InitOldPosCache(10, false);
+                NPC.InitOldRotCache(10);
+                NPC.velocity = (controller.Center - NPC.Center).SafeNormalize(Vector2.Zero) * length / time;
+                NPC.rotation = NPC.velocity.ToRotation();
+            }
+
+            if (Timer < attackTime / 4 * 3)
+            {
+                return;
+            }
+
+            if (Timer == attackTime / 4 * 3)//设置转转乐的初始值
+            {
+                CenterMeetSound();
+
+                NPC.velocity = Vector2.Zero;
+                if (OtherEyeIndex > NPC.whoAmI)
+                    Recorder3 = MathHelper.Pi;
+                else
+                    Recorder3 = 0;
+
+                SPRecorder = (Main.player[controller.target].Center - controller.Center).ToRotation() - MathHelper.PiOver4 * 3;
+            }
+
+            if (Timer < attackTime / 4 * 10)//转转乐
+            {
+                float factor = Timer - attackTime / 4 * 3;
+                factor /= attackTime / 4 * 7;
+                factor = Helper.SqrtEase(factor);
+
+                float rot = SPRecorder + Recorder3 + factor * MathHelper.TwoPi*2;
+                Vector2 targetPos = controller.Center + rot.ToRotationVector2() * 75;
+
+                NPC.Center = Vector2.SmoothStep(NPC.Center, targetPos, 0.1f + factor * 0.9f);
+                NPC.rotation = NPC.rotation.AngleLerp((NPC.Center - controller.Center).ToRotation() + MathHelper.PiOver2, 0.25f);
+                return;
+            }
+
+            ExchangeState();
+        }
+
         public float GetLength(Vector2 pos, Vector2 dir, NPC circle)
         {
             bool closer = true;
@@ -1173,6 +1403,7 @@ namespace TheTwinsRework.NPCs
                     P3State();
                     break;
                 case AIPhase.P4:
+                    P4State();
                     break;
                 default:
                     break;
@@ -1197,7 +1428,13 @@ namespace TheTwinsRework.NPCs
 
         public virtual void P4State()
         {
+            SPRecorder = Main.rand.Next(-2, 3) * MathHelper.PiOver4 / 4;
+            if (State % 5 == 0)
+            {
+                SPRecorder = 0;
+            }
 
+            State++;
         }
 
         #endregion
@@ -1279,6 +1516,15 @@ namespace TheTwinsRework.NPCs
         public override void ModifyHitByProjectile(Projectile projectile, ref NPC.HitModifiers modifiers)
         {
             HitEffects(NPC.Center + Main.rand.NextVector2Circular(NPC.width / 2, NPC.height / 2), (NPC.Center - projectile.Center).ToRotation());
+
+            if (projectile.friendly)
+            {
+                Player p = Main.player[projectile.owner];
+
+                float distance = Vector2.Distance(p.Center, NPC.Center);
+                if (distance > 200)
+                    modifiers.FinalDamage -= Math.Clamp((distance - 200) / 300, 0, 1) * 0.5f;
+            }
         }
 
         public void HitEffects(Vector2 pos,float dir)
@@ -1295,7 +1541,7 @@ namespace TheTwinsRework.NPCs
                         if (Main.rand.NextBool(4))
                             dir2 += MathHelper.Pi;
 
-                        Dust.NewDustPerfect(NPC.Center, DustID.Blood
+                        Dust.NewDustPerfect(pos, DustID.Blood
                             , (dir2 + Main.rand.NextFloat(-0.2f, 0.2f)).ToRotationVector2() * Main.rand.NextFloat(4, 10)
                           , Scale: Main.rand.NextFloat(1.5f, 2.5f));
                     }
@@ -1304,14 +1550,47 @@ namespace TheTwinsRework.NPCs
 
                     break;
                 case AIPhase.P3:
-                    break;
                 case AIPhase.P4:
+                    for (int i = 0; i < 5; i++)
+                    {
+                        float dir2 = dir;
+
+                        if (Main.rand.NextBool(4))
+                            dir2 += MathHelper.Pi;
+
+                       Dust.NewDustPerfect(pos, DustID.SilverCoin
+                            , (dir2 + Main.rand.NextFloat(-0.2f, 0.2f)).ToRotationVector2() * Main.rand.NextFloat(3, 8)
+                          , Scale: Main.rand.NextFloat(1f, 1.5f));
+                    }
+                    SoundEngine.PlaySound(CoraliteSoundID.Metal_NPCHit4, NPC.Center);
                     break;
                 default:
                     break;
             }
         }
 
+        public override bool CheckDead()
+        {
+            if (Phase == AIPhase.Anmi && Recorder2 == 4)
+                return true;
+
+            NPC.life = 1;
+            SwitchPhaseKill();
+            Helper.PlayPitched("Sting", 1, 0, NPC.Center);
+
+            if (OtherEyeIndex.GetNPCOwner(out NPC other) && other.ModNPC is BaseTwin bt)
+            {
+                if (bt.Phase != AIPhase.Anmi)
+                    bt.SwitchPhaseP3ToP4();
+            }
+            else if (CircleLimitIndex.GetNPCOwner<CircleLimit>(out NPC circle))
+            {
+                circle.ai[1] = 3;
+                circle.localAI[0] = 0;
+            }
+
+            return false;
+        }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
