@@ -21,4 +21,16 @@ Projectiles: {
 	FireBreath.DisplayName: Fire Breath
 	FireBreathLine.DisplayName: Fire Breath Line
 	SoundControl.DisplayName: Sound Control
+	NameShow.DisplayName: Name Show
+}
+
+TheTwinsName: The Twins
+
+Compat: {
+	BossChecklist: {
+		TheTwinsDancer: {
+			SpawnInfo: ""
+			Despawn: ""
+		}
+	}
 }

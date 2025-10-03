@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
-using Terraria.Map;
 using Terraria.ModLoader;
 using TheTwinsRework.Misc;
 using TheTwinsRework.Projectiles;
@@ -63,6 +63,25 @@ namespace TheTwinsRework.NPCs
         public override void ModifyHoverBoundingBox(ref Rectangle boundingBox)
         {
             boundingBox = new Rectangle();
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ItemID.TwinsPetItem, 4));
+
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemID.TwinsMasterTrophy));
+            npcLoot.Add(ItemDropRule.BossBag(ItemID.TwinsBossBag));
+            npcLoot.Add(ItemDropRule.Common(ItemID.TwinMask, 7));
+
+            LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
+            notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.HallowedBar, 1, 15, 30));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.SoulofSight, 1, 25, 40));
+            npcLoot.Add(notExpertRule);
+        }
+
+        public override void BossLoot(ref int potionType)
+        {
+            potionType = ItemID.GreaterHealingPotion;
         }
 
         public override void AI()
@@ -123,11 +142,11 @@ namespace TheTwinsRework.NPCs
                         Timer++;
                         CheckTarget();
 
-                        if (NPC.target < 0 || NPC.target == 255 || Target.dead || !Target.active || Target.Distance(NPC.Center) > 3000)
+                        if (NPC.target < 0 || NPC.target == 255 || Target.dead || !Target.active || Target.Distance(NPC.Center) > 3000 || Main.dayTime)
                         {
                             NPC.TargetClosest();
 
-                            if (Target.dead || !Target.active || Target.Distance(NPC.Center) > 4500)//没有玩家存活时离开
+                            if (Target.dead || !Target.active || Target.Distance(NPC.Center) > 4500 || Main.dayTime)//没有玩家存活时离开
                             {
                                 NPC.active = false;
                                 return;
@@ -141,7 +160,6 @@ namespace TheTwinsRework.NPCs
                         if (CircleLength < 1)
                         {
                             NPC.Kill();
-
                             Helper.PlayPitched("Defeat", 1, 0, NPC.Center);
                         }
                     }
@@ -165,12 +183,12 @@ namespace TheTwinsRework.NPCs
 
         private void CheckTarget()
         {
-            if (Timer > 60)//检测玩家并攻击
+            if (Timer > 30)//检测玩家并攻击
             {
                 Timer = 0;
                 NPC.TargetClosest();
                 if (Vector2.Distance(Target.Center, NPC.Center) > MaxLength + 10)
-                    Target.Hurt(PlayerDeathReason.ByNPC(NPC.whoAmI), 200, 0);
+                    Target.Hurt(PlayerDeathReason.ByNPC(NPC.whoAmI), 175, 0,dodgeable:false,armorPenetration:100);
             }
         }
 
@@ -275,6 +293,11 @@ namespace TheTwinsRework.NPCs
 
             Main.audioSystem.ResumeAll();
             Main.musicFade[Music] = 1;
+        }
+
+        public override void OnKill()
+        {
+            NPC.SetEventFlagCleared(ref NPC.downedMechBoss2, GameEventClearedID.DefeatedTheTwins);
         }
 
         public override void DrawBehind(int index)

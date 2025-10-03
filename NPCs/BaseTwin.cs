@@ -2,8 +2,10 @@
 using Coralite.Helpers;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -69,6 +71,9 @@ namespace TheTwinsRework.NPCs
 
         public abstract Color HighlightColor { get; }
 
+        public Vector2 middlePos;
+        public SecondOrderDynamics_Vec2 smoother;
+
         public override void SetStaticDefaults()
         {
             NPC.QuickTrailSets(Helper.NPCTrailingMode.RecordAll, 10);
@@ -79,6 +84,7 @@ namespace TheTwinsRework.NPCs
             NPC.lifeMax = 20000;
             NPC.damage = 80;
             NPC.defDamage = 10;
+            NPC.defense = 10;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.knockBackResist = 0;
@@ -105,7 +111,7 @@ namespace TheTwinsRework.NPCs
                 if (nPCStrengthHelper.IsMasterMode)
                 {
                     NPC.lifeMax = (int)((masterBaseLife + (numPlayers * masterAddLife)) / journeyScale);
-                    NPC.damage = 95;
+                    NPC.damage = 105;
                 }
 
                 if (Main.getGoodWorld)
@@ -122,7 +128,7 @@ namespace TheTwinsRework.NPCs
             if (Main.masterMode)
             {
                 NPC.lifeMax = masterBaseLife + (numPlayers * masterAddLife);
-                NPC.damage = 95;
+                NPC.damage = 105;
             }
 
             if (Main.getGoodWorld)
@@ -156,9 +162,9 @@ namespace TheTwinsRework.NPCs
 
         public override void AI()
         {
-            if (!CircleLimitIndex.GetNPCOwner<CircleLimit>(out NPC controller))
+            if (!CircleLimitIndex.GetNPCOwner<CircleLimit>(out NPC controller)||Main.dayTime)
             {
-                NPC.velocity = Vector2.Lerp(NPC.velocity, new Vector2((NPC.whoAmI % 2 == 0) ? -10 : 10, -6), 0.1f);
+                NPC.velocity = Vector2.Lerp(NPC.velocity, new Vector2((NPC.whoAmI % 2 == 0) ? -6 : 6, -15), 0.1f);
                 NPC.rotation = NPC.velocity.ToRotation();
                 CanDamage = true;
                 CanDrawTrail = false;
@@ -175,9 +181,11 @@ namespace TheTwinsRework.NPCs
                     break;
                 case AIPhase.P1:
                     P1AI(controller);
+                    BloodDust();
                     break;
                 case AIPhase.P2:
                     P2AI(controller);
+                    BloodDust();
                     break;
                 case AIPhase.P3:
                     P3AI(controller);
@@ -188,6 +196,29 @@ namespace TheTwinsRework.NPCs
             }
 
             UpdateFrame();
+            if (NPC.whoAmI > OtherEyeIndex && OtherEyeIndex.GetNPCOwner(out NPC n) && n.ModNPC is BaseTwin)
+            {
+                Vector2 pos = (NPC.Center + n.Center) / 2
+                    + new Vector2(0, Vector2.Distance(NPC.Center, n.Center) / 4);
+
+                if (smoother == null)
+                {
+                    middlePos = pos;
+                    smoother = new SecondOrderDynamics_Vec2(0.95f, 0.35f, 0, pos);
+                }
+
+                middlePos = smoother.Update(1 / 60f, pos);
+            }
+
+            void BloodDust()
+            {
+                if (Main.rand.NextBool(4))
+                {
+                    Dust d = Dust.NewDustPerfect(NPC.Center + Helper.NextVec2Dir(1, NPC.width / 2+15), DustID.Blood
+                         , Helper.NextVec2Dir(0.5f, 1.5f),Scale:Main.rand.NextFloat(1,2f));
+                    d.noGravity = true;
+                }
+            }
         }
 
         public virtual void P1AI(NPC controller)
@@ -268,14 +299,15 @@ namespace TheTwinsRework.NPCs
                         NPC.Center = controller.Center + (SPRecorder).ToRotationVector2() * (CircleLimit.MaxLength - 120);
                         NPC.velocity = Vector2.Zero;
                         //生成名字
+                        if (NPC.whoAmI < OtherEyeIndex)
+                            NPC.NewProjectileInAI<NameShow>(NPC.Center, Vector2.Zero, 0, 0);
                     }
-
                     break;
                 case 1://吼叫
 
                     if (Timer == 0)
                     {
-                        SoundEngine.PlaySound(CoraliteSoundID.ForceRoar with { Pitch = -0.25f }, NPC.Center);
+                        SoundEngine.PlaySound(CoraliteSoundID.ForceRoar, NPC.Center);
                     }
 
                     if (Timer % 10 == 0)
@@ -324,6 +356,7 @@ namespace TheTwinsRework.NPCs
             Recorder3 = 0;
             CanDrawTrail = false;
             CanDamage = false;
+            NPC.defense += 10;
 
             Phase = AIPhase.Anmi;
         }
@@ -457,7 +490,7 @@ namespace TheTwinsRework.NPCs
 
             if (Timer < maxTime * 3 / 5)
             {
-                NPC.rotation += Helper.Lerp(0.1f, 0.6f, (Timer - maxTime * 2 / 5) / (maxTime / 5));
+                NPC.rotation += (NPC.whoAmI < OtherEyeIndex ? -1 : 1) * Helper.Lerp(0.1f, 0.6f, (Timer - maxTime * 2 / 5) / (maxTime / 5));
 
                 return;
             }
@@ -779,7 +812,7 @@ namespace TheTwinsRework.NPCs
 
                         Recorder3 = 2;
                         Helper.PlayPitched("DashTogether", 0.6f, 0, NPC.Center);
-                        SoundEngine.PlaySound(CoraliteSoundID.Fleshy_NPCDeath1 with { Pitch = -0.5f }, NPC.Center);
+                        SoundEngine.PlaySound(CoraliteSoundID.Fleshy_NPCDeath1 with { Pitch = -0.7f }, NPC.Center);
                     }
                 }
             }
@@ -1013,10 +1046,10 @@ namespace TheTwinsRework.NPCs
             {
                 //旋转
                 float factor = Timer - attackTime / 4 * 6;
-                factor /= attackTime / 4 * 10;
+                factor /= attackTime / 4 * 9;
                 factor = Helper.X2Ease(factor);
 
-                float rot = SPRecorder + Recorder3 + factor * MathHelper.TwoPi + MathHelper.PiOver2 * 3+MathHelper.PiOver4;
+                float rot = SPRecorder + Recorder3 + factor * (MathHelper.TwoPi  + MathHelper.PiOver4);
                 Vector2 targetPos = controller.Center + rot.ToRotationVector2() * 75;
 
                 NPC.Center = Vector2.SmoothStep(NPC.Center, targetPos, 0.2f + factor * 0.8f);
@@ -1546,7 +1579,7 @@ namespace TheTwinsRework.NPCs
                           , Scale: Main.rand.NextFloat(1.5f, 2.5f));
                     }
 
-                    SoundEngine.PlaySound(CoraliteSoundID.Bloody_NPCHit9, NPC.Center);
+                    SoundEngine.PlaySound(CoraliteSoundID.Fleshy_NPCHit1, NPC.Center);
 
                     break;
                 case AIPhase.P3:
@@ -1594,6 +1627,11 @@ namespace TheTwinsRework.NPCs
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
+            if (NPC.whoAmI > OtherEyeIndex && OtherEyeIndex.GetNPCOwner(out NPC n) && n.ModNPC is BaseTwin)
+            {
+                DrawLine(TextureAssets.Chain12.Value, NPC.Center, n.Center, screenPos);
+            }
+
             Texture2D tex = NPC.GetTexture();
 
             Vector2 pos = NPC.Center - screenPos;
@@ -1628,6 +1666,54 @@ namespace TheTwinsRework.NPCs
                             Main.spriteBatch.GraphicsDevice.DepthStencilState, Main.spriteBatch.GraphicsDevice.RasterizerState, null, Main.GameViewMatrix.TransformationMatrix);
 
             return false;
+        }
+
+        public virtual void DrawLine(Texture2D lineTex, Vector2 startPos, Vector2 endPos, Vector2 screenPos)
+        {
+            List<ColoredVertex> bars = new();
+
+            float halfLineWidth = lineTex.Width / 2;
+
+            Vector2 recordPos = startPos;
+            float recordUV = 0;
+
+            int lineLength = (int)(startPos - endPos).Length();   //链条长度
+            int pointCount = lineLength / 16 + 3;
+            Vector2 controlPos = middlePos;
+
+            //贝塞尔曲线
+            for (int i = 0; i < pointCount; i++)
+            {
+                float factor = (float)i / pointCount;
+
+                Vector2 P1 = Vector2.Lerp(startPos, controlPos, factor);
+                Vector2 P2 = Vector2.Lerp(controlPos, endPos, factor);
+
+                Vector2 Center = Vector2.Lerp(P1, P2, factor);
+                var Color = GetStringColor(Center);
+
+                Vector2 normal = (P2 - P1).SafeNormalize(Vector2.One).RotatedBy(MathHelper.PiOver2);
+                Vector2 Top = Center + normal * halfLineWidth;
+                Vector2 Bottom = Center - normal * halfLineWidth;
+
+                recordUV += (Center - recordPos).Length() / lineTex.Width;
+
+                bars.Add(new(Top-screenPos, Color, new Vector3(0, recordUV, 1)));
+                bars.Add(new(Bottom - screenPos, Color, new Vector3(1, recordUV, 1)));
+
+                recordPos = Center;
+            }
+
+            var state = Main.graphics.GraphicsDevice.SamplerStates[0];
+            Main.graphics.GraphicsDevice.Textures[0] = lineTex;
+            Main.graphics.GraphicsDevice.SamplerStates[0] = SamplerState.PointWrap;
+            Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, bars.ToArray(), 0, bars.Count - 2);
+            Main.graphics.GraphicsDevice.SamplerStates[0] = state;
+        }
+
+        public virtual Color GetStringColor(Vector2 pos)
+        {
+            return Lighting.GetColor((int)pos.X / 16, (int)(pos.Y / 16f), Color.White);
         }
     }
 }

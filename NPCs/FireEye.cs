@@ -1,6 +1,7 @@
 ﻿using Coralite.Helpers;
 using System;
 using Terraria.Audio;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TheTwinsRework.Dusts;
@@ -13,6 +14,12 @@ namespace TheTwinsRework.NPCs
         public override string Texture => AssetDirectory.Vanilla + "NPC_126";
 
         public override Color HighlightColor => Color.White;
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ItemID.SpazmatismTrophy, 10));
+        }
+
 
         public override void PostAI()
         {
@@ -185,7 +192,7 @@ namespace TheTwinsRework.NPCs
                 Vector2 velocity = (NPC.rotation + velRot).ToRotationVector2() * 4;
 
                 NPC.NewProjectileInAI<SlowFireBall>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
-                    , velocity, Helper.GetProjDamage(100, 125, 150)
+                    , velocity, Helper.GetProjDamage(80, 100, 125)
                     , 4, ai0: CircleLimitIndex);
             }
 
@@ -265,7 +272,7 @@ namespace TheTwinsRework.NPCs
 
                 Vector2 velocity = NPC.rotation.ToRotationVector2() * 4f;
                 NPC.NewProjectileInAI<P2FireBall>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
-                    , velocity, Helper.GetProjDamage(100, 125, 150)
+                    , velocity, Helper.GetProjDamage(80, 100, 125)
                     , 4, ai0: CircleLimitIndex);
             }
 
@@ -359,7 +366,7 @@ namespace TheTwinsRework.NPCs
                 int time = (int)(MathF.Sin(Time * 0.4f) * 10) + 40;
                 Vector2 velocity = (NPC.rotation + exRot-SPRecorder * 4 / (Time * 3 / 4)).ToRotationVector2() * speed;
                 NPC.NewProjectileInAI<FireBreath>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
-                    , velocity, Helper.GetProjDamage(100, 125, 150)
+                    , velocity, Helper.GetProjDamage(90, 110, 160)
                     , 4, ai0: CircleLimitIndex, ai1: time, ai2: 12);
             }
 
@@ -370,7 +377,7 @@ namespace TheTwinsRework.NPCs
                 float exRot = MathF.Sin(Time * 0.4f) * 0.4f;
                 Vector2 velocity = (NPC.rotation + exRot).ToRotationVector2() * speed;
                 NPC.NewProjectileInAI<P2FireBall>(NPC.Center + NPC.rotation.ToRotationVector2() * 75
-                    , velocity, Helper.GetProjDamage(100, 125, 150)
+                    , velocity, Helper.GetProjDamage(80, 100, 125)
                     , 4, ai0: CircleLimitIndex);
             }
 
@@ -452,7 +459,7 @@ namespace TheTwinsRework.NPCs
                     FireBreathSound();
                 Vector2 velocity = NPC.rotation.ToRotationVector2() * 23;
                 NPC.NewProjectileInAI<FireBreath>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
-                    , velocity, Helper.GetProjDamage(100, 125, 150)
+                    , velocity, Helper.GetProjDamage(90, 110, 160)
                     , 4, ai0: CircleLimitIndex, ai1: 20, ai2: 12);
             }
 
@@ -482,7 +489,7 @@ namespace TheTwinsRework.NPCs
 
                 Vector2 velocity = NPC.rotation.ToRotationVector2() * 5.5f;
                 NPC.NewProjectileInAI<P2FireBall>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
-                    , velocity, Helper.GetProjDamage(100, 125, 150)
+                    , velocity, Helper.GetProjDamage(80, 100, 125)
                     , 4, ai0: CircleLimitIndex);
             }
         }
@@ -497,7 +504,7 @@ namespace TheTwinsRework.NPCs
             for (int i = 0; i < count; i++)
             {
                 NPC.NewProjectileInAI<FireBreathLine>(startPos, rot.ToRotationVector2()
-                     , Helper.GetProjDamage(100, 100, 100), 0, -1, CircleLimitIndex
+                     , Helper.GetProjDamage(110, 130, 180), 0, -1, CircleLimitIndex
                      , readyTime+i*6, 25);
 
                 float length = GetLength(startPos, rot.ToRotationVector2(), controller);
@@ -523,7 +530,6 @@ namespace TheTwinsRework.NPCs
 
         public override void CombineP3_Roting(NPC controller)
         {
-
             //喷火器类火焰
             if (Timer % 2 == 0)
             {
@@ -534,7 +540,7 @@ namespace TheTwinsRework.NPCs
                 int time = (int)(MathF.Sin(Timer * 0.4f) * 10) + 40;
                 Vector2 velocity = (NPC.rotation + exRot - SPRecorder * 4 / (Timer * 3 / 4)).ToRotationVector2() * speed;
                 NPC.NewProjectileInAI<FireBreath>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
-                    , velocity, Helper.GetProjDamage(100, 125, 150)
+                    , velocity, Helper.GetProjDamage(100, 130, 160)
                     , 4, ai0: CircleLimitIndex, ai1: time, ai2: 12);
             }
 
@@ -545,7 +551,7 @@ namespace TheTwinsRework.NPCs
                 float exRot = MathF.Sin(Timer * 0.4f) * 0.4f;
                 Vector2 velocity = (NPC.rotation + exRot).ToRotationVector2() * speed;
                 NPC.NewProjectileInAI<P2FireBall>(NPC.Center + NPC.rotation.ToRotationVector2() * 75
-                    , velocity, Helper.GetProjDamage(100, 125, 150)
+                    , velocity, Helper.GetProjDamage(90, 110, 125)
                     , 4, ai0: CircleLimitIndex);
             }
         }

@@ -1,0 +1,36 @@
+Items: {
+	TheTwinsReworkSummon: {
+		DisplayName: 魔眼装置
+		Tooltip: 在夜晚召唤不同寻常的双子魔眼
+	}
+}
+
+NPCs: {
+	CircleLimit.DisplayName: 双子舞者
+	FireEye.DisplayName: 魔焰眼
+	LaserEye.DisplayName: 激光眼
+}
+
+Projectiles: {
+	SlowFireBall.DisplayName: 诅咒火球
+	DeathLaserNoTileCollide.DisplayName: 激光
+	Boom.DisplayName: 交错闪光
+	P2FireBall.DisplayName: 魔焰火球
+	P2Laser.DisplayName: 魔眼激光
+	LaserLine.DisplayName: 毁灭镭射
+	FireBreath.DisplayName: 咒印圣火
+	FireBreathLine.DisplayName: 咒焰之路
+	SoundControl.DisplayName: 消音器
+	NameShow.DisplayName: 双子魔眼名字
+}
+
+TheTwinsName: 双 子 魔 眼
+
+Compat: {
+	BossChecklist: {
+		TheTwinsDancer: {
+			SpawnInfo: 看上去似乎不太一样的双子魔眼，来自《空洞骑士：丝之歌》。
+			Despawn: 双子魔眼对你失去了兴趣
+		}
+	}
+}

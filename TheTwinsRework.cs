@@ -2,6 +2,8 @@ global using Terraria;
 global using Microsoft.Xna.Framework;
 
 using Terraria.ModLoader;
+using Terraria.Localization;
+using TheTwinsRework.Compat.BossCheckList;
 
 namespace TheTwinsRework
 {
@@ -24,14 +26,26 @@ namespace TheTwinsRework
             }
         }
 
+        public static LocalizedText TheTwinsName;
+
         public override void Load()
         {
-            base.Load();
+            if (Main.dedServ)
+            {
+                return;
+            }
+
+            TheTwinsName = GetLocalization(nameof(TheTwinsName));
         }
 
         public override void Unload()
         {
-            base.Unload();
+            TheTwinsName = null;
+        }
+
+        public override void PostSetupContent()
+        {
+            BossCheckListCalls.CallBossCheckList();
         }
     }
 }

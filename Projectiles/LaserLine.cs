@@ -32,6 +32,7 @@ namespace TheTwinsRework.Projectiles
         public int ShootTime;
 
         private bool Record = true;
+        public bool SPecialRot;
         private float LaserWidth;
 
         public ThunderTrail[] thunderTrails;
@@ -97,9 +98,17 @@ namespace TheTwinsRework.Projectiles
                     Projectile.Kill();
                     return;
                 }
-                Projectile.rotation = owner.rotation;
-                Projectile.velocity = Projectile.rotation.ToRotationVector2();
-                Projectile.Center = owner.Center + owner.rotation.ToRotationVector2() * 90;
+
+                float rot = owner.rotation;
+
+                if (State == 0&&SPecialRot)
+                {
+                    rot = (Circle.Center - owner.Center).ToRotation() + owner.ai[3];
+                }
+
+                Projectile.rotation = rot;
+                Projectile.velocity = rot.ToRotationVector2();
+                Projectile.Center = owner.Center + rot.ToRotationVector2() * 90;
                 SetLength(Projectile.velocity, Circle);
             }
             else if (Record)
@@ -342,7 +351,7 @@ namespace TheTwinsRework.Projectiles
 
             RasterizerState originalState = Main.graphics.GraphicsDevice.RasterizerState;
             List<VertexPositionColorTexture> bars = new();
-            float count = 40;
+            float count = 1;
             Vector2 dir = (Projectile.rotation + 1.57f).ToRotationVector2();
 
             for (int i = 0; i <= count; i++)
@@ -357,30 +366,27 @@ namespace TheTwinsRework.Projectiles
                 bars.Add(new(Bottom.Vec3(), Color.White, new Vector2(factor, 1)));
             }
 
-            if (bars.Count > 2)
+            Effect effect = Filters.Scene["LaserAlpha"].GetShader().Shader;
+
+            Matrix world = Matrix.CreateTranslation(-Main.screenPosition.Vec3());
+            Matrix view = Main.GameViewMatrix.TransformationMatrix;
+            Matrix projection = Matrix.CreateOrthographicOffCenter(0, Main.screenWidth, Main.screenHeight, 0, -1, 1);
+
+            effect.Parameters["uTime"].SetValue(Main.GlobalTimeWrappedHourly * 2);
+            effect.Parameters["exAdd"].SetValue(0.2f);
+            effect.Parameters["transformMatrix"].SetValue(world * view * projection);
+            effect.Parameters["sampleTexture"].SetValue(laserTex.Value);
+            effect.Parameters["gradientTexture"].SetValue(gradientTex.Value);
+            effect.Parameters["extTexture"].SetValue(flowTex.Value);
+
+            Main.graphics.GraphicsDevice.SamplerStates[0] = SamplerState.PointWrap;
+            foreach (EffectPass pass in effect.CurrentTechnique.Passes) //应用shader，并绘制顶点
             {
-                Effect effect = Filters.Scene["LaserAlpha"].GetShader().Shader;
-
-                Matrix world = Matrix.CreateTranslation(-Main.screenPosition.Vec3());
-                Matrix view = Main.GameViewMatrix.TransformationMatrix;
-                Matrix projection = Matrix.CreateOrthographicOffCenter(0, Main.screenWidth, Main.screenHeight, 0, -1, 1);
-
-                effect.Parameters["uTime"].SetValue(Main.GlobalTimeWrappedHourly * 2);
-                effect.Parameters["exAdd"].SetValue(0.2f);
-                effect.Parameters["transformMatrix"].SetValue(world * view * projection);
-                effect.Parameters["sampleTexture"].SetValue(laserTex.Value);
-                effect.Parameters["gradientTexture"].SetValue(gradientTex.Value);
-                effect.Parameters["extTexture"].SetValue(flowTex.Value);
-
-                Main.graphics.GraphicsDevice.SamplerStates[0] = SamplerState.PointWrap;
-                foreach (EffectPass pass in effect.CurrentTechnique.Passes) //应用shader，并绘制顶点
-                {
-                    pass.Apply();
-                    Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, bars.ToArray(), 0, bars.Count - 2);
-                }
-
-                Main.graphics.GraphicsDevice.RasterizerState = originalState;
+                pass.Apply();
+                Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, bars.ToArray(), 0, bars.Count - 2);
             }
+
+            Main.graphics.GraphicsDevice.RasterizerState = originalState;
 
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.PointWrap, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);

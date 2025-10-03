@@ -1,5 +1,6 @@
 ﻿using Coralite.Helpers;
 using System;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TheTwinsRework.Dusts;
@@ -12,6 +13,12 @@ namespace TheTwinsRework.NPCs
         public override string Texture => AssetDirectory.Vanilla + "NPC_125";
 
         public override Color HighlightColor => Color.Red;
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ItemID.RetinazerTrophy, 10));
+        }
+
 
         public override void PostAI()
         {
@@ -171,7 +178,7 @@ namespace TheTwinsRework.NPCs
                 float velRot = MathF.Sin((realTime - halfTime * 2 / 3) / (halfTime / 3) * MathHelper.TwoPi * 3) * MathHelper.PiOver4 / 8;
                 Vector2 velocity = (NPC.rotation + velRot).ToRotationVector2() * 16;
                 NPC.NewProjectileInAI<DeathLaserNoTileCollide>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
-                    , velocity, Helper.GetProjDamage(100, 125, 150)
+                    , velocity, Helper.GetProjDamage(75, 95, 115)
                     , 4, ai0: CircleLimitIndex);
             }
 
@@ -250,7 +257,7 @@ namespace TheTwinsRework.NPCs
                 float velRot = MathF.Sin((realTime - halfTime * 2 / 3) / (halfTime / 3) * MathHelper.TwoPi * 3) * MathHelper.PiOver4 / 8;
                 Vector2 velocity = (NPC.rotation + velRot).ToRotationVector2() * 16;
                 NPC.NewProjectileInAI<P2Laser>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
-                    , velocity, Helper.GetProjDamage(100, 125, 150)
+                    , velocity, Helper.GetProjDamage(80, 100, 125)
                     , 4, ai0: CircleLimitIndex);
             }
 
@@ -272,10 +279,11 @@ namespace TheTwinsRework.NPCs
                 SPRecorder = State % 2 == 0 ? MathHelper.PiOver4 : -MathHelper.PiOver4;
 
                 Projectile proj = NPC.NewProjectileDirectInAI<LaserLine>(NPC.Center + NPC.rotation.ToRotationVector2() * 50, NPC.rotation.ToRotationVector2()
-                     , Helper.GetProjDamage(100, 100, 100), 0, -1, CircleLimitIndex
+                     , Helper.GetProjDamage(125, 150, 175), 0, -1, CircleLimitIndex
                      , Time / 4, NPC.whoAmI);
 
                 (proj.ModProjectile as LaserLine).ShootTime = (int)(Time * 3 / 4);
+                (proj.ModProjectile as LaserLine).SPecialRot = true;
 
                 //ShineLine((int)halfTime / 2, Color.Red, NPC.whoAmI, (controller.Center - NPC.Center).ToRotation() + SPRecorder
                 //    , (int)CircleLimitIndex);
@@ -411,7 +419,7 @@ namespace TheTwinsRework.NPCs
             if (Timer % 16 == 0 && NPC.velocity.Length() > 1)
             {
                 NPC.NewProjectileInAI<P2Laser>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
-                    , NPC.rotation.ToRotationVector2() * 20, Helper.GetProjDamage(100, 125, 150)
+                    , NPC.rotation.ToRotationVector2() * 20, Helper.GetProjDamage(80, 100, 125)
                     , 4, ai0: CircleLimitIndex);
             }
 
@@ -439,7 +447,7 @@ namespace TheTwinsRework.NPCs
             {
                 Vector2 velocity = NPC.rotation.ToRotationVector2() * 16;
                 NPC.NewProjectileInAI<P2Laser>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
-                    , velocity, Helper.GetProjDamage(100, 125, 150)
+                    , velocity, Helper.GetProjDamage(80, 100, 125)
                     , 4, ai0: CircleLimitIndex);
             }
         }
@@ -455,7 +463,7 @@ namespace TheTwinsRework.NPCs
             for (int i = 0; i < count; i++)
             {
                 Projectile proj = NPC.NewProjectileDirectInAI<LaserLine>(startPos, rot.ToRotationVector2()
-                     , Helper.GetProjDamage(100, 100, 100), 0, -1, CircleLimitIndex
+                     , Helper.GetProjDamage(145, 170, 195), 0, -1, CircleLimitIndex
                      , readyTime +i*6, -1);
 
                 (proj.ModProjectile as LaserLine).ShootTime = 25;
@@ -484,7 +492,7 @@ namespace TheTwinsRework.NPCs
         public override void CombineP3_RotStart(NPC controller, int rotTime)
         {
             Projectile proj = NPC.NewProjectileDirectInAI<LaserLine>(NPC.Center + NPC.rotation.ToRotationVector2() * 50, NPC.rotation.ToRotationVector2()
-                 , Helper.GetProjDamage(100, 100, 100), 0, -1, CircleLimitIndex
+                 , Helper.GetProjDamage(125, 150, 175), 0, -1, CircleLimitIndex
                  , 35, NPC.whoAmI);
 
             (proj.ModProjectile as LaserLine).ShootTime = rotTime - 35;

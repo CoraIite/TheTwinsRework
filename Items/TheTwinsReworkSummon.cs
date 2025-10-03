@@ -1,5 +1,4 @@
-﻿using Terraria.Audio;
-using Terraria.DataStructures;
+﻿using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -34,7 +33,7 @@ namespace TheTwinsRework.Items
 
         public override bool CanUseItem(Player player)
         {
-            return !NPC.AnyNPCs(ModContent.NPCType<CircleLimit>());
+            return !NPC.AnyNPCs(ModContent.NPCType<CircleLimit>())&&!Main.dayTime;
         }
 
         public override bool? UseItem(Player player)
@@ -51,6 +50,16 @@ namespace TheTwinsRework.Items
             }
 
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.Lens, 3)
+                .AddRecipeGroup(RecipeGroupID.IronBar, 5)
+                .AddIngredient(ItemID.SoulofLight, 6)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
         }
     }
 }

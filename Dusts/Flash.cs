@@ -60,7 +60,7 @@ namespace TheTwinsRework.Dusts
 
             Texture2D exTex = FadeCircle.Value;
             origin = exTex.Size() / 2;
-            scale *= 0.6f;
+            scale *= 0.6f * 2;
 
             c = Color.White;
             c.A = 0;
@@ -69,9 +69,9 @@ namespace TheTwinsRework.Dusts
             Main.spriteBatch.Draw(exTex, pos
                 , null, c, dust.rotation, origin, scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(exTex, pos
-                , null, c, dust.rotation, origin, scale * 0.5f, SpriteEffects.None, 0f);
+                , null, c, dust.rotation*MathHelper.TwoPi/3, origin, scale * 0.5f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(exTex, pos
-                , null, c, dust.rotation, origin, scale * 0.75f, SpriteEffects.None, 0f);
+                , null, c, dust.rotation * MathHelper.TwoPi / 3*2, origin, scale * 0.75f, SpriteEffects.None, 0f);
 
             return false;
         }

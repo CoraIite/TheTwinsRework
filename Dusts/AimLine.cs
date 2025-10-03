@@ -1,6 +1,7 @@
 ﻿using Coralite.Helpers;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using Terraria.ModLoader;
 using TheTwinsRework.NPCs;
 
@@ -65,11 +66,13 @@ namespace TheTwinsRework.Dusts
             IncomeData data = (IncomeData)dust.customData;
             Color c = dust.color * Helper.SqrtEase(dust.fadeIn / data.maxTime);
 
+            float scale2 = 0.9f + 0.015f * MathF.Sin((int)Main.timeForVisualEffects*0.35f);
+
             Vector2 position = dust.position - Main.screenPosition;
             Main.spriteBatch.Draw(tex, position, null
-                , c, dust.rotation, tex.Size() / 2, 0.9f, 0, 0);
+                , c, dust.rotation, tex.Size() / 2, scale2, 0, 0);
             Main.spriteBatch.Draw(tex, position, null
-                , c with { A = 0 }, dust.rotation, tex.Size() / 2, 0.9f, SpriteEffects.FlipVertically, 0);
+                , c with { A = 0 } * 0.5f, dust.rotation, tex.Size() / 2, scale2, SpriteEffects.FlipVertically, 0);
 
             tex = LineTex.Value;
             position += dust.rotation.ToRotationVector2() * 20;
