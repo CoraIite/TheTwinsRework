@@ -68,6 +68,7 @@ namespace TheTwinsRework.Projectiles
             Projectile.tileCollide = false;
             Projectile.hostile = true;
             Projectile.penetrate = -1;
+            Projectile.hide = true;
         }
 
         public override bool ShouldUpdatePosition() => false;
@@ -280,13 +281,18 @@ namespace TheTwinsRework.Projectiles
             return 1 - Timer / ShootTime;
         }
 
+        public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
+        {
+            overPlayers.Add(index);
+        }
+
 
         public override bool PreDraw(ref Color lightColor)
         {
             if (thunderTrails != null)
             {
-                thunderTrails[0].DrawThunder(Main.instance.GraphicsDevice);
-                thunderTrails[1].DrawThunder(Main.instance.GraphicsDevice);
+                thunderTrails[0]?.DrawThunder(Main.instance.GraphicsDevice);
+                thunderTrails[1]?.DrawThunder(Main.instance.GraphicsDevice);
             }
 
             switch (State)
@@ -335,8 +341,8 @@ namespace TheTwinsRework.Projectiles
 
             if (thunderTrails != null)
             {
-                thunderTrails[2].DrawThunder(Main.instance.GraphicsDevice);
-                thunderTrails[3].DrawThunder(Main.instance.GraphicsDevice);
+                thunderTrails[2]?.DrawThunder(Main.instance.GraphicsDevice);
+                thunderTrails[3]?.DrawThunder(Main.instance.GraphicsDevice);
             }
 
             return false;

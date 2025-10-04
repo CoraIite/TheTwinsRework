@@ -139,6 +139,7 @@ namespace TheTwinsRework.NPCs
                 NPC.velocity = Vector2.Zero;
                 Recorder2 = NPC.rotation;
                 SPRecorder = MathF.Cos(MathHelper.Pi * Timer / halfTime) * MathHelper.PiOver4 / 2;
+                CanDamage = false;
 
                 ShineLine((int)halfTime / 2, Color.LimeGreen, NPC.whoAmI, (controller.Center - NPC.Center).ToRotation() + SPRecorder
                     , (int)CircleLimitIndex);
@@ -147,7 +148,7 @@ namespace TheTwinsRework.NPCs
             Timer++;
             float targetRot = (controller.Center - NPC.Center).ToRotation() + SPRecorder;//最终目标方向
 
-            if (realTime < halfTime / 2)//转向目标点
+            if (realTime < (int)(halfTime / 2))//转向目标点
             {
                 int time = (int)halfTime / (2 * 2);
 
@@ -178,10 +179,10 @@ namespace TheTwinsRework.NPCs
                 return;
             }
 
-            if (realTime < halfTime / 2)
+            if (realTime == (int)(halfTime / 2))
             {
                 NPC.rotation = (controller.Center - NPC.Center).ToRotation() + SPRecorder;
-
+                CanDamage = true;
                 return;
             }
 

@@ -64,7 +64,7 @@ namespace TheTwinsRework.NPCs
 
         public static int P1AttackTime = 60 * 1 + 59;
         public static int P2AttackTime = 60 * 1 + 35;
-        public static int P3AttackTime = 60 * 1 + 16;
+        public static int P3AttackTime = 60 * 1 + 18;
 
         public bool SteelPhase;
         public bool combineMove;
@@ -87,6 +87,7 @@ namespace TheTwinsRework.NPCs
             NPC.defense = 10;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
+            NPC.hide = true;
             NPC.knockBackResist = 0;
             NPC.width = NPC.height = 100;
         }
@@ -162,9 +163,9 @@ namespace TheTwinsRework.NPCs
 
         public override void AI()
         {
-            if (!CircleLimitIndex.GetNPCOwner<CircleLimit>(out NPC controller)||Main.dayTime)
+            if (!CircleLimitIndex.GetNPCOwner<CircleLimit>(out NPC controller) || Main.dayTime)
             {
-                NPC.velocity = Vector2.Lerp(NPC.velocity, new Vector2((NPC.whoAmI % 2 == 0) ? -6 : 6, -15), 0.1f);
+                NPC.velocity = Vector2.Lerp(NPC.velocity, new Vector2((NPC.whoAmI % 2 == 0) ? -6 : 6, -20), 0.1f);
                 NPC.rotation = NPC.velocity.ToRotation();
                 CanDamage = true;
                 CanDrawTrail = false;
@@ -196,15 +197,15 @@ namespace TheTwinsRework.NPCs
             }
 
             UpdateFrame();
-            if (NPC.whoAmI > OtherEyeIndex && OtherEyeIndex.GetNPCOwner(out NPC n) && n.ModNPC is BaseTwin)
+            if (NPC.whoAmI < OtherEyeIndex && OtherEyeIndex.GetNPCOwner(out NPC n) && n.ModNPC is BaseTwin)
             {
                 Vector2 pos = (NPC.Center + n.Center) / 2
-                    + new Vector2(0, Vector2.Distance(NPC.Center, n.Center) / 4);
+                    + new Vector2(0, Vector2.Distance(NPC.Center, n.Center) / 5);
 
                 if (smoother == null)
                 {
                     middlePos = pos;
-                    smoother = new SecondOrderDynamics_Vec2(0.95f, 0.35f, 0, pos);
+                    smoother = new SecondOrderDynamics_Vec2(1f, 0.4f, 0, pos);
                 }
 
                 middlePos = smoother.Update(1 / 60f, pos);
@@ -1049,7 +1050,7 @@ namespace TheTwinsRework.NPCs
                 factor /= attackTime / 4 * 9;
                 factor = Helper.X2Ease(factor);
 
-                float rot = SPRecorder + Recorder3 + factor * (MathHelper.TwoPi  + MathHelper.PiOver4);
+                float rot = SPRecorder + Recorder3 + factor * (MathHelper.TwoPi + MathHelper.PiOver4/2);
                 Vector2 targetPos = controller.Center + rot.ToRotationVector2() * 75;
 
                 NPC.Center = Vector2.SmoothStep(NPC.Center, targetPos, 0.2f + factor * 0.8f);
@@ -1555,8 +1556,8 @@ namespace TheTwinsRework.NPCs
                 Player p = Main.player[projectile.owner];
 
                 float distance = Vector2.Distance(p.Center, NPC.Center);
-                if (distance > 200)
-                    modifiers.FinalDamage -= Math.Clamp((distance - 200) / 300, 0, 1) * 0.5f;
+                if (distance > 250)
+                    modifiers.FinalDamage -= Math.Clamp((distance - 250) / 500, 0, 1) * 0.75f;
             }
         }
 
@@ -1604,8 +1605,11 @@ namespace TheTwinsRework.NPCs
 
         public override bool CheckDead()
         {
-            if (Phase == AIPhase.Anmi && Recorder2 == 4)
+            if (Phase == AIPhase.Anmi && Recorder2 == 4 && Timer > 150)
                 return true;
+
+            if (Phase == AIPhase.Anmi && Recorder2 == 4)
+                return false;
 
             NPC.life = 1;
             SwitchPhaseKill();
@@ -1625,9 +1629,14 @@ namespace TheTwinsRework.NPCs
             return false;
         }
 
+        public override void DrawBehind(int index)
+        {
+            Main.instance.DrawCacheNPCProjectiles.Add(index);
+        }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (NPC.whoAmI > OtherEyeIndex && OtherEyeIndex.GetNPCOwner(out NPC n) && n.ModNPC is BaseTwin)
+            if (NPC.whoAmI < OtherEyeIndex && OtherEyeIndex.GetNPCOwner(out NPC n) && n.ModNPC is BaseTwin)
             {
                 DrawLine(TextureAssets.Chain12.Value, NPC.Center, n.Center, screenPos);
             }
@@ -1703,6 +1712,10 @@ namespace TheTwinsRework.NPCs
 
                 recordPos = Center;
             }
+
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, Main.spriteBatch.GraphicsDevice.BlendState, Main.spriteBatch.GraphicsDevice.SamplerStates[0],
+                            Main.spriteBatch.GraphicsDevice.DepthStencilState, Main.spriteBatch.GraphicsDevice.RasterizerState, null, Main.GameViewMatrix.TransformationMatrix);
 
             var state = Main.graphics.GraphicsDevice.SamplerStates[0];
             Main.graphics.GraphicsDevice.Textures[0] = lineTex;

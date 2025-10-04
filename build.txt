@@ -1,4 +1,4 @@
 displayName = 双子舞者
-author = Coralite
-version = 1.0
+author = 瓶中微光
+version = 1.2
 buildIgnore = Olds/*

@@ -35,6 +35,11 @@ namespace TheTwinsRework.Dusts
 
         public override bool Update(Dust dust)
         {
+            if (dust.customData == null)
+            {
+                dust.active = false;
+                return false;
+            }
             IncomeData data = (IncomeData)dust.customData;
             if (data.index.GetNPCOwner(out NPC owner))
             {
@@ -62,6 +67,11 @@ namespace TheTwinsRework.Dusts
 
         public override bool PreDraw(Dust dust)
         {
+            if (dust.customData == null)
+            {
+                return false;
+            }
+
             Texture2D tex = Texture2D.Value;
             IncomeData data = (IncomeData)dust.customData;
             Color c = dust.color * Helper.SqrtEase(dust.fadeIn / data.maxTime);

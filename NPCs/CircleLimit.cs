@@ -50,7 +50,7 @@ namespace TheTwinsRework.NPCs
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.knockBackResist = 0;
-            NPC.hide = true;
+            //NPC.hide = true;
 
             Music = MusicID.Boss2;
         }
@@ -156,7 +156,26 @@ namespace TheTwinsRework.NPCs
                     break;
                 case 2://死亡
                     {
-                        CircleLength = Helper.Lerp(CircleLength, 0, 0.075f);
+                        if (CircleLength < 30)
+                        {
+                            for (int i = 0; i < 4; i++)
+                            {
+                                Vector2 dir = Helper.NextVec2Dir();
+                                Dust d = Dust.NewDustPerfect(NPC.Center
+                                     , DustID.TheDestroyer, dir * Main.rand.NextFloat(2, 4), Scale: Main.rand.NextFloat(0.75f, 1f));
+                                d.noGravity = true;
+                            }
+                        }
+                        else
+                            for (int i = 0; i < 3; i++)
+                            {
+                                Vector2 dir = Helper.NextVec2Dir();
+                                Dust d = Dust.NewDustPerfect(NPC.Center + dir * CircleLength
+                                     , DustID.TheDestroyer, dir * Main.rand.NextFloat(1, 2), Scale: Main.rand.NextFloat(1, 1.5f));
+                                d.noGravity = true;
+                            }
+
+                        CircleLength = Helper.Lerp(CircleLength, 0, 0.06f);
                         if (CircleLength < 1)
                         {
                             NPC.Kill();
@@ -298,11 +317,6 @@ namespace TheTwinsRework.NPCs
         public override void OnKill()
         {
             NPC.SetEventFlagCleared(ref NPC.downedMechBoss2, GameEventClearedID.DefeatedTheTwins);
-        }
-
-        public override void DrawBehind(int index)
-        {
-            Main.instance.DrawCacheNPCsMoonMoon.Add(index);
         }
 
         public void DrawBack(Vector2 pos, Color circleColor, Color backColor)

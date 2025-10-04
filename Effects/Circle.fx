@@ -26,7 +26,7 @@ float4 PixelShaderFunction(float2 coords : TEXCOORD0) : COLOR0
         thetaR.y - uTime);
     
     //采样图片
-    float4 twist = tex2D(twistTex, polarUV * 5.5f);
+    float4 twist = tex2D(twistTex, polarUV * 6.0);
     
     //计算扭曲值
     float2 uvt = (twist.xy - float2(0.5, 0.5)) * 18;
