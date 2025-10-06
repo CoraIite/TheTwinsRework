@@ -1,7 +1,7 @@
 ﻿using Coralite.Helpers;
 using System;
 using Terraria.Graphics.CameraModifiers;
-using TheTwinsRework.NPCs;
+using TheTwinsRework.NPCs.TheTwins;
 
 namespace TheTwinsRework.Misc
 {

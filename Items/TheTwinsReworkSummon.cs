@@ -2,7 +2,7 @@
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TheTwinsRework.NPCs;
+using TheTwinsRework.NPCs.TheTwins;
 
 namespace TheTwinsRework.Items
 {

@@ -1,0 +1,90 @@
+﻿using Terraria.ID;
+using Terraria.ModLoader;
+using TheTwinsRework.Core.Loader;
+
+namespace TheTwinsRework.Core.System_Particle
+{
+    public class ParticleSystem : ModSystem
+    {
+        public static Particle[] Particles = new Particle[TheTwinsRework.maxParticle];
+
+        public ParticleSystem()
+        {
+            Particles = new Particle[TheTwinsRework.maxParticle];
+
+            for (int j = 0; j < TheTwinsRework.maxParticle; j++)
+                Particles[j] = new Particle();
+        }
+
+        public override void Load()
+        {
+            if (Main.dedServ)
+                return;
+
+            Particles = new Particle[TheTwinsRework.maxParticle];
+
+            for (int j = 0; j < TheTwinsRework.maxParticle; j++)
+                Particles[j] = new Particle();
+        }
+
+        public override void Unload()
+        {
+            ParticleLoader.Unload();
+            for (int j = 0; j < TheTwinsRework.maxParticle; j++)
+                Particles[j] = null;
+
+            Particles = null;
+        }
+
+        public override void PostUpdateDusts()
+        {
+            UpdateParticle();
+        }
+
+        /// <summary>
+        /// 更新粒子
+        /// </summary>
+        public static void UpdateParticle()
+        {
+            //不在服务器上运行
+            if (Main.netMode == NetmodeID.Server)
+                return;
+
+            for (int i = 0; i < TheTwinsRework.maxParticle; i++)
+            {
+                Particle particle = Particles[i];
+                if (!particle.active)
+                    continue;
+
+                //不在游戏暂停时运行
+                if (!Main.gameInactive)
+                {
+                    ModParticle modParticle = ParticleLoader.GetParticle(particle.type);
+                    modParticle.Update(particle);
+                    if (modParticle.ShouldUpdateCenter(particle))
+                        particle.center += particle.velocity;
+
+                    //在粒子不活跃时把一些东西释放掉
+                    if (!particle.active)
+                    {
+                        particle.shader = null;
+                        particle.oldCenter = null;
+                        particle.oldRot = null;
+                        //particle.trail = null;
+                        particle.data = null;
+                    }
+                }
+
+                //一些防止粒子持续时间过长的措施，额...还是建议在update里手动设置active比较好
+                //if (particle.center.Y > Main.screenPosition.Y + Main.screenHeight)
+                //    particle.active = false;
+
+                if (particle.scale < 0.01f)
+                    particle.active = false;
+
+                if (particle.fadeIn > 1000)
+                    particle.active = false;
+            }
+        }
+    }
+}

@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using TheTwinsRework.Items;
-using TheTwinsRework.NPCs;
+using TheTwinsRework.NPCs.TheTwins;
 using static Terraria.ModLoader.ModContent;
 
 namespace TheTwinsRework.Compat.BossCheckList

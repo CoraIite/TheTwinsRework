@@ -1,7 +1,7 @@
 ﻿using Coralite.Helpers;
 using System;
 using Terraria.ID;
-using TheTwinsRework.NPCs;
+using TheTwinsRework.NPCs.TheTwins;
 
 namespace TheTwinsRework.Projectiles
 {

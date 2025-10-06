@@ -4,7 +4,7 @@ using System;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TheTwinsRework.NPCs;
+using TheTwinsRework.NPCs.TheTwins;
 
 namespace TheTwinsRework.Projectiles
 {

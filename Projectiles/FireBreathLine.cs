@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TheTwinsRework.NPCs;
+using TheTwinsRework.NPCs.TheTwins;
 
 namespace TheTwinsRework.Projectiles
 {

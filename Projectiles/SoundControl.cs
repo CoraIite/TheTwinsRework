@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Terraria.ModLoader;
-using TheTwinsRework.NPCs;
+using TheTwinsRework.NPCs.TheTwins;
 
 namespace TheTwinsRework.Projectiles
 {

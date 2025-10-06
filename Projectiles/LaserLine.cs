@@ -7,7 +7,8 @@ using Terraria.Graphics.CameraModifiers;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TheTwinsRework.NPCs;
+using TheTwinsRework.Core.Loader;
+using TheTwinsRework.NPCs.TheTwins;
 
 namespace TheTwinsRework.Projectiles
 {
@@ -372,7 +373,7 @@ namespace TheTwinsRework.Projectiles
                 bars.Add(new(Bottom.Vec3(), Color.White, new Vector2(factor, 1)));
             }
 
-            Effect effect = Filters.Scene["LaserAlpha"].GetShader().Shader;
+            Effect effect = ShaderLoader.GetShader("LaserAlpha");
 
             Matrix world = Matrix.CreateTranslation(-Main.screenPosition.Vec3());
             Matrix view = Main.GameViewMatrix.TransformationMatrix;

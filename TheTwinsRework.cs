@@ -9,6 +9,8 @@ namespace TheTwinsRework
 {
 	public class TheTwinsRework : Mod
 	{
+        public const int maxParticle = 500;
+
         private static TheTwinsRework _instance;
 
         //µ¥ÀýÄ£Ê½£¡
