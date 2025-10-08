@@ -9,6 +9,7 @@ NPCs: {
 	CircleLimit.DisplayName: Circle Limit
 	FireEye.DisplayName: Fire Eye
 	LaserEye.DisplayName: Laser Eye
+	GoldCircleLimit.DisplayName: Gold Circle Limit
 }
 
 Projectiles: {

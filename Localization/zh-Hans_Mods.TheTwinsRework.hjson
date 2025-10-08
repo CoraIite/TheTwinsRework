@@ -9,6 +9,7 @@ NPCs: {
 	CircleLimit.DisplayName: 双子舞者
 	FireEye.DisplayName: 魔焰眼
 	LaserEye.DisplayName: 激光眼
+	// GoldCircleLimit.DisplayName: Gold Circle Limit
 }
 
 Projectiles: {
