@@ -7,6 +7,8 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
+using TheTwinsRework.Configs;
 using TheTwinsRework.Core.Loader;
 using TheTwinsRework.Misc;
 using TheTwinsRework.Projectiles;
@@ -52,6 +54,11 @@ namespace TheTwinsRework.NPCs.TheTwins
             NPC.noTileCollide = true;
             NPC.knockBackResist = 0;
             //NPC.hide = true;
+
+            if (!VisualConfigSystem.ShowBossBar)
+            {
+                NPC.BossBar = ModContent.GetInstance<NothingBossBar>();
+            }
 
             Music = MusicID.Boss2;
         }
@@ -115,7 +122,8 @@ namespace TheTwinsRework.NPCs.TheTwins
                             State = 1;
 
                             //生成镜头移动
-                            if (Main.netMode != NetmodeID.Server)
+                            if (Main.netMode != NetmodeID.Server
+                                && VisualConfigSystem.ScreenMove)
                             {
                                 ScreenMove move = new ScreenMove();
                                 move.MainIndex = NPC.whoAmI;

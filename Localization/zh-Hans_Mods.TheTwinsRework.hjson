@@ -9,7 +9,7 @@ NPCs: {
 	CircleLimit.DisplayName: 双子舞者
 	FireEye.DisplayName: 魔焰眼
 	LaserEye.DisplayName: 激光眼
-	// GoldCircleLimit.DisplayName: Gold Circle Limit
+	GoldCircleLimit.DisplayName: Gold Circle Limit
 }
 
 Projectiles: {
@@ -32,6 +32,22 @@ Compat: {
 		TheTwinsDancer: {
 			SpawnInfo: 看上去似乎不太一样的双子魔眼，来自《空洞骑士：丝之歌》。
 			Despawn: 双子魔眼对你失去了兴趣
+		}
+	}
+}
+
+Configs: {
+	VisualConfig: {
+		DisplayName: 视觉效果配置
+
+		ScreenMove: {
+			Label: 屏幕移动
+			Tooltip: 开启后视角会被双子舞者吸引
+		}
+
+		ShowBossBar: {
+			Label: 显示BOSS血条
+			Tooltip: 关闭后不再显示双子舞者的BOSS血条
 		}
 	}
 }

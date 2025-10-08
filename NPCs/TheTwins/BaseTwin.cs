@@ -109,18 +109,18 @@ namespace TheTwinsRework.NPCs.TheTwins
                 if (nPCStrengthHelper.IsExpertMode)
                 {
                     NPC.lifeMax = (int)((expertBaseLife + numPlayers * expertAddLife) / journeyScale);
-                    NPC.damage = 100;
+                    NPC.damage = (int)(100 / journeyScale);
                 }
 
                 if (nPCStrengthHelper.IsMasterMode)
                 {
                     NPC.lifeMax = (int)((masterBaseLife + numPlayers * masterAddLife) / journeyScale);
-                    NPC.damage = 150;
+                    NPC.damage = (int)(150 / journeyScale);
                 }
 
                 if (Main.getGoodWorld)
                 {
-                    NPC.damage = 190;
+                    NPC.damage = (int)(190 / journeyScale);
                 }
 
                 return;
@@ -584,6 +584,12 @@ namespace TheTwinsRework.NPCs.TheTwins
 
             else if (Timer < maxTime - 40)
             {
+                if (Main.netMode!=NetmodeID.MultiplayerClient&&NPC.life < NPC.lifeMax / 3 && Timer % 20 == 0)
+                {
+                    NPC.life += NPC.lifeMax / (4 * 7);
+                    NPC.netUpdate = true;
+                }
+
                 NPC.rotation += MathF.Sin((Timer - (maxTime - 160)) / 120 * MathHelper.Pi) * 0.6f;
             }
             else
@@ -625,7 +631,7 @@ namespace TheTwinsRework.NPCs.TheTwins
             for (int i = 0; i < 4; i++)
             {
                 Vector2 pos = Helper.NextVec2Dir(1, 25);
-                Dust.NewDustPerfect(NPC.Center + pos, ModContent.DustType<Fog>(), pos.SafeNormalize(Vector2.Zero) * Main.rand.NextFloat(10, 30)
+                Particle.NewParticle(NPC.Center + pos, pos.SafeNormalize(Vector2.Zero) * Main.rand.NextFloat(10, 30), Contents.ParticleType<Fog>()
                  , newColor: Color.White * 0.35f, Scale: Main.rand.NextFloat(2f, 4f));
             }
 

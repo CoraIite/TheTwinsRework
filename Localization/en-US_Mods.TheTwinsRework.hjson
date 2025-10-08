@@ -1,28 +1,28 @@
 Items: {
 	TheTwinsReworkSummon: {
-		DisplayName: The Twins Rework Summon
-		Tooltip: ""
+		DisplayName: Twins Device
+		Tooltip: Summon unusual The Twins at night
 	}
 }
 
 NPCs: {
-	CircleLimit.DisplayName: Circle Limit
-	FireEye.DisplayName: Fire Eye
-	LaserEye.DisplayName: Laser Eye
+	CircleLimit.DisplayName: The Twins Dancer
+	FireEye.DisplayName: Spazmatism
+	LaserEye.DisplayName: Retinazer
 	GoldCircleLimit.DisplayName: Gold Circle Limit
 }
 
 Projectiles: {
-	SlowFireBall.DisplayName: Slow Fire Ball
-	DeathLaserNoTileCollide.DisplayName: Death Laser No Tile Collide
-	Boom.DisplayName: Boom
-	P2FireBall.DisplayName: P2 Fire Ball
-	P2Laser.DisplayName: P2 Laser
-	LaserLine.DisplayName: Laser Line
-	FireBreath.DisplayName: Fire Breath
-	FireBreathLine.DisplayName: Fire Breath Line
-	SoundControl.DisplayName: Sound Control
-	NameShow.DisplayName: Name Show
+	SlowFireBall.DisplayName: Cursed Fireball
+	DeathLaserNoTileCollide.DisplayName: Laser Beam
+	Boom.DisplayName: Strobing Flash
+	P2FireBall.DisplayName: Demonic Flame Orb
+	P2Laser.DisplayName: Death Laser
+	LaserLine.DisplayName: Annihilation Ray
+	FireBreath.DisplayName: Seal of Sacred Flames
+	FireBreathLine.DisplayName: Path of Cursed Blaze
+	SoundControl.DisplayName: Silencer
+	NameShow.DisplayName: The Twins
 }
 
 TheTwinsName: The Twins
@@ -30,8 +30,24 @@ TheTwinsName: The Twins
 Compat: {
 	BossChecklist: {
 		TheTwinsDancer: {
-			SpawnInfo: ""
-			Despawn: ""
+			SpawnInfo: The Twins but seems different. From Hollow Knight: Silksong.
+			Despawn: The Twins Leave.
+		}
+	}
+}
+
+Configs: {
+	VisualConfig: {
+		DisplayName: Visual Effects Settings
+
+		ScreenMove: {
+			Label: Screen Movement
+			Tooltip: When enabled, the camera will follow the Twin Dancers
+		}
+
+		ShowBossBar: {
+			Label: Show Boss Health Bar
+			Tooltip: Disabling this will hide the Twin Dancers' boss health bar
 		}
 	}
 }
