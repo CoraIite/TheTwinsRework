@@ -252,5 +252,11 @@ namespace Coralite.Helpers
             return SoundEngine.PlaySound(style, position);
         }
 
+        public static void StopMusic()
+        {
+            Main.audioSystem.PauseAll();
+            for (int i = 0; i < Main.musicFade.Length; i++)
+                Main.musicFade[i] = 0;
+        }
     }
 }

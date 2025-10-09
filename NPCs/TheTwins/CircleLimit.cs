@@ -92,6 +92,11 @@ namespace TheTwinsRework.NPCs.TheTwins
             potionType = ItemID.GreaterHealingPotion;
         }
 
+        public override bool? CanBeHitByItem(Player player, Item item)
+            => false;
+        public override bool? CanBeHitByProjectile(Projectile projectile)
+            => false;
+
         public override void AI()
         {
             NPC.dontTakeDamage = true;
@@ -194,9 +199,7 @@ namespace TheTwinsRework.NPCs.TheTwins
                     break;
                 case 3:
                     {
-                        Main.audioSystem.PauseAll();
-                        for (int i = 0; i < Main.musicFade.Length; i++)
-                            Main.musicFade[i] = 0;
+                        Helper.StopMusic();
 
                         Timer++;
                         if (Timer > 160)
