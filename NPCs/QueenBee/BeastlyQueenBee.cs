@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Coralite.Helpers;
+using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,30 +12,27 @@ namespace TheTwinsRework.NPCs.QueenBee
     {
         public override string Texture => AssetDirectory.Vanilla + "NPC_222";
 
-        public ref float CircleLength => ref NPC.ai[0];
-        public ref float State => ref NPC.ai[1];
-        public ref float Eye1Index => ref NPC.ai[2];
-        public ref float Eye2Index => ref NPC.ai[3];
+        public AIStates State {  get; set; }
+
+        public ref float RectLimitIndex => ref NPC.ai[0];
+        public bool Dashing
+        {
+            get => NPC.ai[1] == 1;
+            set
+            {
+                if (value)
+                    NPC.ai[1] = 1;
+                else
+                    NPC.ai[1] = 0;
+            }
+        }
+        public ref float Recorder2 => ref NPC.ai[2];
+        public ref float Recorder3 => ref NPC.ai[3];
 
         public ref float Timer => ref NPC.localAI[0];
         private Player Target => Main.player[NPC.target];
 
-        public static float MaxLength = 580;
-
-        public static Asset<Texture2D> TwistTex { get; private set; }
-
-        public override void Load()
-        {
-            if (Main.dedServ)
-                return;
-
-            TwistTex = ModContent.Request<Texture2D>(AssetDirectory.Assets + "Twist");
-        }
-
-        public override void Unload()
-        {
-            TwistTex = null;
-        }
+        #region tml Hooks
 
         public override void SetDefaults()
         {
@@ -54,14 +52,90 @@ namespace TheTwinsRework.NPCs.QueenBee
             Music = MusicID.Boss1;
         }
 
-        public override bool CanHitPlayer(Player target, ref int cooldownSlot)
+        #endregion
+
+        #region AI
+
+        public enum AIStates
         {
-            return false;
+            /// <summary>
+            /// 生成动画
+            /// </summary>
+            SpawnAnmi,
+            /// <summary>
+            /// 射刺
+            /// </summary>
+            ShootSpikes,
+            /// <summary>
+            /// 招小怪
+            /// </summary>
+            SummonMinions,
+            /// <summary>
+            /// 冲刺
+            /// </summary>
+            Dash,
+            /// <summary>
+            /// 下砸
+            /// </summary>
+            SmashDown,
+            /// <summary>
+            /// 死亡动画
+            /// </summary>
+            KillAnmi,
+        }
+
+        public override void AI()
+        {
+            if (RectLimitIndex.GetNPCOwner<RectangleLimit>(out NPC controller))
+            {
+
+            }
+        }
+
+        public void SpawnAnmi()
+        {
+
+        }
+
+        public void UpdateFrame(int counterMax = 4)
+        {
+            if (!Dashing && NPC.frame.Y < 4)
+                NPC.frame.Y = 4;
+
+            if (++NPC.frameCounter > counterMax)
+            {
+                NPC.frameCounter = 0;
+                NPC.frame.Y++;
+                if (Dashing)
+                {
+                    if (NPC.frame.Y > 3)
+                        NPC.frame.Y = 0;
+                }
+                else
+                {
+                    if (NPC.frame.Y > 11)
+                        NPC.frame.Y = 4;
+                }
+            }
         }
 
         public void OpenMusic()
         {
             Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/RIP AND SHRED");
         }
+
+        #endregion
+
+        #region Draw
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+
+
+            return false;
+        }
+
+        #endregion
+
     }
 }

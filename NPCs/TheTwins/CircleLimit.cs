@@ -4,10 +4,8 @@ using ReLogic.Content;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
 using TheTwinsRework.Configs;
 using TheTwinsRework.Core.Loader;
 using TheTwinsRework.Misc;
@@ -53,6 +51,7 @@ namespace TheTwinsRework.NPCs.TheTwins
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.knockBackResist = 0;
+            NPC.npcSlots = 20;
             //NPC.hide = true;
 
             if (!VisualConfigSystem.ShowBossBar)
