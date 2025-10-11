@@ -3,6 +3,16 @@ Items: {
 		DisplayName: Twins Device
 		Tooltip: Summon unusual The Twins at night
 	}
+
+	BeastCrest: {
+		DisplayName: Beast Crest
+		Tooltip: ""
+	}
+
+	Beastfly: {
+		DisplayName: Beastfly
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -10,6 +20,8 @@ NPCs: {
 	FireEye.DisplayName: Spazmatism
 	LaserEye.DisplayName: Retinazer
 	GoldCircleLimit.DisplayName: Gold Circle Limit
+	BeastlyQueenBee.DisplayName: Beastly Queen Bee
+	RectangleLimit.DisplayName: Rectangle Limit
 }
 
 Projectiles: {
@@ -49,5 +61,12 @@ Configs: {
 			Label: Show Boss Health Bar
 			Tooltip: Disabling this will hide the Twin Dancers' boss health bar
 		}
+	}
+}
+
+Buffs: {
+	BeastCrestBuff: {
+		DisplayName: Beast Crest Buff
+		Description: Mods.TheTwinsRework.Buffs.BeastCrestBuff.Description
 	}
 }

@@ -26,7 +26,7 @@ namespace TheTwinsRework.NPCs.TheTwins
         public ref float Timer => ref NPC.localAI[0];
         private Player Target => Main.player[NPC.target];
 
-        public static float MaxLength = 580;
+        public const float MaxLength = 580;
 
         public static Asset<Texture2D> TwistTex { get; private set; }
 

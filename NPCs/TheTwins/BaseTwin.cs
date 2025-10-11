@@ -65,9 +65,9 @@ namespace TheTwinsRework.NPCs.TheTwins
         public ref float Recorder3 => ref NPC.localAI[2];
         public ref float WaitState => ref NPC.localAI[3];
 
-        public static int P1AttackTime = 60 * 1 + 59;
-        public static int P2AttackTime = 60 * 1 + 35;
-        public static int P3AttackTime = 60 * 1 + 18;
+        public const int P1AttackTime = 60 * 1 + 59;
+        public const int P2AttackTime = 60 * 1 + 35;
+        public const int P3AttackTime = 60 * 1 + 18;
 
         public bool SteelPhase;
         public bool combineMove;
@@ -248,10 +248,7 @@ namespace TheTwinsRework.NPCs.TheTwins
             switch (Recorder2)
             {
                 case 0:
-                    for (int i = 0; i < Main.musicFade.Length; i++)
-                        Main.musicFade[i] = 0;
-                    Main.audioSystem.PauseAll();
-
+                    Helper.StopMusic();
                     SpawnAnmi(conrtoller);
                     break;
                 case 1:
@@ -627,6 +624,12 @@ namespace TheTwinsRework.NPCs.TheTwins
 
             NPC.velocity = Vector2.Zero;
             NPC.rotation += MathF.Sin(Timer * 0.75f) * 0.3f;
+
+            if (Timer == 0)
+            {
+                Particle.NewParticle(NPC.Center, Vector2.Zero, Contents.ParticleType<FinalHit>()
+                 , newColor: Color.White, Scale: 1.25f);
+            }
 
             for (int i = 0; i < 4; i++)
             {

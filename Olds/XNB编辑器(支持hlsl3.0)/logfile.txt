@@ -1,0 +1,1135 @@
+Message at 2022/8/14 18:11:36: Importing 混乱效果.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2022/8/14 18:11:36: Processing 混乱效果.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2022/8/14 18:11:36: Errors compiling F:\桌面qa\XNB编辑器(支持hlsl3.0)\Effects\混乱效果.fx:
+F:\????qa\XNB????(???hlsl3.0)\memory(71,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/13 15:41:48: Importing GlowingMarblingBlack.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/13 15:41:48: Processing GlowingMarblingBlack.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/13 15:41:48: Compiling GlowingMarblingBlack.xnb
+Message at 2023/8/13 15:43:16: Importing GlowingMarblingBlack.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/13 15:43:16: Processing GlowingMarblingBlack.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/13 15:43:16: Compiling GlowingMarblingBlack.xnb
+Message at 2023/8/13 20:29:48: Importing GlowingMarblingBlack.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/13 20:29:48: Processing GlowingMarblingBlack.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/13 20:29:48: Compiling GlowingMarblingBlack.xnb
+Message at 2023/8/13 21:06:26: Importing GlowingMarblingBlack.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/13 21:06:26: Processing GlowingMarblingBlack.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/13 21:06:26: Compiling GlowingMarblingBlack.xnb
+Message at 2023/8/13 22:25:43: Importing GlowingMarblingBlack.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/13 22:25:43: Processing GlowingMarblingBlack.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/13 22:25:43: Compiling GlowingMarblingBlack.xnb
+Message at 2023/8/13 22:32:43: Importing GlowingMarblingBlack.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/13 22:32:43: Processing GlowingMarblingBlack.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/13 22:32:43: Compiling GlowingMarblingBlack.xnb
+Message at 2023/8/15 21:18:24: Importing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/15 21:18:24: Processing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/15 21:18:24: Compiling SolidToBlank.xnb
+Message at 2023/8/15 21:58:27: Importing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/15 21:58:27: Processing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/15 21:58:27: Compiling SolidToBlank.xnb
+Message at 2023/8/15 22:00:44: Importing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/15 22:00:44: Processing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/15 22:00:44: Compiling SolidToBlank.xnb
+Message at 2023/8/15 22:04:05: Importing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/15 22:04:05: Processing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/15 22:04:05: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\SolidToBlank.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(6,42): error X3000: syntax error: unexpected token ','
+Message at 2023/8/15 22:04:30: Importing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/15 22:04:30: Processing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/15 22:04:30: Compiling SolidToBlank.xnb
+Message at 2023/8/16 10:03:29: Importing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/16 10:03:29: Processing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/16 10:03:29: Compiling SolidToBlank.xnb
+Message at 2023/8/16 10:27:47: Importing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/16 10:27:47: Processing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/16 10:27:47: Compiling SolidToBlank.xnb
+Message at 2023/8/16 10:29:17: Importing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/16 10:29:17: Processing SolidToBlank.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/16 10:29:17: Compiling SolidToBlank.xnb
+Message at 2023/8/16 15:03:43: Importing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/16 15:03:43: Processing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/16 15:03:43: Compiling NightmareTentacle.xnb
+Message at 2023/8/20 10:43:41: Importing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/20 10:43:41: Processing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/20 10:43:41: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\NightmareFlow.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(50,10): error X3014: incorrect number of arguments to numeric-type constructor
+Message at 2023/8/20 10:45:47: Importing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/20 10:45:47: Processing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/20 10:45:47: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\NightmareFlow.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(64,10): error X3025: global variables are implicitly constant, enable compatibility mode to allow modification
+Message at 2023/8/20 10:49:15: Importing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/20 10:49:15: Processing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/20 10:49:16: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\NightmareFlow.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(75,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/20 10:49:52: Importing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/20 10:49:52: Processing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/20 10:49:53: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\NightmareFlow.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(75,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/20 10:52:40: Importing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/20 10:52:40: Processing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/20 10:52:40: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\NightmareFlow.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(8,5): error X3017: cannot implicitly convert from 'const float3' to 'float4'
+Message at 2023/8/20 10:54:14: Importing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/20 10:54:14: Processing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/20 10:54:15: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\NightmareFlow.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(75,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/20 10:54:33: Importing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/20 10:54:33: Processing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/20 10:54:33: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\NightmareFlow.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(49,10): warning X3557: Loop only executes for 1 iteration(s), forcing loop to unroll
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(49,10): warning X3557: Loop only executes for 1 iteration(s), forcing loop to unroll
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(49,10): warning X3557: Loop only executes for 1 iteration(s), forcing loop to unroll
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(49,10): warning X3557: Loop only executes for 1 iteration(s), forcing loop to unroll
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(49,10): warning X3557: Loop only executes for 1 iteration(s), forcing loop to unroll
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(49,10): warning X3557: Loop only executes for 1 iteration(s), forcing loop to unroll
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(49,10): warning X3557: Loop only executes for 1 iteration(s), forcing loop to unroll
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(49,10): warning X3557: Loop only executes for 1 iteration(s), forcing loop to unroll
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(49,10): warning X3557: Loop only executes for 1 iteration(s), forcing loop to unroll
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(49,10): warning X3557: Loop only executes for 1 iteration(s), forcing loop to unroll
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(75,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/20 10:56:17: Importing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/20 10:56:17: Processing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/20 10:56:18: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\NightmareFlow.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(75,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/20 11:04:36: Importing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/20 11:04:36: Processing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/20 11:04:36: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\NightmareFlow.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(75,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/20 11:12:08: Importing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/20 11:12:08: Processing NightmareFlow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/8/20 11:12:09: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\NightmareFlow.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(75,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/8/20 11:20:23: Importing GlowingMarblingBlack2.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/20 11:20:23: Processing GlowingMarblingBlack2.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/20 11:20:23: Compiling GlowingMarblingBlack2.xnb
+Message at 2023/8/24 14:43:39: Importing 3DRotate.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/24 14:43:39: Processing 3DRotate.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/24 14:43:39: Compiling 3DRotate.xnb
+Message at 2023/8/24 19:16:01: Importing 3DRotate.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/24 19:16:01: Processing 3DRotate.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/24 19:16:01: Compiling 3DRotate.xnb
+Message at 2023/8/24 19:27:00: Importing 3DRotate.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/24 19:27:00: Processing 3DRotate.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/24 19:27:00: Compiling 3DRotate.xnb
+Message at 2023/8/24 19:31:38: Importing 3DRotate.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/24 19:31:38: Processing 3DRotate.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/24 19:31:38: Compiling 3DRotate.xnb
+Message at 2023/8/24 20:07:05: Importing 3DRotate.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/24 20:07:05: Processing 3DRotate.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/24 20:07:05: Compiling 3DRotate.xnb
+Message at 2023/8/24 20:17:26: Importing 3DRotate.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/24 20:17:26: Processing 3DRotate.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/24 20:17:26: Compiling 3DRotate.xnb
+Message at 2023/8/25 14:20:27: Importing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/25 14:20:27: Processing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/25 14:20:27: Compiling NightmareTentacle.xnb
+Message at 2023/8/26 18:17:07: Importing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/26 18:17:07: Processing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/26 18:17:07: Compiling NightmareTentacle.xnb
+Message at 2023/8/26 18:20:29: Importing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/26 18:20:29: Processing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/26 18:20:29: Compiling NightmareTentacle.xnb
+Message at 2023/8/26 18:27:02: Importing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/26 18:27:02: Processing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/26 18:27:02: Compiling NightmareTentacle.xnb
+Message at 2023/8/26 18:29:12: Importing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/26 18:29:12: Processing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/26 18:29:12: Compiling NightmareTentacle.xnb
+Message at 2023/8/27 12:18:22: Importing GlowingMarblingBlack2.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/27 12:18:22: Processing GlowingMarblingBlack2.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/27 12:18:22: Compiling GlowingMarblingBlack2.xnb
+Message at 2023/8/27 16:21:15: Importing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/8/27 16:21:15: Processing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/8/27 16:21:15: Compiling NightmareTentacle.xnb
+Message at 2023/9/5 13:03:26: Importing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/9/5 13:03:26: Processing NightmareTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/9/5 13:03:26: Compiling NightmareTentacle.xnb
+Message at 2023/9/5 23:55:48: Importing FantasyTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/9/5 23:55:48: Processing FantasyTentacle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/9/5 23:55:48: Compiling FantasyTentacle.xnb
+Message at 2023/10/6 21:23:01: Importing AlphaGradientTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/10/6 21:23:01: Processing AlphaGradientTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/10/6 21:23:01: Compiling AlphaGradientTrail.xnb
+Message at 2023/10/6 21:24:08: Importing AlphaGradientTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/10/6 21:24:08: Processing AlphaGradientTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/10/6 21:24:08: Compiling AlphaGradientTrail.xnb
+Message at 2023/10/6 21:50:08: Importing AlphaGradientTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/10/6 21:50:08: Processing AlphaGradientTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/10/6 21:50:08: Compiling AlphaGradientTrail.xnb
+Message at 2023/10/7 21:28:46: Importing NoHLGradientTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/10/7 21:28:46: Processing NoHLGradientTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/10/7 21:28:46: Compiling NoHLGradientTrail.xnb
+Message at 2023/10/9 21:27:45: Importing AlphaNoHLGradientTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/10/9 21:27:45: Processing AlphaNoHLGradientTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/10/9 21:27:45: Compiling AlphaNoHLGradientTrail.xnb
+Message at 2023/12/7 17:35:23: Importing SimpleTrailNoHL.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/7 17:35:23: Processing SimpleTrailNoHL.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/7 17:35:23: Compiling SimpleTrailNoHL.xnb
+Message at 2023/12/21 14:35:05: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 14:35:05: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/21 14:35:05: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\GelFlower.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(48,7): error X3020: type mismatch
+Message at 2023/12/21 14:36:28: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 14:36:28: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/21 14:36:28: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\GelFlower.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(48,7): error X3020: type mismatch
+Message at 2023/12/21 14:38:23: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 14:38:23: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/21 14:38:23: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\GelFlower.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(48,7): error X3020: type mismatch
+Message at 2023/12/21 14:40:35: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 14:40:35: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/21 14:40:35: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\GelFlower.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(55,7): error X3020: type mismatch
+Message at 2023/12/21 14:43:22: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 14:43:22: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/21 14:43:22: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\GelFlower.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(76,12): error X3014: incorrect number of arguments to numeric-type constructor
+Message at 2023/12/21 14:44:45: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 14:44:46: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/21 14:44:46: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\GelFlower.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(76,34): error X3014: incorrect number of arguments to numeric-type constructor
+Message at 2023/12/21 14:45:24: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 14:45:24: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/21 14:45:24: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\GelFlower.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(82,34): error X3014: incorrect number of arguments to numeric-type constructor
+Message at 2023/12/21 14:45:58: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 14:45:58: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/21 14:45:58: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\GelFlower.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(89,10): error X3014: incorrect number of arguments to numeric-type constructor
+Message at 2023/12/21 14:47:08: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 14:47:08: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/21 14:47:09: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\GelFlower.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(94,37): error X3014: incorrect number of arguments to numeric-type constructor
+Message at 2023/12/21 14:47:37: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 14:47:37: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 14:47:37: Compiling GelFlower.xnb
+Message at 2023/12/21 15:19:59: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 15:19:59: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/21 15:19:59: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\GelFlower.fx:
+Compiled shader code uses too many instruction slots (584). Max. allowed by the target (ps_3_0) is 512.
+Message at 2023/12/21 15:21:11: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 15:21:11: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 15:21:11: Compiling GelFlower.xnb
+Message at 2023/12/21 15:23:40: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 15:23:40: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/21 15:23:40: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\GelFlower.fx:
+Compiled shader code uses too many instruction slots (576). Max. allowed by the target (ps_3_0) is 512.
+Message at 2023/12/21 15:24:52: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 15:24:52: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 15:24:53: Compiling GelFlower.xnb
+Message at 2023/12/21 15:30:53: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 15:30:53: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 15:30:53: Compiling GelFlower.xnb
+Message at 2023/12/21 15:32:19: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 15:32:19: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 15:32:19: Compiling GelFlower.xnb
+Message at 2023/12/21 15:40:09: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 15:40:09: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 15:40:10: Compiling GelFlower.xnb
+Message at 2023/12/21 15:43:45: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 15:43:45: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 15:43:46: Compiling GelFlower.xnb
+Message at 2023/12/21 15:48:49: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 15:48:49: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 15:48:49: Compiling GelFlower.xnb
+Message at 2023/12/21 15:51:26: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 15:51:26: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 15:51:26: Compiling GelFlower.xnb
+Message at 2023/12/21 15:54:44: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 15:54:44: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 15:54:44: Compiling GelFlower.xnb
+Message at 2023/12/21 16:01:24: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 16:01:24: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 16:01:24: Compiling GelFlower.xnb
+Message at 2023/12/21 16:08:32: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 16:08:32: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 16:08:32: Compiling GelFlower.xnb
+Message at 2023/12/21 16:10:41: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 16:10:41: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 16:10:42: Compiling GelFlower.xnb
+Message at 2023/12/21 16:13:15: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 16:13:15: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 16:13:15: Compiling GelFlower.xnb
+Message at 2023/12/21 16:14:19: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 16:14:19: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 16:14:19: Compiling GelFlower.xnb
+Message at 2023/12/21 16:16:34: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 16:16:34: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 16:16:34: Compiling GelFlower.xnb
+Message at 2023/12/21 16:17:35: Importing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/21 16:17:35: Processing GelFlower.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2023/12/21 16:17:35: Compiling GelFlower.xnb
+Message at 2023/12/27 20:47:08: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/27 20:47:08: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/27 20:47:08: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(105,10): error X3020: type mismatch
+Message at 2023/12/27 20:49:22: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/27 20:49:22: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/27 20:49:22: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+ID3DXEffectCompiler: There were no techniques
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/12/27 20:50:09: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/27 20:50:09: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/27 20:50:10: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(90,16): warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+
+Compiled shader code uses too many instruction slots (541). Max. allowed by the target (ps_3_0) is 512.
+Message at 2023/12/27 20:50:53: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/27 20:50:53: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/27 20:50:53: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/27 20:50:53: Compiling StarsTrail.xnb
+Message at 2023/12/28 22:00:51: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 22:00:51: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/28 22:00:51: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(91,16): warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(39,23): error X4502: invalid input semantic 'POSITION': Legal indices are in [1,15]
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(39,23): error X4502: invalid ps_3_0 input semantic 'POSITION'
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(137,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/12/28 22:04:31: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 22:04:31: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/28 22:04:32: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(91,16): warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(39,23): error X4502: invalid input semantic 'POSITION': Legal indices are in [1,15]
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(39,23): error X4502: invalid ps_3_0 input semantic 'POSITION'
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(137,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/12/28 22:06:58: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 22:06:58: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/28 22:06:58: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(91,16): warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(39,23): error X4502: invalid input semantic 'POSITION0': Legal indices are in [1,15]
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(39,23): error X4502: invalid ps_3_0 input semantic 'POSITION0'
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(137,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/12/28 22:08:30: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 22:08:30: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/28 22:08:30: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(81,47): error X3502: 'PixelShaderFunction': input parameter 'input' missing semantics
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(137,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/12/28 22:11:02: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 22:11:02: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/28 22:11:03: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(91,16): warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+error X4541: vertex shader must minimally write all four components of POSITION
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(136,24): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/12/28 22:12:11: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 22:12:11: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 22:12:11: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 22:12:11: Compiling StarsTrail.xnb
+Message at 2023/12/28 22:29:21: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 22:29:21: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 22:29:21: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 22:29:21: Compiling StarsTrail.xnb
+Message at 2023/12/28 22:34:53: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 22:34:53: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 22:34:53: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 22:34:53: Compiling StarsTrail.xnb
+Message at 2023/12/28 22:42:08: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 22:42:08: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 22:42:09: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 22:42:09: Compiling StarsTrail.xnb
+Message at 2023/12/28 22:54:57: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 22:54:57: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/28 22:54:57: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(82,47): error X3502: 'PixelShaderFunction': input parameter 'input' missing semantics
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(141,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/12/28 22:57:03: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 22:57:03: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/28 22:57:03: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(82,47): error X3502: 'PixelShaderFunction': input parameter 'input' missing semantics
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(141,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/12/28 22:57:36: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 22:57:36: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/28 22:57:36: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(92,16): warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(39,23): error X4502: invalid input semantic 'POSITION': Legal indices are in [1,15]
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(39,23): error X4502: invalid ps_3_0 input semantic 'POSITION'
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(141,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/12/28 22:58:12: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 22:58:12: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/28 22:58:12: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(92,16): warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+error X4541: vertex shader must minimally write all four components of POSITION
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(140,24): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/12/28 22:58:46: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 22:58:46: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/28 22:58:46: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(92,16): warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(39,23): error X4502: invalid input semantic 'POSITION': Legal indices are in [1,15]
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(39,23): error X4502: invalid ps_3_0 input semantic 'POSITION'
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(141,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2023/12/28 22:59:14: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 22:59:14: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 22:59:15: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 22:59:15: Compiling StarsTrail.xnb
+Message at 2023/12/28 23:11:51: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 23:11:51: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 23:11:51: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 23:11:51: Compiling StarsTrail.xnb
+Message at 2023/12/28 23:20:12: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 23:20:12: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 23:20:12: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 23:20:12: Compiling StarsTrail.xnb
+Message at 2023/12/28 23:25:48: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 23:25:48: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 23:25:48: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 23:25:48: Compiling StarsTrail.xnb
+Message at 2023/12/28 23:34:47: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 23:34:47: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2023/12/28 23:34:48: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(92,16): warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+
+Compiled shader code uses too many instruction slots (523). Max. allowed by the target (ps_3_0) is 512.
+Message at 2023/12/28 23:36:47: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 23:36:47: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 23:36:47: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 23:36:47: Compiling StarsTrail.xnb
+Message at 2023/12/28 23:40:18: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 23:40:18: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 23:40:18: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 23:40:18: Compiling StarsTrail.xnb
+Message at 2023/12/28 23:42:36: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 23:42:36: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 23:42:36: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 23:42:36: Compiling StarsTrail.xnb
+Message at 2023/12/28 23:45:28: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 23:45:28: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 23:45:28: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 23:45:28: Compiling StarsTrail.xnb
+Message at 2023/12/28 23:48:39: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 23:48:39: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 23:48:39: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 23:48:39: Compiling StarsTrail.xnb
+Message at 2023/12/28 23:55:03: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 23:55:03: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 23:55:04: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 23:55:04: Compiling StarsTrail.xnb
+Message at 2023/12/28 23:55:42: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 23:55:42: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 23:55:43: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 23:55:43: Compiling StarsTrail.xnb
+Message at 2023/12/28 23:58:54: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/28 23:58:54: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/28 23:58:54: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/28 23:58:54: Compiling StarsTrail.xnb
+Message at 2023/12/29 0:02:56: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2023/12/29 0:02:57: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2023/12/29 0:02:57: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2023/12/29 0:02:57: Compiling StarsTrail.xnb
+Message at 2024/1/16 13:50:38: Importing Flow2.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/16 13:50:38: Processing Flow2.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/16 13:50:38: Compiling Flow2.xnb
+Message at 2024/1/18 19:04:52: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/18 19:04:52: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/18 19:04:52: Compiling StarsTrail.xnb
+Message at 2024/1/18 19:27:48: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/18 19:27:49: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2024/1/18 19:27:49: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(138,72): error X3000: syntax error: unexpected token 'f'
+Message at 2024/1/18 19:28:22: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/18 19:28:22: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2024/1/18 19:28:22: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\StarsTrail.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(138,75): error X3000: syntax error: unexpected token 'f'
+Message at 2024/1/18 19:28:45: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/18 19:28:45: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/18 19:28:45: Compiling StarsTrail.xnb
+Message at 2024/1/18 19:38:26: Importing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/18 19:38:26: Processing StarsTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/18 19:38:26: Compiling StarsTrail.xnb
+Message at 2024/1/24 15:53:45: Importing ShadowLaser.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/24 15:53:45: Processing ShadowLaser.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2024/1/24 15:53:45: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ShadowLaser.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(9,5): ID3DXEffectCompiler: Invalid integer expression assignment
+ID3DXEffectCompiler: There was an error initializing the compiler
+Message at 2024/1/24 15:54:14: Importing ShadowLaser.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/24 15:54:14: Processing ShadowLaser.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/24 15:54:14: Compiling ShadowLaser.xnb
+Message at 2024/1/24 19:01:22: Importing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/24 19:01:22: Processing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/24 19:01:22: Compiling ShadowStars.xnb
+Message at 2024/1/31 10:19:55: Importing ShadowLaser.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/31 10:19:55: Processing ShadowLaser.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/31 10:19:55: Compiling ShadowLaser.xnb
+Message at 2024/1/31 10:21:51: Importing ShadowLaser.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/31 10:21:51: Processing ShadowLaser.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/31 10:21:51: Compiling ShadowLaser.xnb
+Message at 2024/1/31 10:49:44: Importing ShadowLaser.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/31 10:49:44: Processing ShadowLaser.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/31 10:49:44: Compiling ShadowLaser.xnb
+Message at 2024/1/31 11:01:57: Importing ShadowLaser.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/31 11:01:57: Processing ShadowLaser.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/31 11:01:58: Compiling ShadowLaser.xnb
+Message at 2024/1/31 17:17:46: Importing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/31 17:17:46: Processing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2024/1/31 17:17:46: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ShadowStars.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(123,24): error X3004: undeclared identifier 'VertexShaderFunction'
+Message at 2024/1/31 17:18:02: Importing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/31 17:18:02: Processing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/31 17:18:02: Compiling ShadowStars.xnb
+Message at 2024/1/31 17:18:42: Importing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/31 17:18:42: Processing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/31 17:18:42: Compiling ShadowStars.xnb
+Message at 2024/1/31 17:31:29: Importing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/31 17:31:29: Processing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/31 17:31:29: Compiling ShadowStars.xnb
+Message at 2024/1/31 17:40:54: Importing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/31 17:40:54: Processing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/31 17:40:54: Compiling ShadowStars.xnb
+Message at 2024/1/31 18:35:55: Importing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/31 18:35:55: Processing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/31 18:35:55: Compiling ShadowStars.xnb
+Message at 2024/1/31 18:39:27: Importing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/31 18:39:27: Processing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/31 18:39:28: Compiling ShadowStars.xnb
+Message at 2024/1/31 18:46:15: Importing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/31 18:46:15: Processing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2024/1/31 18:46:16: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ShadowStars.fx: warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
+Message at 2024/1/31 18:46:16: Compiling ShadowStars.xnb
+Message at 2024/1/31 18:48:44: Importing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/31 18:48:44: Processing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/31 18:48:45: Compiling ShadowStars.xnb
+Message at 2024/1/31 18:49:10: Importing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/31 18:49:10: Processing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/31 18:49:10: Compiling ShadowStars.xnb
+Message at 2024/1/31 18:52:18: Importing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/1/31 18:52:18: Processing ShadowStars.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/1/31 18:52:18: Compiling ShadowStars.xnb
+Message at 2024/5/23 20:59:22: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 20:59:22: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2024/5/23 20:59:22: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\Crystal.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(31,23): error X4502: invalid ps_2_0 input semantic 'SV_POSITION'
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(79,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2024/5/23 20:59:53: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 20:59:53: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 20:59:53: Compiling Crystal.xnb
+Message at 2024/5/23 21:10:58: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 21:10:58: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2024/5/23 21:10:58: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\Crystal.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(36,20): error X4541: vertex shader must minimally write all four components of POSITION
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(77,24): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2024/5/23 21:11:45: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 21:11:45: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 21:11:45: Compiling Crystal.xnb
+Message at 2024/5/23 21:34:13: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 21:34:13: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 21:34:13: Compiling Crystal.xnb
+Message at 2024/5/23 21:49:03: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 21:49:03: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 21:49:03: Compiling Crystal.xnb
+Message at 2024/5/23 21:51:46: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 21:51:46: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 21:51:46: Compiling Crystal.xnb
+Message at 2024/5/23 21:59:02: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 21:59:02: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 21:59:02: Compiling Crystal.xnb
+Message at 2024/5/23 22:16:37: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 22:16:37: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 22:16:37: Compiling Crystal.xnb
+Message at 2024/5/23 22:18:08: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 22:18:08: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 22:18:08: Compiling Crystal.xnb
+Message at 2024/5/23 22:19:11: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 22:19:11: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 22:19:11: Compiling Crystal.xnb
+Message at 2024/5/23 22:21:39: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 22:21:39: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 22:21:39: Compiling Crystal.xnb
+Message at 2024/5/23 22:26:44: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 22:26:44: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 22:26:44: Compiling Crystal.xnb
+Message at 2024/5/23 22:30:44: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 22:30:44: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 22:30:44: Compiling Crystal.xnb
+Message at 2024/5/23 22:35:22: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 22:35:22: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 22:35:22: Compiling Crystal.xnb
+Message at 2024/5/23 22:36:38: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 22:36:38: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 22:36:39: Compiling Crystal.xnb
+Message at 2024/5/23 22:39:11: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 22:39:11: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 22:39:11: Compiling Crystal.xnb
+Message at 2024/5/23 23:13:38: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 23:13:38: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 23:13:38: Compiling Crystal.xnb
+Message at 2024/5/23 23:36:02: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 23:36:02: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 23:36:02: Compiling Crystal.xnb
+Message at 2024/5/23 23:41:00: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 23:41:00: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 23:41:00: Compiling Crystal.xnb
+Message at 2024/5/23 23:43:09: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 23:43:09: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 23:43:09: Compiling Crystal.xnb
+Message at 2024/5/23 23:45:05: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 23:45:06: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 23:45:06: Compiling Crystal.xnb
+Message at 2024/5/23 23:47:48: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 23:47:48: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 23:47:49: Compiling Crystal.xnb
+Message at 2024/5/23 23:49:06: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/23 23:49:06: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/23 23:49:06: Compiling Crystal.xnb
+Message at 2024/5/24 0:00:16: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/24 0:00:16: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/24 0:00:16: Compiling Crystal.xnb
+Message at 2024/5/24 0:03:45: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/24 0:03:45: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/24 0:03:45: Compiling Crystal.xnb
+Message at 2024/5/24 11:39:08: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/24 11:39:08: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/24 11:39:08: Compiling Crystal.xnb
+Message at 2024/5/24 11:44:13: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/24 11:44:13: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/24 11:44:13: Compiling Crystal.xnb
+Message at 2024/5/25 14:11:53: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/25 14:11:53: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/25 14:11:53: Compiling Crystal.xnb
+Message at 2024/5/25 14:19:34: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/25 14:19:34: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/25 14:19:34: Compiling Crystal.xnb
+Message at 2024/5/25 14:29:48: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/25 14:29:48: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/25 14:29:48: Compiling Crystal.xnb
+Message at 2024/5/26 16:21:27: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/26 16:21:27: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/26 16:21:28: Compiling Crystal.xnb
+Message at 2024/5/30 10:43:23: Importing CrystalTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/30 10:43:23: Processing CrystalTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/30 10:43:23: Compiling CrystalTrail.xnb
+Message at 2024/5/30 20:14:39: Importing CrystalTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/30 20:14:39: Processing CrystalTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/30 20:14:39: Compiling CrystalTrail.xnb
+Message at 2024/5/30 20:20:10: Importing CrystalTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/5/30 20:20:10: Processing CrystalTrail.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/5/30 20:20:10: Compiling CrystalTrail.xnb
+Message at 2024/7/26 18:51:02: Importing KEx2.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/7/26 18:51:02: Processing KEx2.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/7/26 18:51:02: Compiling KEx2.xnb
+Message at 2024/7/26 19:00:45: Importing KEx2.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/7/26 19:00:45: Processing KEx2.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/7/26 19:00:45: Compiling KEx2.xnb
+Message at 2024/8/15 14:07:26: Importing WarpShader.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/8/15 14:07:26: Processing WarpShader.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/8/15 14:07:26: Compiling WarpShader.xnb
+Message at 2024/8/28 15:32:03: Importing LaserAlpha.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/8/28 15:32:03: Processing LaserAlpha.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/8/28 15:32:03: Compiling LaserAlpha.xnb
+Message at 2024/8/28 15:32:03: Importing LaserReplaceAlpha.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/8/28 15:32:03: Processing LaserReplaceAlpha.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/8/28 15:32:03: Compiling LaserReplaceAlpha.xnb
+Message at 2024/8/28 15:50:07: Importing LaserAlpha.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/8/28 15:50:07: Processing LaserAlpha.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/8/28 15:50:07: Compiling LaserAlpha.xnb
+Message at 2024/8/28 15:51:33: Importing LaserAlpha.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/8/28 15:51:33: Processing LaserAlpha.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/8/28 15:51:33: Compiling LaserAlpha.xnb
+Message at 2024/11/26 22:31:22: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/11/26 22:31:22: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/11/26 22:31:22: Compiling Crystal.xnb
+Message at 2024/11/26 22:33:19: Importing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/11/26 22:33:19: Processing Crystal.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/11/26 22:33:19: Compiling Crystal.xnb
+Message at 2024/12/8 21:50:44: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/8 21:50:44: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/8 21:50:45: Compiling ArcRainbow.xnb
+Message at 2024/12/9 8:38:20: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 8:38:20: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 8:38:20: Compiling ArcRainbow.xnb
+Message at 2024/12/9 8:44:41: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 8:44:41: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 8:44:41: Compiling ArcRainbow.xnb
+Message at 2024/12/9 9:10:03: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 9:10:03: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 9:10:03: Compiling ArcRainbow.xnb
+Message at 2024/12/9 9:10:36: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 9:10:36: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 9:10:36: Compiling ArcRainbow.xnb
+Message at 2024/12/9 9:42:22: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 9:42:22: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 9:42:23: Compiling ArcRainbow.xnb
+Message at 2024/12/9 11:02:02: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 11:02:02: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 11:02:02: Compiling ArcRainbow.xnb
+Message at 2024/12/9 11:04:09: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 11:04:09: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 11:04:09: Compiling ArcRainbow.xnb
+Message at 2024/12/9 11:11:07: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 11:11:07: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 11:11:07: Compiling ArcRainbow.xnb
+Message at 2024/12/9 11:13:31: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 11:13:31: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 11:13:31: Compiling ArcRainbow.xnb
+Message at 2024/12/9 11:19:06: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 11:19:06: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 11:19:06: Compiling ArcRainbow.xnb
+Message at 2024/12/9 11:24:08: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 11:24:08: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 11:24:08: Compiling ArcRainbow.xnb
+Message at 2024/12/9 11:27:45: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 11:27:45: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 11:27:45: Compiling ArcRainbow.xnb
+Message at 2024/12/9 12:03:33: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 12:03:33: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 12:03:33: Compiling ArcRainbow.xnb
+Message at 2024/12/9 12:06:56: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 12:06:56: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 12:06:56: Compiling ArcRainbow.xnb
+Message at 2024/12/9 12:20:18: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 12:20:18: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 12:20:18: Compiling ArcRainbow.xnb
+Message at 2024/12/9 12:24:11: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 12:24:11: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 12:24:11: Compiling ArcRainbow.xnb
+Message at 2024/12/9 12:28:09: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 12:28:09: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 12:28:09: Compiling ArcRainbow.xnb
+Message at 2024/12/9 12:33:27: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 12:33:27: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 12:33:27: Compiling ArcRainbow.xnb
+Message at 2024/12/9 12:40:47: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 12:40:47: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 12:40:47: Compiling ArcRainbow.xnb
+Message at 2024/12/9 12:43:16: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 12:43:16: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 12:43:16: Compiling ArcRainbow.xnb
+Message at 2024/12/9 12:46:32: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 12:46:32: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 12:46:32: Compiling ArcRainbow.xnb
+Message at 2024/12/9 20:52:49: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/9 20:52:49: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/9 20:52:49: Compiling ArcRainbow.xnb
+Message at 2024/12/29 11:30:38: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 11:30:38: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2024/12/29 11:30:38: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ArcRainbow.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(103,42): error X3018: invalid subscript 'a'
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(103,5): error X3080: 'PixelShaderFunction': function must return a value
+Message at 2024/12/29 11:31:00: Importing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 11:31:00: Processing ArcRainbow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 11:31:00: Compiling ArcRainbow.xnb
+Message at 2024/12/29 16:31:25: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 16:31:25: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 16:31:25: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 16:31:25: Importing TurbulenceWarp.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 16:31:25: Processing TurbulenceWarp.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 16:31:25: Compiling TurbulenceWarp.xnb
+Message at 2024/12/29 16:42:11: Importing TurbulenceWarp.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 16:42:11: Processing TurbulenceWarp.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 16:42:11: Compiling TurbulenceWarp.xnb
+Message at 2024/12/29 17:07:01: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:07:01: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 17:07:01: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 17:14:19: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:14:19: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 17:14:19: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 17:17:59: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:17:59: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 17:17:59: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 17:21:33: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:21:33: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 17:21:33: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 17:25:13: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:25:13: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 17:25:13: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 17:31:37: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:31:37: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 17:31:37: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 17:34:27: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:34:27: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 17:34:27: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 17:36:17: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:36:17: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 17:36:17: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 17:40:10: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:40:10: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 17:40:11: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 17:43:05: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:43:05: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 17:43:05: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 17:45:52: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:45:52: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 17:45:52: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 17:47:58: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:47:58: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 17:47:58: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 17:50:23: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:50:23: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 17:50:23: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 17:53:52: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:53:52: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 17:53:52: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 17:56:58: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:56:58: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2024/12/29 17:56:58: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\TurbulenceArrow.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(37,16): Unrecognized RHS value in assignment: 'warp'
+ID3DXEffectCompiler: Unexpected error
+ID3DXEffectCompiler: There was an error initializing the compiler
+Message at 2024/12/29 17:57:13: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:57:13: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2024/12/29 17:57:13: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\TurbulenceArrow.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(37,16): Unrecognized RHS value in assignment: 'warp'
+ID3DXEffectCompiler: Unexpected error
+ID3DXEffectCompiler: There was an error initializing the compiler
+Message at 2024/12/29 17:57:55: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 17:57:55: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 17:57:56: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 18:00:34: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 18:00:34: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 18:00:34: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 18:04:02: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 18:04:02: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 18:04:02: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 18:08:50: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 18:08:50: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 18:08:50: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 20:15:16: Importing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 20:15:16: Processing TurbulenceArrow.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 20:15:17: Compiling TurbulenceArrow.xnb
+Message at 2024/12/29 21:58:18: Importing TurbulenceWarp.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 21:58:18: Processing TurbulenceWarp.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 21:58:18: Compiling TurbulenceWarp.xnb
+Message at 2024/12/29 22:04:24: Importing TurbulenceWarp.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 22:04:24: Processing TurbulenceWarp.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 22:04:24: Compiling TurbulenceWarp.xnb
+Message at 2024/12/29 22:14:32: Importing TurbulenceWarp.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2024/12/29 22:14:32: Processing TurbulenceWarp.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2024/12/29 22:14:32: Compiling TurbulenceWarp.xnb
+Message at 2025/4/4 13:55:52: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 13:55:52: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 13:55:52: Compiling LuminDye.xnb
+Message at 2025/4/4 14:13:00: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 14:13:00: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 14:13:01: Compiling LuminDye.xnb
+Message at 2025/4/4 14:14:32: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 14:14:32: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 14:14:32: Compiling LuminDye.xnb
+Message at 2025/4/4 14:16:43: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 14:16:43: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 14:16:43: Compiling LuminDye.xnb
+Message at 2025/4/4 14:43:22: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 14:43:23: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 14:43:23: Compiling LuminDye.xnb
+Message at 2025/4/4 14:45:38: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 14:45:38: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 14:45:38: Compiling LuminDye.xnb
+Message at 2025/4/4 14:47:45: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 14:47:45: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 14:47:45: Compiling LuminDye.xnb
+Message at 2025/4/4 14:51:57: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 14:51:57: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 14:51:57: Compiling LuminDye.xnb
+Message at 2025/4/4 14:54:46: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 14:54:46: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 14:54:46: Compiling LuminDye.xnb
+Message at 2025/4/4 15:07:08: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 15:07:09: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 15:07:09: Compiling LuminDye.xnb
+Message at 2025/4/4 15:15:08: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 15:15:08: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 15:15:08: Compiling LuminDye.xnb
+Message at 2025/4/4 15:16:45: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 15:16:45: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 15:16:46: Compiling LuminDye.xnb
+Message at 2025/4/4 15:20:13: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 15:20:13: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 15:20:13: Compiling LuminDye.xnb
+Message at 2025/4/4 15:22:09: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 15:22:10: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 15:22:10: Compiling LuminDye.xnb
+Message at 2025/4/4 15:23:20: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 15:23:20: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 15:23:20: Compiling LuminDye.xnb
+Message at 2025/4/4 15:26:16: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 15:26:16: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 15:26:16: Compiling LuminDye.xnb
+Message at 2025/4/4 15:28:04: Importing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/4/4 15:28:04: Processing LuminDye.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/4/4 15:28:04: Compiling LuminDye.xnb
+Message at 2025/5/14 13:51:35: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 13:51:35: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 13:51:35: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(65,35): error X3014: incorrect number of arguments to numeric-type constructor
+Message at 2025/5/14 13:52:20: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 13:52:20: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 13:52:21: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(96,15): warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+
+Compiled shader code uses too many instruction slots (805). Max. allowed by the target (ps_3_0) is 512.
+Message at 2025/5/14 13:56:49: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 13:56:50: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 13:56:51: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(88,15): warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+
+Compiled shader code uses too many instruction slots (805). Max. allowed by the target (ps_3_0) is 512.
+Message at 2025/5/14 13:57:32: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 13:57:32: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 13:57:33: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(85,15): warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+
+Compiled shader code uses too many instruction slots (527). Max. allowed by the target (ps_3_0) is 512.
+Message at 2025/5/14 13:58:24: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 13:58:24: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2025/5/14 13:58:24: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx: warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+Message at 2025/5/14 13:58:24: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 13:59:52: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 13:59:52: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2025/5/14 13:59:53: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx: warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+Message at 2025/5/14 13:59:53: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 14:04:24: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 14:04:24: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2025/5/14 14:04:24: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx: warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+Message at 2025/5/14 14:04:24: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 14:13:36: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 14:13:36: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/14 14:13:36: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 14:19:41: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 14:19:41: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 14:19:41: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(82,15): warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(41,20): error X4541: vertex shader must minimally write all four components of POSITION
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(104,24): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2025/5/14 14:20:16: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 14:20:16: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 14:20:17: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(82,15): warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(41,20): error X4541: vertex shader must minimally write all four components of POSITION
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(104,24): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2025/5/14 14:20:51: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 14:20:51: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2025/5/14 14:20:52: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx: warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+Message at 2025/5/14 14:20:52: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 14:35:59: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 14:35:59: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2025/5/14 14:35:59: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx: warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+Message at 2025/5/14 14:35:59: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 14:43:48: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 14:43:48: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2025/5/14 14:43:49: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx: warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+Message at 2025/5/14 14:43:49: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 14:53:51: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 14:53:51: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/14 14:53:51: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 15:00:20: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:00:20: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/14 15:00:20: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 15:00:37: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:00:37: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2025/5/14 15:00:38: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx: warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+Message at 2025/5/14 15:00:38: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 15:06:44: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:06:44: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2025/5/14 15:06:44: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx: warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+Message at 2025/5/14 15:06:44: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 15:11:15: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:11:15: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2025/5/14 15:11:16: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx: warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+Message at 2025/5/14 15:11:16: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 15:15:27: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:15:27: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2025/5/14 15:15:28: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx: warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+Message at 2025/5/14 15:15:28: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 15:30:35: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:30:35: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 15:30:36: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(85,15): warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+
+Compiled shader code uses too many instruction slots (579). Max. allowed by the target (ps_3_0) is 512.
+Message at 2025/5/14 15:32:40: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:32:40: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 15:32:41: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(85,15): warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(108,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2025/5/14 15:35:14: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:35:14: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 15:35:15: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(108,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2025/5/14 15:36:38: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:36:38: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 15:36:38: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(109,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2025/5/14 15:37:31: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:37:31: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 15:37:31: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(109,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2025/5/14 15:38:24: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:38:24: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 15:38:25: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(109,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2025/5/14 15:38:52: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:38:52: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 15:38:52: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(109,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2025/5/14 15:39:44: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:39:44: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Warning at 2025/5/14 15:39:44: Warning compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx: warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+Message at 2025/5/14 15:39:44: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 15:40:00: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:40:00: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 15:40:00: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(83,15): warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(106,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2025/5/14 15:44:49: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:44:49: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 15:44:49: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(83,15): warning X3571: pow(f, e) will not work for negative f, use abs(f) or conditionally handle negative values if you expect them
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(106,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2025/5/14 15:46:30: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:46:30: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/14 15:46:31: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 15:46:47: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:46:47: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 15:46:47: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(106,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2025/5/14 15:47:17: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:47:17: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 15:47:18: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(106,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2025/5/14 15:49:00: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:49:00: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 15:49:00: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+Compiled shader code uses too many instruction slots (575). Max. allowed by the target (ps_3_0) is 512.
+Message at 2025/5/14 15:49:38: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:49:38: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/14 15:49:38: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\ZacurrentBackground.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(108,23): ID3DXEffectCompiler::CompileEffect: There was an error compiling expression
+ID3DXEffectCompiler: Compilation failed
+Message at 2025/5/14 15:55:26: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:55:26: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/14 15:55:27: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 15:56:06: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 15:56:06: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/14 15:56:07: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 16:04:42: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 16:04:42: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/14 16:04:42: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 16:20:29: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 16:20:29: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/14 16:20:29: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 16:22:02: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 16:22:02: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/14 16:22:02: Compiling ZacurrentBackground.xnb
+Message at 2025/5/14 16:37:37: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/14 16:37:37: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/14 16:37:37: Compiling ZacurrentBackground.xnb
+Message at 2025/5/18 12:42:40: Importing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/18 12:42:40: Processing ZacurrentBackground.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/18 12:42:40: Compiling ZacurrentBackground.xnb
+Message at 2025/5/29 20:11:29: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/29 20:11:29: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/29 20:11:30: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\FairyCircle.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(51,9): error X3017: cannot implicitly convert from 'const float3' to 'float4'
+Message at 2025/5/29 20:12:02: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/29 20:12:02: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/29 20:12:02: Compiling FairyCircle.xnb
+Message at 2025/5/29 20:30:37: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/29 20:30:38: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/29 20:30:38: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\FairyCircle.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(27,26): error X3004: undeclared identifier 'twistTex'
+Message at 2025/5/29 20:31:05: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/29 20:31:05: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/29 20:31:05: Compiling FairyCircle.xnb
+Message at 2025/5/29 20:43:30: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/29 20:43:30: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/29 20:43:30: Compiling FairyCircle.xnb
+Message at 2025/5/29 20:48:48: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/29 20:48:49: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/29 20:48:49: Compiling FairyCircle.xnb
+Message at 2025/5/29 21:19:29: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/29 21:19:29: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/29 21:19:29: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\FairyCircle.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(43,20): error X3000: syntax error: unexpected token 'f'
+Message at 2025/5/29 21:20:08: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/29 21:20:08: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/29 21:20:08: Compiling FairyCircle.xnb
+Message at 2025/5/29 21:21:42: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/29 21:21:42: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/29 21:21:42: Compiling FairyCircle.xnb
+Message at 2025/5/29 21:24:06: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/29 21:24:06: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/29 21:24:06: Compiling FairyCircle.xnb
+Message at 2025/5/30 10:19:09: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/30 10:19:09: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/30 10:19:09: Compiling FairyCircle.xnb
+Message at 2025/5/30 10:21:00: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/30 10:21:00: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/5/30 10:21:00: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\FairyCircle.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(44,29): error X3004: undeclared identifier 'tr'
+Message at 2025/5/30 10:21:16: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/30 10:21:16: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/30 10:21:16: Compiling FairyCircle.xnb
+Message at 2025/5/30 10:32:27: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/30 10:32:27: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/30 10:32:27: Compiling FairyCircle.xnb
+Message at 2025/5/30 10:35:04: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/30 10:35:04: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/30 10:35:04: Compiling FairyCircle.xnb
+Message at 2025/5/30 10:37:24: Importing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/5/30 10:37:24: Processing FairyCircle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/5/30 10:37:24: Compiling FairyCircle.xnb
+Message at 2025/9/14 16:50:12: Importing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/9/14 16:50:12: Processing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/9/14 16:50:12: Compiling Circle.xnb
+Message at 2025/9/14 16:58:19: Importing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/9/14 16:58:19: Processing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/9/14 16:58:19: Compiling Circle.xnb
+Message at 2025/9/14 17:03:22: Importing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/9/14 17:03:22: Processing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/9/14 17:03:22: Compiling Circle.xnb
+Message at 2025/9/14 17:05:34: Importing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/9/14 17:05:35: Processing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/9/14 17:05:35: Compiling Circle.xnb
+Message at 2025/9/14 17:09:26: Importing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/9/14 17:09:26: Processing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/9/14 17:09:26: Compiling Circle.xnb
+Message at 2025/9/14 17:11:07: Importing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/9/14 17:11:07: Processing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/9/14 17:11:07: Compiling Circle.xnb
+Message at 2025/9/14 17:21:35: Importing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/9/14 17:21:35: Processing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/9/14 17:21:35: Compiling Circle.xnb
+Message at 2025/9/14 17:27:45: Importing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/9/14 17:27:45: Processing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/9/14 17:27:45: Compiling Circle.xnb
+Message at 2025/9/15 21:35:02: Importing Highlight.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/9/15 21:35:02: Processing Highlight.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/9/15 21:35:02: Compiling Highlight.xnb
+Message at 2025/10/4 18:35:49: Importing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/10/4 18:35:49: Processing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Error at 2025/10/4 18:35:49: Errors compiling D:\XNB Shader\XNB编辑器(支持hlsl3.0)\Effects\Circle.fx:
+D:\XNB Shader\XNB????(???hlsl3.0)\memory(29,47): error X3000: syntax error: unexpected token 'f'
+Message at 2025/10/4 18:36:27: Importing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/10/4 18:36:27: Processing Circle.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/10/4 18:36:27: Compiling Circle.xnb
+Message at 2025/10/11 22:28:49: Importing CosmosBlur.fx with Microsoft.Xna.Framework.Content.Pipeline.EffectImporter
+Message at 2025/10/11 22:28:49: Processing CosmosBlur.fx with Microsoft.Xna.Framework.Content.Pipeline.Processors.EffectProcessor
+Message at 2025/10/11 22:28:49: Compiling CosmosBlur.xnb

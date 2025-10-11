@@ -7,6 +7,9 @@
 	<PropertyGroup>
 		
 	</PropertyGroup>
+	<ItemGroup>
+	  <Folder Include="Olds\XNB编辑器%28支持hlsl3.0%29\Effects\" />
+	</ItemGroup>
 
 	<!-- References -->
 

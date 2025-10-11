@@ -3,6 +3,20 @@ Items: {
 		DisplayName: 魔眼装置
 		Tooltip: 在夜晚召唤不同寻常的双子魔眼
 	}
+
+	BeastCrest: {
+		DisplayName: 野兽纹章
+		Tooltip:
+			'''
+			使用回复药后不直接回复血量，而是给予“野兽化”增益
+			该状态下攻击吸取血量，上限为回复药的恢复值，同时 +25%伤害
+			'''
+	}
+
+	Beastfly: {
+		// DisplayName: Beastfly
+		// Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -10,6 +24,8 @@ NPCs: {
 	FireEye.DisplayName: 魔焰眼
 	LaserEye.DisplayName: 激光眼
 	GoldCircleLimit.DisplayName: Gold Circle Limit
+	BeastlyQueenBee.DisplayName: 残暴的蜂后
+	RectangleLimit.DisplayName: 残暴的蜂后
 }
 
 Projectiles: {
@@ -49,5 +65,12 @@ Configs: {
 			Label: 显示BOSS血条
 			Tooltip: 关闭后不再显示双子舞者的BOSS血条
 		}
+	}
+}
+
+Buffs: {
+	BeastCrestBuff: {
+		DisplayName: 野兽化
+		Description: +25%伤害
 	}
 }

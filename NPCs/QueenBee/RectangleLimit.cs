@@ -1,6 +1,7 @@
 ﻿using Coralite.Helpers;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using System.Collections.Generic;
 using Terraria.ModLoader;
 
@@ -14,10 +15,13 @@ namespace TheTwinsRework.NPCs.QueenBee
         public ref float State => ref NPC.ai[1];
         public ref float Timer => ref NPC.ai[2];
 
-        public Corner TopLeft;
-        public Corner DownLeft;
-        public Corner TopRight;
-        public Corner DownRight;
+        public Corner[] Lefts;
+        public Corner[] Rights;
+        public Corner[] Downs;
+        public Corner[] Ups;
+
+        public static int LimitWidth = 460;
+        public static int LimitHeight = 340;
 
         public class Corner
         {
@@ -39,6 +43,10 @@ namespace TheTwinsRework.NPCs.QueenBee
             public float scale;
 
             public Vector2 midPos;
+            public Vector2 vel;
+            public Vector2 recordPos;
+            public int State;
+            public int Timer;
 
             public Corner(Vector2 ballPos, Vector2 vineDir, float maxLength)
             {
@@ -50,14 +58,76 @@ namespace TheTwinsRework.NPCs.QueenBee
 
             public void Update()
             {
+                const int length = 20;
 
+                switch (State)
+                {
+                    default:
+                    case 0://刺球出现
+                        {
+                            Timer++;
+                            scale = Helper.HeavyEase(Timer / 30f);
+
+                            TipPos = ballPos + vineDir * Timer / 30f * length;
+                            midPos = (ballPos + TipPos) / 2;
+
+                            if (Timer > 30)
+                            {
+                                Timer = 0;
+                                State = 1;
+                            }
+                        }
+                        break;
+                    case 1://尖刺展开
+                        {
+                            Timer++;
+
+                            TipPos = ballPos + vineDir * (length + Timer / 45f * (maxLength - length));
+                            midPos = (ballPos + TipPos) / 2;
+
+                            if (Timer > 45)
+                            {
+                                Timer = 0;
+                                State = 2;
+                            }
+                        }
+                        break;
+                    case 2://不动
+                        {
+
+                        }
+                        break;
+                    case 3://弹出并回弹
+                        {
+                            Timer++;
+                            if (Timer < 45)
+                            {
+                                vel *= 0.96f;
+                                midPos += vel;
+                            }
+                            else if (Timer < 45 + 30)
+                            {
+                                midPos = Vector2.Lerp(midPos, recordPos, 0.01f);
+                            }
+                            else if (Timer < 45 + 30 + 30)
+                            {
+                                midPos = Vector2.Lerp(midPos, ballPos + vineDir * maxLength / 2, 0.01f);
+                            }
+                            else
+                            {
+                                Timer = 0;
+                                State = 2;
+                            }
+                        }
+                        break;
+                }
             }
 
             public void DrawVineLine(SpriteBatch spriteBatch, Vector2 screenPos, Texture2D lineTex, Texture2D TipTex)
             {
                 List<ColoredVertex> bars = new();
 
-                float halfLineWidth = lineTex.Width / 2;
+                float halfLineHeight = lineTex.Height / 2;
 
                 Vector2 startPos = TipPos;
                 Vector2 endPos = ballPos;
@@ -81,13 +151,13 @@ namespace TheTwinsRework.NPCs.QueenBee
                     var Color = GetStringColor(Center);
 
                     Vector2 normal = (P2 - P1).SafeNormalize(Vector2.One).RotatedBy(MathHelper.PiOver2);
-                    Vector2 Top = Center + normal * halfLineWidth;
-                    Vector2 Bottom = Center - normal * halfLineWidth;
+                    Vector2 Top = Center + normal * halfLineHeight;
+                    Vector2 Bottom = Center - normal * halfLineHeight;
 
                     recordUV += (Center - recordPos).Length() / lineTex.Width;
 
-                    bars.Add(new(Top - screenPos, Color, new Vector3(0, recordUV, 1)));
-                    bars.Add(new(Bottom - screenPos, Color, new Vector3(1, recordUV, 1)));
+                    bars.Add(new(Top - screenPos, Color, new Vector3(recordUV, 0, 1)));
+                    bars.Add(new(Bottom - screenPos, Color, new Vector3(recordUV, 1, 1)));
 
                     recordPos = Center;
                 }
@@ -101,6 +171,9 @@ namespace TheTwinsRework.NPCs.QueenBee
                 Main.graphics.GraphicsDevice.SamplerStates[0] = SamplerState.PointWrap;
                 Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, bars.ToArray(), 0, bars.Count - 2);
                 Main.graphics.GraphicsDevice.SamplerStates[0] = state;
+
+                spriteBatch.Draw(TipTex, startPos - screenPos, null, GetStringColor(startPos), (startPos - endPos).ToRotation()
+                    , new Vector2(0, TipTex.Height / 2), 1, 0,0);
             }
 
             public virtual Color GetStringColor(Vector2 pos)
@@ -141,7 +214,7 @@ namespace TheTwinsRework.NPCs.QueenBee
             NPC.noTileCollide = true;
             NPC.knockBackResist = 0;
             NPC.npcSlots = 20;
-            NPC.hide = true;
+            //NPC.hide = true;
         }
 
         public override bool? CanBeHitByItem(Player player, Item item)
@@ -163,28 +236,152 @@ namespace TheTwinsRework.NPCs.QueenBee
 
         public override void AI()
         {
-            if (!QueenBeeIndex.GetNPCOwner<BeastlyQueenBee>(out _))
+            if (State==0&&!QueenBeeIndex.GetNPCOwner<BeastlyQueenBee>(out _))
             {
+                State = 1;
+            }
 
+            if (State == 0)
+            {
+                //生成刺球
+                if (Timer == 0)
+                {
+                    InitSideVine();
+                    InitBottonVine();
+                    InitTopVine();
+                    Timer = 1;
+                }
+            }
+            else
+            {
+                Timer++;
+                if (Timer > 400)
+                {
+                    NPC.Kill();
+                    return;
+                }
+            }
+
+            UpdateVine();
+        }
+
+        public void InitSideVine()
+        {
+            Lefts = new Corner[2];
+            Rights = new Corner[2];
+
+            Vector2 topLeft = NPC.Center + new Vector2(-LimitWidth / 2, LimitHeight / 2);
+            Vector2 topRight = NPC.Center + new Vector2(LimitWidth / 2, LimitHeight / 2);
+            Vector2 bottomLeft = NPC.Center + new Vector2(-LimitWidth / 2, -LimitHeight / 2);
+            Vector2 bottomRight = NPC.Center + new Vector2(LimitWidth / 2, -LimitHeight / 2);
+
+            const float offset = 10;
+
+            //大概是一个X字
+            Vector2 v1 = topLeft + new Vector2(-offset, 0);
+            Vector2 v2 = bottomLeft + new Vector2(offset, 0);
+            Lefts[0] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+
+            v1 = topLeft + new Vector2(offset, 0);
+            v2 = bottomLeft + new Vector2(-offset, 0);
+            Lefts[1] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+
+            v1 = topRight + new Vector2(-offset, 0);
+            v2 = bottomRight + new Vector2(offset, 0);
+            Rights[0] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+
+            v1 = topRight + new Vector2(offset, 0);
+            v2 = bottomRight + new Vector2(-offset, 0);
+            Rights[1] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+        }
+
+        public void InitBottonVine()
+        {
+            Downs = new Corner[2];
+
+            const float offset = 10;
+
+            Vector2 bottomLeft = NPC.Center + new Vector2(-LimitWidth / 2, -LimitHeight / 2);
+            Vector2 bottomRight = NPC.Center + new Vector2(LimitWidth / 2, -LimitHeight / 2);
+
+            Vector2 v1 = bottomLeft + new Vector2(0, -offset);
+            Vector2 v2 = bottomRight + new Vector2(0, offset);
+            Downs[0] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+
+            v1 = bottomLeft + new Vector2(0, offset);
+            v2 = bottomRight + new Vector2(0, -offset);
+            Downs[1] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+        }
+
+        public void InitTopVine()
+        {
+            Ups = new Corner[6];
+
+            const float offset = 10;
+
+            Vector2 topLeft = NPC.Center + new Vector2(-LimitWidth / 2, LimitHeight / 2);
+            Vector2 topRight = NPC.Center + new Vector2(LimitWidth / 2, LimitHeight / 2);
+
+            for (int i = 0; i < 3; i++)
+            {
+                float r = MathF.Cos(i * MathHelper.Pi);
+                Vector2 v1 = topLeft + new Vector2(r * offset, -offset * (i + 1));
+                Vector2 v2 = topRight + new Vector2(r * offset, offset * (i + 1));
+                Ups[0 + i * 2] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+
+                v1 = topLeft + new Vector2(r * offset, offset * (i + 1));
+                v2 = topRight + new Vector2(r * offset, -offset * (i + 1));
+                Ups[1 + i * 2] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
             }
         }
 
-
+        public void UpdateVine()
+        {
+            if (Ups != null)
+                foreach (var v in Ups)
+                    v.Update();
+            if (Downs != null)
+                foreach (var v in Ups)
+                    v.Update();
+            if (Lefts != null)
+                foreach (var v in Ups)
+                    v.Update();
+            if (Rights != null)
+                foreach (var v in Ups)
+                    v.Update();
+        }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             Texture2D vine = VineTex.Value;
             Texture2D vineTip = VineTipTex.Value;
             Texture2D Ball = VineBallTex.Value;
-            TopLeft?.DrawVineLine(spriteBatch, screenPos, vine, vineTip);
-            TopRight?.DrawVineLine(spriteBatch, screenPos, vine, vineTip);
-            DownLeft?.DrawVineLine(spriteBatch, screenPos, vine, vineTip);
-            DownRight?.DrawVineLine(spriteBatch, screenPos, vine, vineTip);
 
-            TopLeft?.DrawBall(spriteBatch, screenPos, Ball);
-            TopRight?.DrawBall(spriteBatch, screenPos, Ball);
-            DownLeft?.DrawBall(spriteBatch, screenPos, Ball);
-            DownRight?.DrawBall(spriteBatch, screenPos, Ball);
+            if (Ups != null)
+                foreach (var v in Ups)
+                    v.DrawVineLine(spriteBatch, screenPos, vine, vineTip);
+            if (Downs != null)
+                foreach (var v in Ups)
+                    v.DrawVineLine(spriteBatch, screenPos, vine, vineTip);
+            if (Lefts != null)
+                foreach (var v in Ups)
+                    v.DrawVineLine(spriteBatch, screenPos, vine, vineTip);
+            if (Rights != null)
+                foreach (var v in Ups)
+                    v.DrawVineLine(spriteBatch, screenPos, vine, vineTip);
+
+            if (Ups != null)
+                foreach (var v in Ups)
+                    v.DrawBall(spriteBatch, screenPos, Ball);
+            if (Downs != null)
+                foreach (var v in Ups)
+                    v.DrawBall(spriteBatch, screenPos, Ball);
+            if (Lefts != null)
+                foreach (var v in Ups)
+                    v.DrawBall(spriteBatch, screenPos, Ball);
+            if (Rights != null)
+                foreach (var v in Ups)
+                    v.DrawBall(spriteBatch, screenPos, Ball);
 
             return false;
         }
