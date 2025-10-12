@@ -113,6 +113,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                 case AIStates.SummonMinions:
                     break;
                 case AIStates.Dash:
+                    Dash(controller);
                     break;
                 case AIStates.SmashDown:
                     break;
@@ -130,7 +131,7 @@ namespace TheTwinsRework.NPCs.QueenBee
             Vector2 targetPos = controller.Center;
 
             Vector2 endPos = targetPos
-                    + new Vector2(60 - RectangleLimit.LimitWidth / 2, 60 - RectangleLimit.LimitHeight / 2);
+                    + new Vector2(160 - RectangleLimit.LimitWidth / 2, 120 - RectangleLimit.LimitHeight / 2);
             Vector2 startPos = endPos + new Vector2(-1600, 1450);
             Vector2 controlPos = endPos + new Vector2(-700, -2000);
 
@@ -191,11 +192,11 @@ namespace TheTwinsRework.NPCs.QueenBee
                 return;
             }
 
-            if (Timer==SpawnAnmiTime+120+waitTime)
+            if (Timer == SpawnAnmiTime + 120 + waitTime)
             {
                 Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/RIP AND SHRED");
             }
-            if (Timer==SpawnAnmiTime+120+waitTime+2)
+            if (Timer == SpawnAnmiTime + 120 + waitTime + 2)
             {
                 OpenMusic();
             }
@@ -214,7 +215,7 @@ namespace TheTwinsRework.NPCs.QueenBee
         {
             int dashCount = 3;
             if (AngerNum > 1.1f)
-                dashCount += 3;
+                dashCount += 2;
 
             //设置初始值
             if (Timer==0)
@@ -226,20 +227,18 @@ namespace TheTwinsRework.NPCs.QueenBee
             Timer++;
 
             //朝玩家飘一下
-            int beforeDashTime = (int)(60 * AngerNum);
+            int beforeDashTime = (int)(60 / AngerNum);
 
             if (Timer<beforeDashTime)
             {
-                SetDirection(new Vector2(Target.Center.X, controller.Center.Y + Recorder2));
-                float xLength = Math.Abs(Target.Center.X - NPC.Center.X);
-                if (xLength > 50)
+                SetDirection(new Vector2(Target.Center.X, controller.Center.Y + Recorder2),out Vector2 dis);
+                if (dis.X > 50)
                     Helper.Movement_SimpleOneLine(ref NPC.velocity.X, NPC.direction, 3.5f, 0.05f, 0.1f, 0.97f);
                 else
                     NPC.velocity.X *= 0.96f;
 
                 //控制Y方向的移动
-                float yLength = Math.Abs(controller.Center.Y + Recorder2 - NPC.Center.Y);
-                if (yLength > 50)
+                if (dis.Y > 50)
                     Helper.Movement_SimpleOneLine(ref NPC.velocity.Y, NPC.directionY, 4.5f, 0.1f, 0.15f, 0.97f);
                 else
                     NPC.velocity.Y *= 0.96f;
@@ -247,18 +246,54 @@ namespace TheTwinsRework.NPCs.QueenBee
                 return;
             }
 
+            if (Timer==beforeDashTime)//根据玩家位置做偏移
+            {
+                NPC.velocity *= 0.2f;
+                if (AngerNum > 1.1f)
+                    Recorder2 = Helper.Lerp(Recorder2, Target.Center.Y, 0.5f);
+            }
+
             //向后拉，准备冲
-            int makeBackTime = (int)(30 * AngerNum);
+            int makeBackTime = (int)(30 / AngerNum);
             if (Timer < beforeDashTime + makeBackTime)
             {
+                SetDirection(new Vector2(controller.Center.X, controller.Center.Y + Recorder2), out Vector2 dis);
+                if (dis.X < RectangleLimit.LimitWidth / 2 - 180)
+                    Helper.Movement_SimpleOneLine(ref NPC.velocity.X, -NPC.direction
+                        , 3.5f, 0.2f, 0.15f, 0.97f);
+                else
+                    NPC.velocity.X *= 0.96f;
+
+                //控制Y方向的移动
+                float yLength = Math.Abs(controller.Center.Y + Recorder2 - NPC.Center.Y);
+                if (yLength > 50)
+                    Helper.Movement_SimpleOneLine(ref NPC.velocity.Y, NPC.directionY, 4.5f, 0.3f, 0.5f, 0.97f);
+                else
+                    NPC.velocity.Y *= 0.96f;
 
                 return;
             }
 
+            if (Timer == beforeDashTime + makeBackTime)//开始冲刺
+            {
+                SetDirection(new Vector2(controller.Center.X, controller.Center.Y + Recorder2), out _);
+
+                Dashing = true;
+                NPC.velocity *= 0.2f;
+            }
 
             //冲
+            int dashTime = (int)(80 / AngerNum);
+            if (Timer < beforeDashTime + makeBackTime + dashTime)
+            {
+                Helper.Movement_SimpleOneLine(ref NPC.velocity.X, NPC.direction
+                    , 10.5f * AngerNum, 0.6f * AngerNum, 0.8f, 0.97f);
 
-            //撞墙
+                //撞墙
+                Vector2 tempPos = NPC.Center + NPC.velocity;
+
+            }
+
 
 
         }
@@ -268,6 +303,7 @@ namespace TheTwinsRework.NPCs.QueenBee
             Timer = 0;
             Recorder=0;
             Recorder2 = 0;
+            Dashing = false;
 
             AngerNum = 1;
             if (NPC.life < NPC.lifeMax / 3)
@@ -297,12 +333,14 @@ namespace TheTwinsRework.NPCs.QueenBee
             }
         }
 
-        public void SetDirection(Vector2 targetPos)
+        public void SetDirection(Vector2 targetPos,out Vector2 distance)
         {
             if (MathF.Abs(targetPos.X - NPC.Center.X) > 16)
                 NPC.direction = targetPos.X > NPC.Center.X ? 1 : -1;
             if (MathF.Abs(targetPos.Y - NPC.Center.Y) > 16)
                 NPC.directionY = targetPos.Y > NPC.Center.Y ? 1 : -1;
+
+            distance =new Vector2( Math.Abs(targetPos.X - NPC.Center.X),Math.Abs(targetPos.Y - NPC.Center.Y));
         }
 
         public void UpdateFrame(int counterMax = 4)
@@ -356,12 +394,12 @@ namespace TheTwinsRework.NPCs.QueenBee
                                 Main.spriteBatch.GraphicsDevice.DepthStencilState, RasterizerState.CullNone, shader, Main.GameViewMatrix.TransformationMatrix);
 
                 scale = Helper.Lerp(10, scale, Timer / SpawnAnmiTime);
-                if (Timer<20)
+                if (Timer < 20)
                 {
                     drawColor = Color.Black;
                 }
                 else
-                    drawColor = Color.Lerp(Color.Black, drawColor, Helper.SqrtEase((Timer-20) / (SpawnAnmiTime-20)));
+                    drawColor = Color.Lerp(Color.Black, drawColor, Helper.SqrtEase((Timer - 20) / (SpawnAnmiTime - 20)));
 
                 spriteBatch.Draw(tex, pos, frame, drawColor, NPC.rotation
                     , frame.Size() / 2, scale, eff, 0);

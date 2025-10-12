@@ -60,18 +60,21 @@ namespace TheTwinsRework.NPCs.QueenBee
             {
                 const int length = 20;
 
+                const float SpawnTime = 30;
+                const float ThronExpandTime = 15;
+
                 switch (State)
                 {
                     default:
                     case 0://刺球出现
                         {
                             Timer++;
-                            scale = Helper.HeavyEase(Timer / 30f);
+                            scale = Helper.HeavyEase(Timer / SpawnTime);
 
-                            TipPos = ballPos + vineDir * Timer / 30f * length;
+                            TipPos = ballPos + vineDir * Timer / SpawnTime * length;
                             midPos = (ballPos + TipPos) / 2;
 
-                            if (Timer > 30)
+                            if (Timer > SpawnTime)
                             {
                                 Timer = 0;
                                 State = 1;
@@ -82,10 +85,10 @@ namespace TheTwinsRework.NPCs.QueenBee
                         {
                             Timer++;
 
-                            TipPos = ballPos + vineDir * (length + Timer / 45f * (maxLength - length));
+                            TipPos = ballPos + vineDir * (length + Timer / ThronExpandTime * (maxLength - length));
                             midPos = (ballPos + TipPos) / 2;
 
-                            if (Timer > 45)
+                            if (Timer > ThronExpandTime)
                             {
                                 Timer = 0;
                                 State = 2;
@@ -136,7 +139,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                 float recordUV = 0;
 
                 int lineLength = (int)(startPos - endPos).Length();   //链条长度
-                int pointCount = lineLength / 16 + 3;
+                int pointCount = lineLength / 24 + 3;
                 Vector2 controlPos = midPos;
 
                 //贝塞尔曲线
@@ -246,6 +249,8 @@ namespace TheTwinsRework.NPCs.QueenBee
                 //生成刺球
                 if (Timer == 0)
                 {
+                    LimitWidth = 700;
+                    LimitHeight = 450;
                     InitSideVine();
                     InitBottonVine();
                     InitTopVine();
@@ -267,32 +272,47 @@ namespace TheTwinsRework.NPCs.QueenBee
 
         public void InitSideVine()
         {
-            Lefts = new Corner[2];
-            Rights = new Corner[2];
+            Lefts = new Corner[4];
+            Rights = new Corner[4];
 
             Vector2 topLeft = NPC.Center + new Vector2(-LimitWidth / 2, LimitHeight / 2);
             Vector2 topRight = NPC.Center + new Vector2(LimitWidth / 2, LimitHeight / 2);
             Vector2 bottomLeft = NPC.Center + new Vector2(-LimitWidth / 2, -LimitHeight / 2);
             Vector2 bottomRight = NPC.Center + new Vector2(LimitWidth / 2, -LimitHeight / 2);
 
-            const float offset = 10;
+             float Xoffset = 10;
+             float offset = 10;
 
             //大概是一个X字
-            Vector2 v1 = topLeft + new Vector2(-offset, 0);
-            Vector2 v2 = bottomLeft + new Vector2(offset, 0);
-            Lefts[0] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+            for (int i = 0; i < 2; i++)
+            {
+                float r = MathF.Cos(i * MathHelper.Pi);
+                Xoffset = Main.rand.NextFloat(24, 30);
+                offset = Main.rand.NextFloat(8, 12);
 
-            v1 = topLeft + new Vector2(offset, 0);
-            v2 = bottomLeft + new Vector2(-offset, 0);
-            Lefts[1] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+                Vector2 v1 = topLeft + new Vector2(Xoffset * (i + 1), r * offset);
+                Vector2 v2 = bottomLeft + new Vector2(offset * (i + 1), r * offset);
 
-            v1 = topRight + new Vector2(-offset, 0);
-            v2 = bottomRight + new Vector2(offset, 0);
-            Rights[0] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+                Lefts[0 + i * 2] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
 
-            v1 = topRight + new Vector2(offset, 0);
-            v2 = bottomRight + new Vector2(-offset, 0);
-            Rights[1] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+                offset = Main.rand.NextFloat(8, 12);
+
+                v1 = topLeft + new Vector2(offset * (i + 1), r * offset);
+                v2 = bottomLeft + new Vector2(Xoffset * (i + 1), r * offset);
+                Lefts[1 + i * 2] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+
+                offset = Main.rand.NextFloat(8, 12);
+
+                v1 = topRight + new Vector2(Xoffset * (i + 1), r * offset);
+                v2 = bottomRight + new Vector2(offset * (i + 1), r * offset);
+                Rights[0 + i * 2] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+
+                offset = Main.rand.NextFloat(8, 12);
+
+                v1 = topRight + new Vector2(offset * (i + 1), r * offset);
+                v2 = bottomRight + new Vector2(Xoffset * (i + 1), r * offset);
+                Rights[1 + i * 2] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+            }
         }
 
         public void InitBottonVine()
@@ -301,8 +321,8 @@ namespace TheTwinsRework.NPCs.QueenBee
 
             const float offset = 10;
 
-            Vector2 bottomLeft = NPC.Center + new Vector2(-LimitWidth / 2, -LimitHeight / 2);
-            Vector2 bottomRight = NPC.Center + new Vector2(LimitWidth / 2, -LimitHeight / 2);
+            Vector2 bottomLeft = NPC.Center + new Vector2(-LimitWidth / 2, LimitHeight / 2);
+            Vector2 bottomRight = NPC.Center + new Vector2(LimitWidth / 2, LimitHeight / 2);
 
             Vector2 v1 = bottomLeft + new Vector2(0, -offset);
             Vector2 v2 = bottomRight + new Vector2(0, offset);
@@ -315,21 +335,26 @@ namespace TheTwinsRework.NPCs.QueenBee
 
         public void InitTopVine()
         {
-            Ups = new Corner[6];
+            Ups = new Corner[4];
 
-            const float offset = 10;
+            float offset;
+            float yoffset;
 
-            Vector2 topLeft = NPC.Center + new Vector2(-LimitWidth / 2, LimitHeight / 2);
-            Vector2 topRight = NPC.Center + new Vector2(LimitWidth / 2, LimitHeight / 2);
+            Vector2 topLeft = NPC.Center + new Vector2(-LimitWidth / 2+30, -LimitHeight / 2);
+            Vector2 topRight = NPC.Center + new Vector2(LimitWidth / 2+30, -LimitHeight / 2);
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
+                offset = Main.rand.NextFloat(18,22);
+                yoffset = Main.rand.NextFloat(8, 12);
                 float r = MathF.Cos(i * MathHelper.Pi);
                 Vector2 v1 = topLeft + new Vector2(r * offset, -offset * (i + 1));
-                Vector2 v2 = topRight + new Vector2(r * offset, offset * (i + 1));
+                Vector2 v2 = topRight + new Vector2(r * offset, -yoffset * (i + 1));
                 Ups[0 + i * 2] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
 
-                v1 = topLeft + new Vector2(r * offset, offset * (i + 1));
+                offset = Main.rand.NextFloat(18, 22);
+                yoffset = Main.rand.NextFloat(8, 12);
+                v1 = topLeft + new Vector2(r * offset, - yoffset* (i + 1));
                 v2 = topRight + new Vector2(r * offset, -offset * (i + 1));
                 Ups[1 + i * 2] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
             }
@@ -341,13 +366,13 @@ namespace TheTwinsRework.NPCs.QueenBee
                 foreach (var v in Ups)
                     v.Update();
             if (Downs != null)
-                foreach (var v in Ups)
+                foreach (var v in Downs)
                     v.Update();
             if (Lefts != null)
-                foreach (var v in Ups)
+                foreach (var v in Lefts)
                     v.Update();
             if (Rights != null)
-                foreach (var v in Ups)
+                foreach (var v in Rights)
                     v.Update();
         }
 
@@ -361,26 +386,26 @@ namespace TheTwinsRework.NPCs.QueenBee
                 foreach (var v in Ups)
                     v.DrawVineLine(spriteBatch, screenPos, vine, vineTip);
             if (Downs != null)
-                foreach (var v in Ups)
+                foreach (var v in Downs)
                     v.DrawVineLine(spriteBatch, screenPos, vine, vineTip);
             if (Lefts != null)
-                foreach (var v in Ups)
+                foreach (var v in Lefts)
                     v.DrawVineLine(spriteBatch, screenPos, vine, vineTip);
             if (Rights != null)
-                foreach (var v in Ups)
+                foreach (var v in Rights)
                     v.DrawVineLine(spriteBatch, screenPos, vine, vineTip);
 
             if (Ups != null)
                 foreach (var v in Ups)
                     v.DrawBall(spriteBatch, screenPos, Ball);
             if (Downs != null)
-                foreach (var v in Ups)
+                foreach (var v in Downs)
                     v.DrawBall(spriteBatch, screenPos, Ball);
             if (Lefts != null)
-                foreach (var v in Ups)
+                foreach (var v in Lefts)
                     v.DrawBall(spriteBatch, screenPos, Ball);
             if (Rights != null)
-                foreach (var v in Ups)
+                foreach (var v in Rights)
                     v.DrawBall(spriteBatch, screenPos, Ball);
 
             return false;
