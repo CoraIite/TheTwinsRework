@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
@@ -237,7 +238,7 @@ namespace TheTwinsRework.NPCs.QueenBee
             NPC.noTileCollide = true;
             NPC.knockBackResist = 0;
             NPC.npcSlots = 20;
-            //NPC.hide = true;
+            NPC.hide = true;
         }
 
         public override bool? CanBeHitByItem(Player player, Item item)
@@ -275,6 +276,13 @@ namespace TheTwinsRework.NPCs.QueenBee
                     InitBottonVine();
                     InitTopVine();
                     Timer = 1;
+                }
+
+                if (Timer>1)
+                    Timer--;
+                else if (Timer==1)
+                {
+                    HitPlayer();
                 }
             }
             else
@@ -414,6 +422,40 @@ namespace TheTwinsRework.NPCs.QueenBee
                     v.CalculateMidPosY(y + Main.rand.NextFloat(-10, 10));
                     v.Collide(new Vector2(7.5f + speed / 8, 0));
                 }
+        }
+
+        public void CollideBottom(float x, float speed)
+        {
+            if (Downs != null)
+                foreach (var v in Downs)
+                {
+                    v.CalaulateMidPosX(x + Main.rand.NextFloat(-10, 10));
+                    v.Collide(new Vector2( 0, 7.5f + speed / 8));
+                }
+        }
+
+
+
+        public void HitPlayer()
+        {
+            Vector2 topLeft = NPC.Center - new Vector2(LimitWidth / 2, LimitHeight / 2);
+            Rectangle r = new Rectangle((int)topLeft.X, (int)topLeft.Y, LimitWidth, LimitHeight);
+
+            foreach (var p in Main.ActivePlayers)
+            {
+                if (!r.Contains((int)p.Center.X, (int)p.Center.Y))
+                {
+                    p.Hurt(PlayerDeathReason.ByNPC(NPC.whoAmI), 100
+                        , 0, dodgeable: false, armorPenetration: 100);
+
+                    Timer = 40;
+                }
+            }
+        }
+
+        public override void DrawBehind(int index)
+        {
+            Main.instance.DrawCacheNPCsOverPlayers.Add(index);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

@@ -20,7 +20,7 @@ namespace TheTwinsRework.NPCs.QueenBee
         public static int SpawnAnmiTime = 100;
 
         public ref float RectLimitIndex => ref NPC.ai[0];
-        public bool Dashing
+        public bool IsDashing
         {
             get => NPC.ai[1] == 1;
             set
@@ -36,6 +36,7 @@ namespace TheTwinsRework.NPCs.QueenBee
 
         public ref float Timer => ref NPC.localAI[0];
         public ref float AngerNum => ref NPC.localAI[1];
+        public ref float Recorder3 => ref NPC.localAI[2];
         private Player Target => Main.player[NPC.target];
 
         #region tml Hooks
@@ -116,6 +117,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                     Dash(controller);
                     break;
                 case AIStates.SmashDown:
+                    SmashDown(controller);
                     break;
                 case AIStates.KillAnmi:
                     break;
@@ -213,10 +215,6 @@ namespace TheTwinsRework.NPCs.QueenBee
         /// </summary>
         public void Dash(NPC controller)
         {
-            int dashCount = 3;
-            if (AngerNum > 1.1f)
-                dashCount += 2;
-
             //设置初始值
             if (Timer == 0)
             {
@@ -231,8 +229,10 @@ namespace TheTwinsRework.NPCs.QueenBee
 
             if (Timer < beforeDashTime)
             {
-                SetDirection(new Vector2(Target.Center.X, controller.Center.Y + Recorder2), out Vector2 dis);
+                SetDirection(Target.Center, out Vector2 dis);
                 NPC.spriteDirection = NPC.direction;
+
+                NPC.rotation = NPC.rotation.AngleLerp(0, 0.2f);
 
                 float speed = 3 + AngerNum * 2f;
                 float a = 0.1f + 0.1f * AngerNum;
@@ -258,7 +258,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                 //控制Y方向的移动
                 if (dis.Y > 50)
                     Helper.Movement_SimpleOneLine(ref NPC.velocity.Y, NPC.directionY
-                        , speed, a, a*2, 0.97f);
+                        , speed / 2, a / 2, a, 0.97f);
                 else
                     NPC.velocity.Y *= 0.96f;
 
@@ -268,26 +268,28 @@ namespace TheTwinsRework.NPCs.QueenBee
             if (Timer == beforeDashTime)//根据玩家位置做偏移
             {
                 NPC.velocity *= 0.2f;
-                if (AngerNum > 1f)
-                    Recorder2 = Helper.Lerp(Recorder2, Target.Center.Y, 0.5f);
+                float p = 0.5f;
+                if (AngerNum>1f)
+                    p = 0.75f;
+                Recorder2 = Helper.Lerp(Recorder2, Target.Center.Y-controller.Center.Y, p);
             }
 
             //向后拉，准备冲
             int makeBackTime = (int)(30 / AngerNum);
             if (Timer < beforeDashTime + makeBackTime)
             {
-                SetDirection(new Vector2(controller.Center.X, controller.Center.Y + Recorder2), out Vector2 dis);
+                SetDirection(new Vector2(Target.Center.X, controller.Center.Y + Recorder2), out Vector2 dis);
                 NPC.spriteDirection = NPC.direction;
 
-                if (dis.X < RectangleLimit.LimitWidth / 2 - NPC.width/2-60)
+                if (MathF.Abs(NPC.Center.X - controller.Center.X) < RectangleLimit.LimitWidth / 2 - NPC.width / 2 - 60
+                    && dis.X > 120)
                     Helper.Movement_SimpleOneLine(ref NPC.velocity.X, -NPC.direction
                         , 4.5f + AngerNum * 2f, 0.3f + AngerNum * 0.2f, 0.5f + AngerNum * 0.3f, 0.97f);
                 else
                     NPC.velocity.X *= 0.9f;
 
                 //控制Y方向的移动
-                float yLength = Math.Abs(controller.Center.Y + Recorder2 - NPC.Center.Y);
-                if (yLength > 50)
+                if (dis.Y > 40)
                     Helper.Movement_SimpleOneLine(ref NPC.velocity.Y, NPC.directionY
                         , 6.5f + AngerNum * 2f, 0.3f + AngerNum * 0.2f, 0.5f + AngerNum * 0.3f, 0.97f);
                 else
@@ -303,7 +305,7 @@ namespace TheTwinsRework.NPCs.QueenBee
 
                 Helper.PlayPitched("beastfly_horiz_dash_attack", 1, 0, NPC.Center);
 
-                Dashing = true;
+                IsDashing = true;
                 NPC.velocity *= 0.2f;
             }
 
@@ -343,28 +345,215 @@ namespace TheTwinsRework.NPCs.QueenBee
 
                     Helper.PlayPitched("beastfly_close_wall_hit_" + Main.rand.Next(1, 3).ToString()
                         , 1, 0, NPC.Center);
+
+                    Recorder3 = 25;
+                    return;
+                }
+
+                if (MathF.Sign(Target.Center.X - NPC.Center.X) * NPC.direction < 0
+                    && MathF.Abs(Target.Center.X - NPC.Center.X) > 265)
+                {
+                    NPC.velocity *= 0.3f;
+                    Timer = beforeDashTime + makeBackTime + dashTime + 10;
+                    IsDashing = false;
+                    Recorder3 = 0;
+                    Helper.PlayPitched("beastfly_horiz_dash_attack", 1, 0, NPC.Center);
                 }
 
                 return;
             }
 
-            if (Timer < beforeDashTime + makeBackTime + dashTime + 30)
+            if (Timer < beforeDashTime + makeBackTime + dashTime + 30 + Recorder3)
             {
-                if (Timer== beforeDashTime + makeBackTime + dashTime + 8)
+                if (Timer == beforeDashTime + makeBackTime + dashTime + 8)
                 {
-                    Dashing = false;
+                    IsDashing = false;
                 }
 
                 NPC.velocity *= 0.95f;
+                if (Recorder3 == 0)
+                {
+                    float factor = (Timer - beforeDashTime + makeBackTime + dashTime + 10) / 20;
+                    NPC.rotation = Helper.SinEase(factor) * -NPC.spriteDirection * 0.5f;
+                }
                 return;
             }
 
-            Recorder++;
+            Recorder--;
             Timer = 0;
-            if (Recorder >= dashCount)
+            if (Recorder <1)
             {
                 ExchangeState();
             }
+        }
+
+        /// <summary>
+        /// 下砸
+        /// </summary>
+        /// <param name="controller"></param>
+        public void SmashDown(NPC controller)
+        {
+            if (Timer == 0)
+            {
+                //目标X值
+                Recorder2 = Target.Center.X;
+            }
+
+            //向玩家飘
+            int beforeDashTime = (int)(60 / AngerNum);
+
+            if (Timer < beforeDashTime)
+            {
+                SetDirection(Target.Center, out Vector2 dis);
+                NPC.spriteDirection = NPC.direction;
+
+                NPC.rotation = NPC.rotation.AngleLerp(0, 0.2f);
+
+                float speed = 3 + AngerNum * 2f;
+                float a = 0.1f + 0.1f * AngerNum;
+
+                //int i = 0;
+                if (dis.X > RectangleLimit.LimitWidth / 2)
+                {
+                    //i = 2;
+                    Helper.Movement_SimpleOneLine(ref NPC.velocity.X, NPC.direction, speed, a, a * 2, 0.97f);
+                }
+                else if (dis.X < 50)
+                    Helper.Movement_SimpleOneLine(ref NPC.velocity.X, -NPC.direction, speed, a, a * 2, 0.97f);
+                else
+                    NPC.velocity.X *= 0.95f;
+
+                //Main.NewText(i);
+
+                //控制Y方向的移动
+                if (dis.Y > 50)
+                    Helper.Movement_SimpleOneLine(ref NPC.velocity.Y, NPC.directionY
+                        , speed / 2, a / 2, a, 0.97f);
+                else
+                    NPC.velocity.Y *= 0.96f;
+
+                float distance = Vector2.Distance(NPC.Center, Target.Center);
+                if (distance < 100)
+                    Timer += 2;
+
+                if (distance < 300)
+                    Timer++;
+
+                Timer++;
+
+                if (Timer > beforeDashTime)
+                {
+                    Recorder2 = Target.Center.X;
+                    Timer = beforeDashTime;
+                }
+
+                return;
+            }
+
+            Timer++;
+
+            //上升并翻滚
+            int rollingTime = (int)(35 / AngerNum);
+            if (Timer < beforeDashTime + rollingTime)
+            {
+                NPC.rotation = NPC.spriteDirection * (MathHelper.TwoPi*2+MathHelper.PiOver2)
+                    * (Timer - beforeDashTime) / rollingTime;
+
+                float targetY = controller.Center.Y - RectangleLimit.LimitHeight / 2 - 200;
+                SetDirection(new Vector2(Recorder2, targetY), out Vector2 dis);
+
+                float speed = 4 + AngerNum * 2f;
+                float a = 0.1f + 0.1f * AngerNum;
+
+                if (dis.X > 50)
+                    Helper.Movement_SimpleOneLine(ref NPC.velocity.X, NPC.direction, speed, a, a * 2, 0.97f);
+                else
+                    NPC.velocity.X *= 0.93f;
+
+                speed = 6 + AngerNum * 6f;
+                a = 0.8f + 0.8f * AngerNum;
+
+                //控制Y方向的移动
+                if (NPC.Center.Y > targetY)
+                    Helper.Movement_SimpleOneLine(ref NPC.velocity.Y, NPC.directionY
+                        , speed / 2, a / 2, a, 0.97f);
+                else
+                    NPC.velocity.Y *= 0.8f;
+
+                return;
+            }
+
+            //短暂前摇
+            const int Pre = 20;
+            if (Timer < beforeDashTime + rollingTime + Pre)
+            {
+                IsDashing = true;
+                float speed = 6 + AngerNum * 6f;
+                float a = 0.8f + 0.8f * AngerNum;
+
+                NPC.velocity.X *= 0.95f;
+
+                if (NPC.Center.Y > controller.Center.Y - RectangleLimit.LimitHeight / 2 - 120)
+                    Helper.Movement_SimpleOneLine(ref NPC.velocity.Y, NPC.directionY
+                        , speed / 2, a / 2, a, 0.97f);
+                else
+                    NPC.velocity.Y *= 0.8f;
+
+                return;
+            }
+
+            if (Timer == beforeDashTime + rollingTime + Pre)
+            {
+                NPC.velocity = new Vector2(0, 20);
+
+                Helper.PlayPitched("brkn_wand_down_stab_dash", 1, 0, NPC.Center);
+                return;
+            }
+
+            //下砸
+            const int SmashDownTime = 60;
+            if (Timer < beforeDashTime + rollingTime + Pre + SmashDownTime)
+            {
+                Vector2 tempPos = NPC.Center + NPC.velocity;
+
+                if (tempPos.Y + NPC.height / 2 > controller.Center.Y + RectangleLimit.LimitHeight / 2)
+                {
+                    (controller.ModNPC as RectangleLimit).CollideBottom(NPC.Center.X, MathF.Abs(NPC.velocity.Y));
+                    NPC.velocity = new Vector2(0, -6);
+                    Timer = beforeDashTime + rollingTime + Pre + SmashDownTime;
+
+                    Helper.PlayPitched("beastfly_close_wall_hit_" + Main.rand.Next(1, 3).ToString()
+                        , 1, 0, NPC.Center);
+
+                    Recorder--;
+                    IsDashing = false;
+
+                    float dis = Math.Abs(NPC.Center.X - Target.Center.X);
+                    if (dis < RectangleLimit.LimitWidth / 4)
+                        Recorder2 = Target.Center.X;
+                    else
+                        Recorder2 = NPC.Center.X + Math.Sign(Target.Center.X - NPC.Center.X) * RectangleLimit.LimitWidth / 4;
+                }
+
+                return;
+            }
+
+            //砸完后
+            if (Recorder > 0)
+            {
+                Timer = beforeDashTime;
+                return;
+            }
+
+            if (Timer< beforeDashTime + rollingTime + Pre + SmashDownTime + 20)
+            {
+                IsDashing = false;
+                NPC.velocity *= 0.95f;
+                NPC.rotation = NPC.rotation.AngleLerp(0,0.2f);
+                return;
+            }
+
+            ExchangeState();
         }
 
         public void ExchangeState()
@@ -373,7 +562,8 @@ namespace TheTwinsRework.NPCs.QueenBee
             Timer = 0;
             Recorder = 0;
             Recorder2 = 0;
-            Dashing = false;
+            Recorder3 = 0;
+            IsDashing = false;
 
             AngerNum = 1;
             if (NPC.life < NPC.lifeMax / 3)
@@ -393,8 +583,43 @@ namespace TheTwinsRework.NPCs.QueenBee
                 case AIStates.SummonMinions:
                     break;
                 case AIStates.Dash:
+                    State = Main.rand.NextFromList(AIStates.SmashDown);
                     break;
                 case AIStates.SmashDown:
+                    State = Main.rand.NextFromList(AIStates.Dash);
+                    break;
+                case AIStates.KillAnmi:
+                    break;
+                default:
+                    break;
+            }
+
+            OnStateStart();
+        }
+
+        public void OnStateStart()
+        {
+            switch (State)
+            {
+                case AIStates.SpawnAnmi:
+                    break;
+                case AIStates.ShootSpikes:
+                    break;
+                case AIStates.SummonMinions:
+                    break;
+                case AIStates.Dash:
+                    if (AngerNum > 1f)
+                        Recorder = Main.rand.Next(1, 6);
+                    else
+                        Recorder = Main.rand.Next(1, 4);
+
+                    break;
+                case AIStates.SmashDown:
+                    if (AngerNum > 1f)
+                        Recorder = Main.rand.Next(1, 4);
+                    else
+                        Recorder = 3;
+
                     break;
                 case AIStates.KillAnmi:
                     break;
@@ -415,14 +640,14 @@ namespace TheTwinsRework.NPCs.QueenBee
 
         public void UpdateFrame(int counterMax = 3)
         {
-            if (!Dashing && NPC.frame.Y < 4)
+            if (!IsDashing && NPC.frame.Y < 4)
                 NPC.frame.Y = 4;
 
             if (++NPC.frameCounter > counterMax)
             {
                 NPC.frameCounter = 0;
                 NPC.frame.Y++;
-                if (Dashing)
+                if (IsDashing)
                 {
                     if (NPC.frame.Y > 3)
                         NPC.frame.Y = 0;

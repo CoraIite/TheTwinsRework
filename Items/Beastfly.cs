@@ -3,7 +3,6 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TheTwinsRework.NPCs.QueenBee;
-using TheTwinsRework.NPCs.TheTwins;
 
 namespace TheTwinsRework.Items
 {
@@ -59,11 +58,12 @@ namespace TheTwinsRework.Items
 
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-               NPC controller= NPC.NewNPCDirect(new EntitySource_BossSpawn(player), (int)player.Center.X, player.Center.ToTileCoordinates().Y * 16
-                    , ModContent.NPCType<RectangleLimit>());
+                Vector2 bottom = player.Bottom + new Vector2(0, 48-RectangleLimit.LimitHeight/2);
+                NPC controller = NPC.NewNPCDirect(new EntitySource_BossSpawn(player), (int)bottom.X, bottom.ToTileCoordinates().Y * 16
+                     , ModContent.NPCType<RectangleLimit>());
 
-               int index= NPC.NewNPC(new EntitySource_BossSpawn(player), (int)player.Center.X, (int)player.Center.Y
-                    , type,ai0:controller.whoAmI);
+                int index = NPC.NewNPC(new EntitySource_BossSpawn(player), (int)player.Center.X, (int)player.Center.Y
+                     , type, ai0: controller.whoAmI);
 
                 controller.ai[0] = index;
             }
