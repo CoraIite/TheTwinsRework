@@ -39,6 +39,7 @@ Projectiles: {
 	FireBreathLine.DisplayName: 咒焰之路
 	SoundControl.DisplayName: 消音器
 	NameShow.DisplayName: 双子魔眼名字
+	// SpikeBallProj.DisplayName: Spike Ball Proj
 }
 
 TheTwinsName: 双 子 魔 眼

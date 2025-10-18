@@ -48,13 +48,18 @@ namespace TheTwinsRework.NPCs.QueenBee
             public Vector2 vel;
             public int State;
             public int Timer;
+            public Color c;
 
-            public Corner(Vector2 ballPos, Vector2 vineDir, float maxLength)
+            public Corner(Vector2 ballPos, Vector2 vineDir, float maxLength,bool dark)
             {
                 this.ballPos = ballPos;
                 this.vineDir = vineDir;
                 this.maxLength = maxLength;
                 rot = Main.rand.NextFloat(MathHelper.TwoPi);
+                if (dark)
+                    c = Color.DarkGray;
+                else
+                    c = Color.White;
             }
 
             public void Update()
@@ -202,12 +207,12 @@ namespace TheTwinsRework.NPCs.QueenBee
 
             public virtual Color GetStringColor(Vector2 pos)
             {
-                return Lighting.GetColor((int)pos.X / 16, (int)(pos.Y / 16f), Color.White);
+                return Lighting.GetColor((int)pos.X / 16, (int)(pos.Y / 16f), c);
             }
 
             public void DrawBall(SpriteBatch spriteBatch, Vector2 screenPos, Texture2D tex)
             {
-                tex.QuickCenteredDraw(spriteBatch, ballPos - screenPos, Lighting.GetColor(ballPos.ToTileCoordinates())
+                tex.QuickCenteredDraw(spriteBatch, ballPos - screenPos, Lighting.GetColor(ballPos.ToTileCoordinates(),c)
                     , rot, scale);
             }
         }
@@ -321,25 +326,25 @@ namespace TheTwinsRework.NPCs.QueenBee
                 Vector2 v1 = topLeft + new Vector2(-Xoffset * (i + 1), r * offset);
                 Vector2 v2 = bottomLeft + new Vector2(-offset * (i + 1), r * offset);
 
-                Lefts[0 + i * 2] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+                Lefts[0 + i * 2] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2),i==0);
 
                 offset = Main.rand.NextFloat(8, 12);
 
                 v1 = topLeft + new Vector2(-offset * (i + 1), r * offset);
                 v2 = bottomLeft + new Vector2(-Xoffset * (i + 1), r * offset);
-                Lefts[1 + i * 2] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+                Lefts[1 + i * 2] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2), i == 0);
 
                 offset = Main.rand.NextFloat(8, 12);
 
                 v1 = topRight + new Vector2(Xoffset * (i + 1), r * offset);
                 v2 = bottomRight + new Vector2(offset * (i + 1), r * offset);
-                Rights[0 + i * 2] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+                Rights[0 + i * 2] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2), i == 0);
 
                 offset = Main.rand.NextFloat(8, 12);
 
                 v1 = topRight + new Vector2(offset * (i + 1), r * offset);
                 v2 = bottomRight + new Vector2(Xoffset * (i + 1), r * offset);
-                Rights[1 + i * 2] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+                Rights[1 + i * 2] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2), i == 0);
             }
         }
 
@@ -354,11 +359,11 @@ namespace TheTwinsRework.NPCs.QueenBee
 
             Vector2 v1 = bottomLeft + new Vector2(0, -offset);
             Vector2 v2 = bottomRight + new Vector2(0, offset);
-            Downs[0] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+            Downs[0] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2), true);
 
             v1 = bottomLeft + new Vector2(0, offset);
             v2 = bottomRight + new Vector2(0, -offset);
-            Downs[1] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+            Downs[1] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2), false);
         }
 
         public void InitTopVine()
@@ -378,13 +383,13 @@ namespace TheTwinsRework.NPCs.QueenBee
                 float r = MathF.Cos(i * MathHelper.Pi);
                 Vector2 v1 = topLeft + new Vector2(r * offset, -offset * (i + 1));
                 Vector2 v2 = topRight + new Vector2(r * offset, -yoffset * (i + 1));
-                Ups[0 + i * 2] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+                Ups[0 + i * 2] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2), i == 0);
 
                 offset = Main.rand.NextFloat(18, 22);
                 yoffset = Main.rand.NextFloat(8, 12);
                 v1 = topLeft + new Vector2(r * offset, - yoffset* (i + 1));
                 v2 = topRight + new Vector2(r * offset, -offset * (i + 1));
-                Ups[1 + i * 2] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2));
+                Ups[1 + i * 2] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2), i == 0);
             }
         }
 
@@ -491,6 +496,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                     v.DrawBall(spriteBatch, screenPos, Ball);
 
 #if DEBUG
+            return false;
 
             Vector2 p = NPC.Center - screenPos;
             spriteBatch.Draw(TextureAssets.MagicPixel.Value

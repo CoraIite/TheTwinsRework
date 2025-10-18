@@ -7,7 +7,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TheTwinsRework.Configs;
 using TheTwinsRework.Core.Loader;
+using TheTwinsRework.Core.System_Particle;
 using TheTwinsRework.Misc;
+using TheTwinsRework.Particles;
+using TheTwinsRework.Projectiles;
 
 namespace TheTwinsRework.NPCs.QueenBee
 {
@@ -44,7 +47,7 @@ namespace TheTwinsRework.NPCs.QueenBee
         public override void SetDefaults()
         {
             NPC.boss = true;
-            NPC.lifeMax = 100;
+            NPC.lifeMax = 10000;
             NPC.width = NPC.height = 80;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
@@ -325,6 +328,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                 {
                     if (tempPos.X + NPC.width / 2 > controller.Center.X + RectangleLimit.LimitWidth / 2)
                     {
+                        Particle.NewParticle<Slam>(NPC.Right+new Vector2(-30,30), new Vector2(-1, 0),Scale: 0.6f);
                         (controller.ModNPC as RectangleLimit).CollideRight(NPC.Center.Y, MathF.Abs(NPC.velocity.X));
                         collide = true;
                     }
@@ -333,6 +337,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                 {
                     if (tempPos.X - NPC.width / 2 < controller.Center.X - RectangleLimit.LimitWidth / 2)
                     {
+                        Particle.NewParticle<Slam>(NPC.Left + new Vector2(30, 30), new Vector2(1, 0), Scale: 0.6f);
                         (controller.ModNPC as RectangleLimit).CollideLeft(NPC.Center.Y, MathF.Abs(NPC.velocity.X));
                         collide = true;
                     }
@@ -347,6 +352,16 @@ namespace TheTwinsRework.NPCs.QueenBee
                         , 1, 0, NPC.Center);
 
                     Recorder3 = 25;
+
+                    NPC.NewProjectileInAI<SpikeBallProj>(
+                        new Vector2(Math.Clamp(Target.Center.X, controller.Center.X - RectangleLimit.LimitWidth / 2 + 20, controller.Center.X + RectangleLimit.LimitWidth / 2 - 20),controller.Center.Y-RectangleLimit.LimitHeight/2-24)
+                        , Vector2.Zero, Helper.GetProjDamage(80, 90, 120), 0, ai0: RectLimitIndex, ai2: Main.rand.Next(10));
+
+                    if (AngerNum > 1)
+                        for (int i = 0; i < 2; i++)
+                            NPC.NewProjectileInAI<SpikeBallProj>(
+                                new Vector2(controller.Center.X + Main.rand.NextFloat(-RectangleLimit.LimitWidth / 2 + 20, RectangleLimit.LimitWidth / 2 - 20), controller.Center.Y - RectangleLimit.LimitHeight / 2 - 24)
+                                , Vector2.Zero, Helper.GetProjDamage(80, 90, 120), 0, ai0: RectLimitIndex, ai2: Main.rand.Next(10));
                     return;
                 }
 
@@ -456,7 +471,7 @@ namespace TheTwinsRework.NPCs.QueenBee
             int rollingTime = (int)(35 / AngerNum);
             if (Timer < beforeDashTime + rollingTime)
             {
-                NPC.rotation = NPC.spriteDirection * (MathHelper.TwoPi*2+MathHelper.PiOver2)
+                NPC.rotation = NPC.spriteDirection * (MathHelper.TwoPi+MathHelper.PiOver2)
                     * (Timer - beforeDashTime) / rollingTime;
 
                 float targetY = controller.Center.Y - RectangleLimit.LimitHeight / 2 - 200;
@@ -533,6 +548,8 @@ namespace TheTwinsRework.NPCs.QueenBee
                         Recorder2 = Target.Center.X;
                     else
                         Recorder2 = NPC.Center.X + Math.Sign(Target.Center.X - NPC.Center.X) * RectangleLimit.LimitWidth / 4;
+
+                    Particle.NewParticle<Slam>(NPC.Bottom, new Vector2(0, -1), Scale: 0.6f);
                 }
 
                 return;
@@ -545,11 +562,18 @@ namespace TheTwinsRework.NPCs.QueenBee
                 return;
             }
 
-            if (Timer< beforeDashTime + rollingTime + Pre + SmashDownTime + 20)
+            if (Timer < beforeDashTime + rollingTime + Pre + SmashDownTime + 40)
             {
+                if (Timer < beforeDashTime + rollingTime + Pre + SmashDownTime + 20)
+                {
+                    NPC.rotation = NPC.spriteDirection * (MathHelper.TwoPi - MathHelper.PiOver2)
+                        * (Timer - beforeDashTime + rollingTime + Pre + SmashDownTime) / 20;
+                }
+                else
+                    NPC.rotation = NPC.rotation.AngleLerp(0, 0.2f);
+
                 IsDashing = false;
                 NPC.velocity *= 0.95f;
-                NPC.rotation = NPC.rotation.AngleLerp(0,0.2f);
                 return;
             }
 
@@ -713,6 +737,5 @@ namespace TheTwinsRework.NPCs.QueenBee
         }
 
         #endregion
-
     }
 }

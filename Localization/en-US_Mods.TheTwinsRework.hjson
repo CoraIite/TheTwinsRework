@@ -35,6 +35,7 @@ Projectiles: {
 	FireBreathLine.DisplayName: Path of Cursed Blaze
 	SoundControl.DisplayName: Silencer
 	NameShow.DisplayName: The Twins
+	SpikeBallProj.DisplayName: Spike Ball Proj
 }
 
 TheTwinsName: The Twins

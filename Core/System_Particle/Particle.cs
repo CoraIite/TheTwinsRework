@@ -41,6 +41,12 @@ namespace TheTwinsRework.Core.System_Particle
             return ParticleSystem.Particles[NewParticle(center, velocity, type, newColor, Scale)];
         }
 
+        public static int NewParticle<T>(Vector2 center, Vector2 velocity, Color newColor = default, float Scale = 1f)
+            where T : ModParticle
+        {
+            return NewParticle(center, velocity, Contents.ParticleType<T>(), newColor, Scale);
+        }
+
         /// <summary>
         /// 生成例子，返回粒子在数组中的索引
         /// </summary>
