@@ -3,8 +3,8 @@ using System;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TheTwinsRework.Core.System_Particle;
 using TheTwinsRework.Core;
+using TheTwinsRework.Core.System_Particle;
 using TheTwinsRework.Particles;
 using TheTwinsRework.Projectiles;
 
@@ -36,7 +36,7 @@ namespace TheTwinsRework.NPCs.TheTwins
             else if (currState == 7)
                 CombineP1(conrtoller);
             else
-                DashAttack(conrtoller, P1AttackTime,24, 0);
+                DashAttack(conrtoller, P1AttackTime, 24, 0);
         }
 
         public override void P2AI(NPC conrtoller)
@@ -265,13 +265,13 @@ namespace TheTwinsRework.NPCs.TheTwins
                     , 4, ai0: CircleLimitIndex);
             }
 
-            if (Timer >= P2AttackTime )
+            if (Timer >= P2AttackTime)
             {
                 ExchangeState();
             }
         }
 
-        public void ShootLaserP3(NPC controller,int attackTime)
+        public void ShootLaserP3(NPC controller, int attackTime)
         {
             float Time = attackTime * 2;
             float realTime = Timer;
@@ -345,7 +345,7 @@ namespace TheTwinsRework.NPCs.TheTwins
 
             //旋转
             NPC.rotation += -SPRecorder * 2 / (Time * 3 / 4);
-            float rot = (NPC.Center - controller.Center ).ToRotation();
+            float rot = (NPC.Center - controller.Center).ToRotation();
             rot += MathF.Sign(-SPRecorder) * MathHelper.PiOver4 / (Time * 3 / 4);
             NPC.Center = controller.Center + rot.ToRotationVector2() * (controller.Center - NPC.Center).Length();
 
@@ -468,7 +468,7 @@ namespace TheTwinsRework.NPCs.TheTwins
             {
                 Projectile proj = NPC.NewProjectileDirectInAI<LaserLine>(startPos, rot.ToRotationVector2()
                      , Helper.GetProjDamage(145, 170, 195), 0, -1, CircleLimitIndex
-                     , readyTime +i*6, -1);
+                     , readyTime + i * 6, -1);
 
                 (proj.ModProjectile as LaserLine).ShootTime = 25;
 
@@ -591,7 +591,7 @@ namespace TheTwinsRework.NPCs.TheTwins
             for (int i = 0; i < 2; i++)
             {
                 Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center + Main.rand.NextVector2Circular(25, 25)
-                    , Helper.NextVec2Dir(3, 6), 143,1.3f);
+                    , Helper.NextVec2Dir(3, 6), 143, 1.3f);
             }
         }
 

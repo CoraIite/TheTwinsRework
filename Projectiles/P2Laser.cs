@@ -1,7 +1,7 @@
 ﻿namespace TheTwinsRework.Projectiles
 {
-    public class P2Laser:DeathLaserNoTileCollide
+    public class P2Laser : DeathLaserNoTileCollide
     {
-        public override string Texture => AssetDirectory.Vanilla+ "Projectile_100";
+        public override string Texture => AssetDirectory.Vanilla + "Projectile_100";
     }
 }

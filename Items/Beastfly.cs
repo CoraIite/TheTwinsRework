@@ -6,9 +6,9 @@ using TheTwinsRework.NPCs.QueenBee;
 
 namespace TheTwinsRework.Items
 {
-    public class Beastfly:ModItem
+    public class Beastfly : ModItem
     {
-        public override string Texture => AssetDirectory.Assets+Name;
+        public override string Texture => AssetDirectory.Assets + Name;
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -52,13 +52,13 @@ namespace TheTwinsRework.Items
             return true;
         }
 
-        public static void SpawnBoss(Player player,Vector2 playerCenter)
+        public static void SpawnBoss(Player player, Vector2 playerCenter)
         {
             int type = ModContent.NPCType<BeastlyQueenBee>();
 
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                Vector2 bottom = player.Bottom + new Vector2(0, 48-RectangleLimit.LimitHeight/2);
+                Vector2 bottom = player.Bottom + new Vector2(0, 48 - RectangleLimit.LimitHeight / 2);
                 NPC controller = NPC.NewNPCDirect(new EntitySource_BossSpawn(player), (int)bottom.X, bottom.ToTileCoordinates().Y * 16
                      , ModContent.NPCType<RectangleLimit>());
 

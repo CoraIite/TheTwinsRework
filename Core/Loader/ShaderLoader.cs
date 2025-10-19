@@ -9,7 +9,7 @@ using static Terraria.ModLoader.Core.TmodFile;
 
 namespace TheTwinsRework.Core.Loader
 {
-   public class ShaderLoader : ModSystem
+    public class ShaderLoader : ModSystem
     {
         public override void Load()
         {
@@ -49,7 +49,7 @@ namespace TheTwinsRework.Core.Loader
 
         public static Effect GetShader(string name)
         {
-            return Filters.Scene[nameof(TheTwinsRework)+name].GetShader().Shader;
+            return Filters.Scene[nameof(TheTwinsRework) + name].GetShader().Shader;
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using ReLogic.Utilities;
-using System;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
@@ -222,7 +220,7 @@ namespace Coralite.Helpers
 
         public static SlotId PlayPitched(string path, float volume, float pitch, Vector2? position = null)
         {
-            if (Main.netMode==NetmodeID.Server)
+            if (Main.netMode == NetmodeID.Server)
                 return SlotId.Invalid;
 
             var style = new SoundStyle($"{nameof(TheTwinsRework)}/Sounds/{path}")

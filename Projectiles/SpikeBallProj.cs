@@ -45,7 +45,7 @@ namespace TheTwinsRework.Projectiles
                 return;
             }
 
-            if (Projectile.soundDelay==0)
+            if (Projectile.soundDelay == 0)
             {
                 Projectile.soundDelay = 100000;
                 Helper.PlayPitched("bone_boulder_shake_n_break", 0.8f, 0, Projectile.Center);
@@ -57,7 +57,7 @@ namespace TheTwinsRework.Projectiles
 
             if (Timer < ReadyTime)
             {
-                Lighting.AddLight(Projectile.Center, Timer/ReadyTime*new Vector3(1.2f, 0.1f, 0.1f));
+                Lighting.AddLight(Projectile.Center, Timer / ReadyTime * new Vector3(1.2f, 0.1f, 0.1f));
                 Projectile.velocity = Vector2.Zero;
 
                 if (Timer % 6 == 0)
@@ -69,7 +69,7 @@ namespace TheTwinsRework.Projectiles
                 if (Timer % 4 == 0)
                 {
                     Dust d = Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Circular(16, 16)
-                          , DustID.JunglePlants, new Vector2(0, Main.rand.NextFloat(2, 5)),Scale:Main.rand.NextFloat(1.5f,2.5f));
+                          , DustID.JunglePlants, new Vector2(0, Main.rand.NextFloat(2, 5)), Scale: Main.rand.NextFloat(1.5f, 2.5f));
                     d.noGravity = true;
                 }
 
@@ -77,7 +77,7 @@ namespace TheTwinsRework.Projectiles
             }
 
             //掉落
-            Lighting.AddLight(Projectile.Center, new Vector3(1.2f, 0.1f, 0.1f)*Alpha);
+            Lighting.AddLight(Projectile.Center, new Vector3(1.2f, 0.1f, 0.1f) * Alpha);
 
             if (Timer < ReadyTime + 120)
             {

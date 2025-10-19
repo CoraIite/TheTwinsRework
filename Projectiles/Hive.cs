@@ -117,7 +117,7 @@ namespace TheTwinsRework.Projectiles
                         n.value = 0;
 
                         if (n.boss)
-                            n.life = n.lifeMax = n.lifeMax / 5;
+                            n.life = n.lifeMax /= 5;
 
                         if (n.TryGetGlobalNPC(out SavageNPC snpc))
                             snpc.RectLimitIndex = (int)RectIndex;

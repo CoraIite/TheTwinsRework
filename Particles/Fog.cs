@@ -11,7 +11,7 @@ namespace TheTwinsRework.Particles
         public override void OnSpawn(Particle particle)
         {
             particle.rotation = Main.rand.NextFloat(6.282f);
-            particle.frame = new Rectangle(0, Main.rand.Next(4),0,0);
+            particle.frame = new Rectangle(0, Main.rand.Next(4), 0, 0);
         }
 
         public override void Update(Particle particle)
@@ -21,7 +21,7 @@ namespace TheTwinsRework.Particles
             particle.scale *= 0.997f;
 
             particle.fadeIn++;
-            if (particle.fadeIn>5)
+            if (particle.fadeIn > 5)
                 particle.color *= 0.94f;
 
             if (particle.color.A < 10)

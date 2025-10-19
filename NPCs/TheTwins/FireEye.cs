@@ -4,8 +4,8 @@ using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TheTwinsRework.Core.System_Particle;
 using TheTwinsRework.Core;
+using TheTwinsRework.Core.System_Particle;
 using TheTwinsRework.Particles;
 using TheTwinsRework.Projectiles;
 
@@ -49,7 +49,7 @@ namespace TheTwinsRework.NPCs.TheTwins
             else if (currState == 7)
                 CombineP1(conrtoller);
             else
-                DashAttack(conrtoller, P1AttackTime,24,0);
+                DashAttack(conrtoller, P1AttackTime, 24, 0);
         }
 
         public override void P2AI(NPC conrtoller)
@@ -95,7 +95,7 @@ namespace TheTwinsRework.NPCs.TheTwins
                     CombineP3_Rot(conrtoller);
                     break;
                 case 19:
-                    DashAttackP3(conrtoller, P3AttackTime, 30,MathHelper.Pi);
+                    DashAttackP3(conrtoller, P3AttackTime, 30, MathHelper.Pi);
                     break;
                 case 9:
                     CombinwP3_Lines(conrtoller, true);
@@ -285,7 +285,7 @@ namespace TheTwinsRework.NPCs.TheTwins
             }
         }
 
-        public void ShootFireP3(NPC controller,int baseAttackTime)
+        public void ShootFireP3(NPC controller, int baseAttackTime)
         {
             //吐火
             float halfTime = baseAttackTime * 2;
@@ -368,7 +368,7 @@ namespace TheTwinsRework.NPCs.TheTwins
                 float speed = MathF.Sin(Time * 0.6f) * 2 + 7;
                 float exRot = MathF.Sin(Time * 0.5f) * 0.2f;
                 int time = (int)(MathF.Sin(Time * 0.4f) * 10) + 40;
-                Vector2 velocity = (NPC.rotation + exRot-SPRecorder * 4 / (Time * 3 / 4)).ToRotationVector2() * speed;
+                Vector2 velocity = (NPC.rotation + exRot - SPRecorder * 4 / (Time * 3 / 4)).ToRotationVector2() * speed;
                 NPC.NewProjectileInAI<FireBreath>(NPC.Center + NPC.rotation.ToRotationVector2() * 50
                     , velocity, Helper.GetProjDamage(90, 110, 160)
                     , 4, ai0: CircleLimitIndex, ai1: time, ai2: 12);
@@ -457,7 +457,7 @@ namespace TheTwinsRework.NPCs.TheTwins
             }
 
             //喷火器类火焰
-            if (Timer % 2 == 0&& NPC.velocity.Length() > 1)
+            if (Timer % 2 == 0 && NPC.velocity.Length() > 1)
             {
                 if (Timer % 12 == 0)
                     FireBreathSound();
@@ -500,7 +500,7 @@ namespace TheTwinsRework.NPCs.TheTwins
 
         public override void CombineP3Attack(NPC controller, int readyTime)
         {
-            int count = Helper.ScaleValueForDiffMode(3,3,5,7);
+            int count = Helper.ScaleValueForDiffMode(3, 3, 5, 7);
 
             Vector2 startPos = NPC.Center + NPC.rotation.ToRotationVector2() * 85;
             float rot = NPC.rotation;
@@ -509,7 +509,7 @@ namespace TheTwinsRework.NPCs.TheTwins
             {
                 NPC.NewProjectileInAI<FireBreathLine>(startPos, rot.ToRotationVector2()
                      , Helper.GetProjDamage(110, 130, 180), 0, -1, CircleLimitIndex
-                     , readyTime+i*6, 25);
+                     , readyTime + i * 6, 25);
 
                 float length = GetLength(startPos, rot.ToRotationVector2(), controller);
                 //Vector2 temp = startPos;
@@ -650,7 +650,7 @@ namespace TheTwinsRework.NPCs.TheTwins
             for (int i = 0; i < 2; i++)
             {
                 Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center + Main.rand.NextVector2Circular(25, 25)
-                    , Helper.NextVec2Dir(3, 6), 144,1.3f);
+                    , Helper.NextVec2Dir(3, 6), 144, 1.3f);
             }
         }
 

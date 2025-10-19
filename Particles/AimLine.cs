@@ -75,7 +75,7 @@ namespace TheTwinsRework.Particles
             IncomeData data = (IncomeData)particle.data;
             Color c = particle.color * Helper.SqrtEase(particle.fadeIn / data.maxTime);
 
-            float scale2 = 0.9f + 0.015f * MathF.Sin((int)Main.timeForVisualEffects*0.35f);
+            float scale2 = 0.9f + 0.015f * MathF.Sin((int)Main.timeForVisualEffects * 0.35f);
 
             Vector2 position = particle.center - Main.screenPosition;
             Main.spriteBatch.Draw(tex, position, null
@@ -87,7 +87,7 @@ namespace TheTwinsRework.Particles
             position += particle.rotation.ToRotationVector2() * 20;
             Vector2 origin = new Vector2(0, tex.Height / 2);
 
-            float Length = CircleLimit.MaxLength-60;
+            float Length = CircleLimit.MaxLength - 60;
             if (data.circleIndex.HasValue && data.circleIndex.Value.GetNPCOwner(out NPC owner))//测量长度
             {
                 Vector2 pos = particle.center;

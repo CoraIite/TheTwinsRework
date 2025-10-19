@@ -17,7 +17,7 @@ namespace TheTwinsRework.Core.Loader
         /// <param name="type"></param>
         /// <returns></returns>
         public static ModParticle GetParticle(int type)
-                 =>  type < ParticleCount ? modParticles[type] : null;
+                 => type < ParticleCount ? modParticles[type] : null;
 
         /// <summary>
         /// 设置ID
@@ -33,8 +33,7 @@ namespace TheTwinsRework.Core.Loader
         {
             ModParticle modParticle = GetParticle(particle.type);
 
-            if (modParticle != null)
-                modParticle.OnSpawn(particle);
+            modParticle?.OnSpawn(particle);
         }
 
         internal static void Unload()
@@ -43,7 +42,7 @@ namespace TheTwinsRework.Core.Loader
             {
                 item.Unload();
             }
-            
+
             modParticles.Clear();
             modParticles = null;
             ParticleCount = 0;

@@ -24,7 +24,7 @@ namespace TheTwinsRework.Compat.BossCheckList
             Rectangle frameBox = mainTex.Frame(1, 6, 0, frame);
             Vector2 origin = frameBox.Size() / 2;
 
-            float rot = Main.GlobalTimeWrappedHourly ;
+            float rot = Main.GlobalTimeWrappedHourly;
             spriteBatch.Draw(mainTex, center + Main.GlobalTimeWrappedHourly.ToRotationVector2() * 80
                 , frameBox, color, rot, origin, 1, SpriteEffects.None, 0f);
 

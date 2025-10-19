@@ -33,7 +33,7 @@ namespace TheTwinsRework.Items
 
         public override bool CanUseItem(Player player)
         {
-            return !NPC.AnyNPCs(ModContent.NPCType<CircleLimit>())&&!Main.dayTime;
+            return !NPC.AnyNPCs(ModContent.NPCType<CircleLimit>()) && !Main.dayTime;
         }
 
         public override bool? UseItem(Player player)

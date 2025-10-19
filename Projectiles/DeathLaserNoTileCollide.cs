@@ -28,7 +28,7 @@ namespace TheTwinsRework.Projectiles
             if (!CircleIndex.GetNPCOwner<CircleLimit>(out NPC owner, Projectile.Kill))
                 return;
 
-            if (Projectile.soundDelay==0)
+            if (Projectile.soundDelay == 0)
             {
                 Projectile.soundDelay = 100000;
                 Helper.PlayPitched(CoraliteSoundID.LaserShoot_Item33, Projectile.Center);
@@ -59,7 +59,7 @@ namespace TheTwinsRework.Projectiles
 
             for (int i = 0; i < 8; i++)
             {
-                Vector2 pos2 = pos + (Projectile.rotation + MathHelper.PiOver4 * i).ToRotationVector2() *length;
+                Vector2 pos2 = pos + (Projectile.rotation + MathHelper.PiOver4 * i).ToRotationVector2() * length;
                 Main.spriteBatch.Draw(tex, pos2, null, c2, rot, origin, Projectile.scale, 0, 0);
             }
 

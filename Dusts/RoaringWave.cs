@@ -1,6 +1,4 @@
 ﻿using Coralite.Helpers;
-using ReLogic.Content;
-using System;
 using Terraria.ModLoader;
 using TheTwinsRework;
 
@@ -8,7 +6,7 @@ namespace Coralite.Content.Particles
 {
     public class RoaringWave : ModDust
     {
-        public override string Texture => AssetDirectory.Assets+Name;
+        public override string Texture => AssetDirectory.Assets + Name;
 
         /// <summary>
         /// 控制大小每帧变大多少

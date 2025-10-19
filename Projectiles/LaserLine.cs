@@ -4,7 +4,6 @@ using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.Graphics.CameraModifiers;
-using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TheTwinsRework.Core.Loader;
@@ -103,7 +102,7 @@ namespace TheTwinsRework.Projectiles
 
                 float rot = owner.rotation;
 
-                if (State == 0&&SPecialRot)
+                if (State == 0 && SPecialRot)
                 {
                     rot = (Circle.Center - owner.Center).ToRotation() + owner.ai[3];
                 }
@@ -130,7 +129,7 @@ namespace TheTwinsRework.Projectiles
                         if (ReadyTime > 35)
                             startTime += ((int)ReadyTime - 35) / 2;
 
-                        if (Timer==startTime)
+                        if (Timer == startTime)
                             Helper.PlayPitched("MultiLine", 0.6f, 0, Projectile.Center);
                         Timer++;
                         if (Timer >= ReadyTime)
@@ -274,7 +273,7 @@ namespace TheTwinsRework.Projectiles
 
         public Color ThunderColorFuncBack(float factor)
         {
-            return new Color(125,15,45);
+            return new Color(125, 15, 45);
         }
 
         public float GetAlpha(float factor)

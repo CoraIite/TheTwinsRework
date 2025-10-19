@@ -13,7 +13,7 @@ namespace TheTwinsRework.Projectiles
     /// </summary>
     public class FireBreath : ModProjectile
     {
-        public override string Texture => AssetDirectory.Assets+"Blank";
+        public override string Texture => AssetDirectory.Assets + "Blank";
 
         public ref float CircleIndex => ref Projectile.ai[0];
         public ref float ShootTime => ref Projectile.ai[1];
@@ -38,7 +38,7 @@ namespace TheTwinsRework.Projectiles
 
         public override bool? CanDamage()
         {
-            if (Timer>ShootTime)
+            if (Timer > ShootTime)
             {
                 return false;
             }

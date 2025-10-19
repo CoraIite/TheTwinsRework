@@ -1,6 +1,5 @@
 ﻿using Coralite.Helpers;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TheTwinsRework.NPCs.TheTwins;

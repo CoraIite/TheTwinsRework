@@ -64,14 +64,14 @@ namespace TheTwinsRework.Dusts
 
             c = Color.White;
             c.A = 0;
-            c *= dust.color.A / 255f*1.5f;
+            c *= dust.color.A / 255f * 1.5f;
 
             Main.spriteBatch.Draw(exTex, pos
                 , null, c, dust.rotation, origin, scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(exTex, pos
-                , null, c, dust.rotation*MathHelper.TwoPi/3, origin, scale * 0.5f, SpriteEffects.None, 0f);
+                , null, c, dust.rotation * MathHelper.TwoPi / 3, origin, scale * 0.5f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(exTex, pos
-                , null, c, dust.rotation * MathHelper.TwoPi / 3*2, origin, scale * 0.75f, SpriteEffects.None, 0f);
+                , null, c, dust.rotation * MathHelper.TwoPi / 3 * 2, origin, scale * 0.75f, SpriteEffects.None, 0f);
 
             return false;
         }

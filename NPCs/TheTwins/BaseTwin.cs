@@ -213,8 +213,8 @@ namespace TheTwinsRework.NPCs.TheTwins
             {
                 if (Main.rand.NextBool(4))
                 {
-                    Dust d = Dust.NewDustPerfect(NPC.Center + Helper.NextVec2Dir(1, NPC.width / 2+15), DustID.Blood
-                         , Helper.NextVec2Dir(0.5f, 1.5f),Scale:Main.rand.NextFloat(1,2f));
+                    Dust d = Dust.NewDustPerfect(NPC.Center + Helper.NextVec2Dir(1, NPC.width / 2 + 15), DustID.Blood
+                         , Helper.NextVec2Dir(0.5f, 1.5f), Scale: Main.rand.NextFloat(1, 2f));
                     d.noGravity = true;
                 }
             }
@@ -438,13 +438,13 @@ namespace TheTwinsRework.NPCs.TheTwins
             NPC.dontTakeDamage = true;
             Timer++;
 
-            if (Timer < maxTime -10)
+            if (Timer < maxTime - 10)
             {
                 Main.audioSystem.PauseAll();
                 for (int i = 0; i < Main.musicFade.Length; i++)
                     Main.musicFade[i] = 0;
             }
-            else if (Timer == maxTime-10)
+            else if (Timer == maxTime - 10)
             {
                 Main.musicFade[Main.curMusic] = 1;
             }
@@ -522,7 +522,7 @@ namespace TheTwinsRework.NPCs.TheTwins
 
             if (Timer == maxTime * 3 / 5 + 30)
             {
-                SoundEngine.PlaySound(CoraliteSoundID.ForceRoar with { Pitch=0.5f}, NPC.Center);
+                SoundEngine.PlaySound(CoraliteSoundID.ForceRoar with { Pitch = 0.5f }, NPC.Center);
 
                 return;
             }
@@ -581,7 +581,7 @@ namespace TheTwinsRework.NPCs.TheTwins
 
             else if (Timer < maxTime - 40)
             {
-                if (Main.netMode!=NetmodeID.MultiplayerClient&&NPC.life < NPC.lifeMax / 3 && Timer % 20 == 0)
+                if (Main.netMode != NetmodeID.MultiplayerClient && NPC.life < NPC.lifeMax / 3 && Timer % 20 == 0)
                 {
                     NPC.life += NPC.lifeMax / (4 * 7);
                     NPC.netUpdate = true;
@@ -693,7 +693,7 @@ namespace TheTwinsRework.NPCs.TheTwins
 
         #endregion
 
-        public void DashAttack(NPC controller, int attackTime, float speed, float pitch, float exRot = 0,bool playRoar=false)
+        public void DashAttack(NPC controller, int attackTime, float speed, float pitch, float exRot = 0, bool playRoar = false)
         {
             if (Timer == 0)
             {
@@ -704,7 +704,7 @@ namespace TheTwinsRework.NPCs.TheTwins
                 {
                     HaloSound();
 
-                    Particle d = Particle.NewParticleDirect(NPC.Center, Vector2.Zero,Contents.ParticleType<AimLine>()
+                    Particle d = Particle.NewParticleDirect(NPC.Center, Vector2.Zero, Contents.ParticleType<AimLine>()
                         , Color.White, 1);
                     d.data = new AimLine.IncomeData()
                     {
@@ -860,7 +860,7 @@ namespace TheTwinsRework.NPCs.TheTwins
                     if (NPC.whoAmI < OtherEyeIndex)
                     {
                         Particle p = Particle.NewParticleDirect(controller.Center, Vector2.Zero
-                            , Contents.ParticleType<Circle>(),Color.White,0.1f);
+                            , Contents.ParticleType<Circle>(), Color.White, 0.1f);
                         p.data = attackTime / 6;
                         SPRecorder = Main.rand.Next(8) * MathHelper.PiOver4;
                         if (OtherEyeIndex.GetNPCOwner(out NPC other))
@@ -1057,7 +1057,7 @@ namespace TheTwinsRework.NPCs.TheTwins
                 factor /= attackTime / 4 * 9;
                 factor = Helper.X2Ease(factor);
 
-                float rot = SPRecorder + Recorder3 + factor * (MathHelper.TwoPi + MathHelper.PiOver4/2);
+                float rot = SPRecorder + Recorder3 + factor * (MathHelper.TwoPi + MathHelper.PiOver4 / 2);
                 Vector2 targetPos = controller.Center + rot.ToRotationVector2() * 75;
 
                 NPC.Center = Vector2.SmoothStep(NPC.Center, targetPos, 0.2f + factor * 0.8f);
@@ -1212,7 +1212,7 @@ namespace TheTwinsRework.NPCs.TheTwins
             }
         }
 
-        public virtual void CombineP3_RotStart(NPC controller,int rotTime) { }
+        public virtual void CombineP3_RotStart(NPC controller, int rotTime) { }
         public virtual void CombineP3_Roting(NPC controller) { }
 
         public void CombinwP3_Lines(NPC controller, bool setCombineSet)
@@ -1274,7 +1274,7 @@ namespace TheTwinsRework.NPCs.TheTwins
             }
         }
 
-        public virtual void CombineP3Attack(NPC controller,int readyTime)
+        public virtual void CombineP3Attack(NPC controller, int readyTime)
         {
 
         }
@@ -1350,7 +1350,7 @@ namespace TheTwinsRework.NPCs.TheTwins
                 factor /= attackTime / 4 * 7;
                 factor = Helper.SqrtEase(factor);
 
-                float rot = SPRecorder + Recorder3 + factor * MathHelper.TwoPi*2;
+                float rot = SPRecorder + Recorder3 + factor * MathHelper.TwoPi * 2;
                 Vector2 targetPos = controller.Center + rot.ToRotationVector2() * 75;
 
                 NPC.Center = Vector2.SmoothStep(NPC.Center, targetPos, 0.1f + factor * 0.9f);
@@ -1392,7 +1392,7 @@ namespace TheTwinsRework.NPCs.TheTwins
         {
             Timer++;
             NPC.velocity = Vector2.Zero;
-            if (Timer>=time)
+            if (Timer >= time)
             {
                 WaitState = 0;
                 ExchangeState();
@@ -1402,7 +1402,7 @@ namespace TheTwinsRework.NPCs.TheTwins
 
         public virtual void CombineP2Attack() { }
 
-        public void ShineLine(int attackTime, Color color, int owner, float? rot=null,int? circleIndex=null)
+        public void ShineLine(int attackTime, Color color, int owner, float? rot = null, int? circleIndex = null)
         {
             if (Main.netMode != NetmodeID.Server)
             {
@@ -1411,7 +1411,7 @@ namespace TheTwinsRework.NPCs.TheTwins
                 d.data = new AimLine.IncomeData()
                 {
                     index = owner,
-                    circleIndex=circleIndex,
+                    circleIndex = circleIndex,
                     maxTime = attackTime,
                     rot = rot
                 };
@@ -1504,7 +1504,7 @@ namespace TheTwinsRework.NPCs.TheTwins
             else
             {
                 int value = Main.rand.Next(1, 5);
-                Helper.PlayPitched("HaloP2_"+value.ToString(), 1f, 0, NPC.Center);
+                Helper.PlayPitched("HaloP2_" + value.ToString(), 1f, 0, NPC.Center);
             }
         }
 
@@ -1567,7 +1567,7 @@ namespace TheTwinsRework.NPCs.TheTwins
             }
         }
 
-        public void HitEffects(Vector2 pos,float dir)
+        public void HitEffects(Vector2 pos, float dir)
         {
             switch (Phase)
             {
@@ -1598,9 +1598,9 @@ namespace TheTwinsRework.NPCs.TheTwins
                         if (Main.rand.NextBool(4))
                             dir2 += MathHelper.Pi;
 
-                       Dust.NewDustPerfect(pos, DustID.SilverCoin
-                            , (dir2 + Main.rand.NextFloat(-0.2f, 0.2f)).ToRotationVector2() * Main.rand.NextFloat(3, 8)
-                          , Scale: Main.rand.NextFloat(1f, 1.5f));
+                        Dust.NewDustPerfect(pos, DustID.SilverCoin
+                             , (dir2 + Main.rand.NextFloat(-0.2f, 0.2f)).ToRotationVector2() * Main.rand.NextFloat(3, 8)
+                           , Scale: Main.rand.NextFloat(1f, 1.5f));
                     }
                     SoundEngine.PlaySound(CoraliteSoundID.Metal_NPCHit4, NPC.Center);
                     break;
@@ -1669,7 +1669,7 @@ namespace TheTwinsRework.NPCs.TheTwins
 
             spriteBatch.Draw(tex, pos, frame, drawColor, rot, frame.Size() / 2, NPC.scale, 0, 0);
 
-            Effect shader = ShaderLoader.GetShader( "Highlight");
+            Effect shader = ShaderLoader.GetShader("Highlight");
 
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointWrap,
@@ -1714,7 +1714,7 @@ namespace TheTwinsRework.NPCs.TheTwins
 
                 recordUV += (Center - recordPos).Length() / lineTex.Width;
 
-                bars.Add(new(Top-screenPos, Color, new Vector3(0, recordUV, 1)));
+                bars.Add(new(Top - screenPos, Color, new Vector3(0, recordUV, 1)));
                 bars.Add(new(Bottom - screenPos, Color, new Vector3(1, recordUV, 1)));
 
                 recordPos = Center;

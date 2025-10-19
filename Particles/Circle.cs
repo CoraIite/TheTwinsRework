@@ -49,10 +49,10 @@ namespace TheTwinsRework.Particles
             float rot = (int)Main.timeForVisualEffects * 0.05f;
 
             Texture2D.Value.QuickCenteredDraw(spriteBatch, particle.center - Main.screenPosition
-                , particle.color*0.75f, rot, particle.scale);
+                , particle.color * 0.75f, rot, particle.scale);
 
             Texture2D.Value.QuickCenteredDraw(spriteBatch, particle.center - Main.screenPosition
-                , particle.color with { A = 0 }*0.2f, -rot, particle.scale);
+                , particle.color with { A = 0 } * 0.2f, -rot, particle.scale);
 
             if (particle.data is int time)
             {

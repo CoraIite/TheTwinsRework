@@ -24,7 +24,7 @@ namespace TheTwinsRework.Projectiles
             if (!CircleIndex.GetNPCOwner<CircleLimit>(out NPC owner, Projectile.Kill))
                 return;
 
-            if (Vector2.Distance(Projectile.Center, owner.Center) > CircleLimit.MaxLength+100)
+            if (Vector2.Distance(Projectile.Center, owner.Center) > CircleLimit.MaxLength + 100)
                 Projectile.Kill();
 
             Projectile.rotation += 0.2f;

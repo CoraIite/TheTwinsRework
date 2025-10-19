@@ -59,7 +59,7 @@ namespace TheTwinsRework.Items
         public override void Update(Player player, ref int buffIndex)
         {
             player.GetDamage(DamageClass.Generic) += 0.25f;
-            if (player.buffTime[buffIndex] % (60 + 36) == 0&&Main.myPlayer==player.whoAmI)
+            if (player.buffTime[buffIndex] % (60 + 36) == 0 && Main.myPlayer == player.whoAmI)
             {
                 Helper.PlayPitched("hornet_beast_mode_loop", 1f, 0);
             }

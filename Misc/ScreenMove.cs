@@ -42,7 +42,7 @@ namespace TheTwinsRework.Misc
             else
             {
                 FadeTime++;
-                cameraPosition.CameraPosition = Vector2.Lerp(oldPos, Main.LocalPlayer.Center - Main.ScreenSize.ToVector2() / 2, FadeTime/60f);
+                cameraPosition.CameraPosition = Vector2.Lerp(oldPos, Main.LocalPlayer.Center - Main.ScreenSize.ToVector2() / 2, FadeTime / 60f);
                 if (FadeTime > 60)
                     over = true;
             }

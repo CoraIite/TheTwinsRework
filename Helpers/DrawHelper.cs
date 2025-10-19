@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace Coralite.Helpers
 {
@@ -16,7 +13,7 @@ namespace Coralite.Helpers
         /// <param name="selfColor"></param>
         /// <param name="rotation"></param>
         /// <param name="scale"></param>
-        public static void QuickCenteredDraw(this Texture2D tex, SpriteBatch spriteBatch, Vector2 pos, Color? selfColor = null, float rotation = 0, float scale = 1,SpriteEffects effect=SpriteEffects.None)
+        public static void QuickCenteredDraw(this Texture2D tex, SpriteBatch spriteBatch, Vector2 pos, Color? selfColor = null, float rotation = 0, float scale = 1, SpriteEffects effect = SpriteEffects.None)
         {
             spriteBatch.Draw(tex, pos, null, selfColor ?? Color.White, rotation, tex.Size() / 2, scale, effect, 0);
         }

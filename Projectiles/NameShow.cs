@@ -5,9 +5,9 @@ using TheTwinsRework.NPCs.TheTwins;
 
 namespace TheTwinsRework.Projectiles
 {
-    public class NameShow:ModProjectile
+    public class NameShow : ModProjectile
     {
-        public override string Texture => AssetDirectory.Assets+"Blank";
+        public override string Texture => AssetDirectory.Assets + "Blank";
 
         public ref float CircleIndex => ref Projectile.ai[0];
         public ref float Alpha => ref Projectile.localAI[0];

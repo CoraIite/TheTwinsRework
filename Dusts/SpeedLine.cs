@@ -32,7 +32,7 @@ namespace TheTwinsRework.Dusts
             var pos = dust.position - Main.screenPosition;
             Color c = dust.color * 0.5f;
             Main.spriteBatch.Draw(mainTex, pos, null, dust.color, dust.rotation, origin, dust.scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(mainTex, pos, null, c, dust.rotation, origin, dust.scale*0.5f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(mainTex, pos, null, c, dust.rotation, origin, dust.scale * 0.5f, SpriteEffects.None, 0f);
 
             return false;
         }

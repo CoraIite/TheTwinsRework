@@ -100,26 +100,26 @@ namespace TheTwinsRework.NPCs.IchorEyes
                         //{
                         //    CircleLength = MaxLength;
 
-                            //生成眼球
-                            //int y = (int)NPC.Center.Y - 250;
-                            //Eye1Index = NPC.NewNPC(NPC.GetSource_FromThis()
-                            //     , (int)(NPC.Center.X - 1200), y, ModContent.NPCType<FireEye>(), ai1: NPC.whoAmI, ai3: -MathHelper.PiOver4);
-                            //Eye2Index = NPC.NewNPC(NPC.GetSource_FromThis()
-                            //     , (int)(NPC.Center.X + 1200), y, ModContent.NPCType<LaserEye>(), ai1: NPC.whoAmI, ai3: MathHelper.Pi + MathHelper.PiOver4);
+                        //生成眼球
+                        //int y = (int)NPC.Center.Y - 250;
+                        //Eye1Index = NPC.NewNPC(NPC.GetSource_FromThis()
+                        //     , (int)(NPC.Center.X - 1200), y, ModContent.NPCType<FireEye>(), ai1: NPC.whoAmI, ai3: -MathHelper.PiOver4);
+                        //Eye2Index = NPC.NewNPC(NPC.GetSource_FromThis()
+                        //     , (int)(NPC.Center.X + 1200), y, ModContent.NPCType<LaserEye>(), ai1: NPC.whoAmI, ai3: MathHelper.Pi + MathHelper.PiOver4);
 
-                            //Main.npc[(int)Eye1Index].ai[0] = Eye2Index;
-                            //Main.npc[(int)Eye2Index].ai[0] = Eye1Index;
+                        //Main.npc[(int)Eye1Index].ai[0] = Eye2Index;
+                        //Main.npc[(int)Eye2Index].ai[0] = Eye1Index;
 
-                            //State = 1;
+                        //State = 1;
 
-                            ////生成镜头移动
-                            //if (Main.netMode != NetmodeID.Server)
-                            //{
-                            //    ScreenMove move = new ScreenMove();
-                            //    move.MainIndex = NPC.whoAmI;
+                        ////生成镜头移动
+                        //if (Main.netMode != NetmodeID.Server)
+                        //{
+                        //    ScreenMove move = new ScreenMove();
+                        //    move.MainIndex = NPC.whoAmI;
 
-                            //    Main.instance.CameraModifiers.Add(move);
-                            //}
+                        //    Main.instance.CameraModifiers.Add(move);
+                        //}
                         //}
                     }
                     break;

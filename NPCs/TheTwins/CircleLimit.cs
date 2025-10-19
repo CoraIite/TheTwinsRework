@@ -130,7 +130,7 @@ namespace TheTwinsRework.NPCs.TheTwins
                             //生成眼球
                             int y = (int)NPC.Center.Y - 250;
                             Eye1Index = NPC.NewNPC(NPC.GetSource_FromThis()
-                                 , (int)(NPC.Center.X - 1200), y, ModContent.NPCType<FireEye>(), ai1: NPC.whoAmI,ai3: -MathHelper.PiOver4);
+                                 , (int)(NPC.Center.X - 1200), y, ModContent.NPCType<FireEye>(), ai1: NPC.whoAmI, ai3: -MathHelper.PiOver4);
                             Eye2Index = NPC.NewNPC(NPC.GetSource_FromThis()
                                  , (int)(NPC.Center.X + 1200), y, ModContent.NPCType<LaserEye>(), ai1: NPC.whoAmI, ai3: MathHelper.Pi + MathHelper.PiOver4);
 
@@ -232,7 +232,7 @@ namespace TheTwinsRework.NPCs.TheTwins
                 Timer = 0;
                 NPC.TargetClosest();
                 if (Vector2.Distance(Target.Center, NPC.Center) > MaxLength + 10)
-                    Target.Hurt(PlayerDeathReason.ByNPC(NPC.whoAmI), 175, 0,dodgeable:false,armorPenetration:100);
+                    Target.Hurt(PlayerDeathReason.ByNPC(NPC.whoAmI), 175, 0, dodgeable: false, armorPenetration: 100);
             }
         }
 
@@ -374,7 +374,7 @@ namespace TheTwinsRework.NPCs.TheTwins
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            DrawBack(NPC.Center-Main.screenPosition, Color.Red, Color.Red * 0.25f);
+            DrawBack(NPC.Center - Main.screenPosition, Color.Red, Color.Red * 0.25f);
             //Texture2D tex = NPC.GetTexture();
 
             //spriteBatch.Draw(tex, NPC.Center - screenPos, null, Color.Red * (CircleLength / MaxLength)*0.75f

@@ -1,14 +1,13 @@
-global using Terraria;
 global using Microsoft.Xna.Framework;
-
-using Terraria.ModLoader;
+global using Terraria;
 using Terraria.Localization;
+using Terraria.ModLoader;
 using TheTwinsRework.Compat.BossCheckList;
 
 namespace TheTwinsRework
 {
-	public class TheTwinsRework : Mod
-	{
+    public class TheTwinsRework : Mod
+    {
         public const int maxParticle = 500;
 
         private static TheTwinsRework _instance;
