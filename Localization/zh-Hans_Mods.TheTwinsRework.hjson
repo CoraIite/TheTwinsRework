@@ -14,8 +14,8 @@ Items: {
 	}
 
 	Beastfly: {
-		// DisplayName: Beastfly
-		// Tooltip: ""
+		DisplayName: 野性的呼唤
+		Tooltip: 没做完，所以即使使用也没有效果！
 	}
 }
 
@@ -40,6 +40,7 @@ Projectiles: {
 	SoundControl.DisplayName: 消音器
 	NameShow.DisplayName: 双子魔眼名字
 	// SpikeBallProj.DisplayName: Spike Ball Proj
+	// Hive.DisplayName: Hive
 }
 
 TheTwinsName: 双 子 魔 眼

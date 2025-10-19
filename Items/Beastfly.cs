@@ -32,6 +32,7 @@ namespace TheTwinsRework.Items
 
         public override bool CanUseItem(Player player)
         {
+            return false;
             return !NPC.AnyNPCs(ModContent.NPCType<BeastlyQueenBee>());
         }
 
@@ -73,9 +74,9 @@ namespace TheTwinsRework.Items
 
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient(ItemID.Wood, 15)
-                .Register();
+            //CreateRecipe()
+            //    .AddIngredient(ItemID.Wood, 15)
+            //    .Register();
         }
     }
 }

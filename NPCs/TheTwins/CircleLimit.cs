@@ -46,7 +46,7 @@ namespace TheTwinsRework.NPCs.TheTwins
         public override void SetDefaults()
         {
             NPC.boss = true;
-            NPC.lifeMax = 100;
+            NPC.lifeMax = 100000;
             NPC.width = NPC.height = 16;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
@@ -95,6 +95,20 @@ namespace TheTwinsRework.NPCs.TheTwins
             => false;
         public override bool? CanBeHitByProjectile(Projectile projectile)
             => false;
+        public override bool CanBeHitByNPC(NPC attacker)
+            => false;
+
+        public override void ModifyHitByProjectile(Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            modifiers.ModifyHitInfo += Modifiers_ModifyHitInfo;
+        }
+
+        private void Modifiers_ModifyHitInfo(ref NPC.HitInfo info)
+        {
+            info.HideCombatText = true;
+            info.Damage = 1;
+            NPC.life += 1;
+        }
 
         public override void AI()
         {

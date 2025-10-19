@@ -1,4 +1,5 @@
 ﻿using Coralite.Helpers;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 using TheTwinsRework.NPCs.QueenBee;
 
@@ -9,6 +10,27 @@ namespace TheTwinsRework.GlobalNPCs
         public override bool InstancePerEntity => true;
 
         public int RectLimitIndex = -1;
+
+        public override void Load()
+        {
+            On_ItemDropResolver.TryDropping += On_ItemDropResolver_TryDropping;
+        }
+
+        private void On_ItemDropResolver_TryDropping(On_ItemDropResolver.orig_TryDropping orig, ItemDropResolver self, DropAttemptInfo info)
+        {
+            if (info.npc != null && info.npc.TryGetGlobalNPC(out SavageNPC snpc) && snpc.RectLimitIndex != -1)
+            {
+                snpc.RectLimitIndex = -1;
+                return;
+            }
+
+            orig.Invoke(self, info);
+        }
+
+        public override void Unload()
+        {
+            On_ItemDropResolver.TryDropping -= On_ItemDropResolver_TryDropping;
+        }
 
         public override void PostAI(NPC npc)
         {

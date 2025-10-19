@@ -5,9 +5,11 @@ using System;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 using TheTwinsRework.Configs;
 using TheTwinsRework.Core.Loader;
 using TheTwinsRework.Core.System_Particle;
+using TheTwinsRework.GlobalNPCs;
 using TheTwinsRework.Misc;
 using TheTwinsRework.Particles;
 using TheTwinsRework.Projectiles;
@@ -42,6 +44,8 @@ namespace TheTwinsRework.NPCs.QueenBee
         public ref float Recorder3 => ref NPC.localAI[2];
         private Player Target => Main.player[NPC.target];
 
+        public WeightedRandom<AIStates> wr = new WeightedRandom<AIStates>();
+
         #region tml Hooks
 
         public override void SetDefaults()
@@ -52,6 +56,7 @@ namespace TheTwinsRework.NPCs.QueenBee
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.knockBackResist = 0;
+            NPC.damage = 95;
             //NPC.hide = true;
 
             if (!VisualConfigSystem.ShowBossBar)
@@ -60,6 +65,16 @@ namespace TheTwinsRework.NPCs.QueenBee
             }
 
             Music = MusicID.Boss1;
+        }
+
+        public override void SetStaticDefaults()
+        {
+            NPCID.Sets.HurtingBees[Type] = true;
+        }
+
+        public override bool CanBeHitByNPC(NPC attacker)
+        {
+            return false;
         }
 
         #endregion
@@ -115,6 +130,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                 case AIStates.ShootSpikes:
                     break;
                 case AIStates.SummonMinions:
+                    Summon(controller);
                     break;
                 case AIStates.Dash:
                     Dash(controller);
@@ -246,12 +262,12 @@ namespace TheTwinsRework.NPCs.QueenBee
                     //i = 1;
                     Helper.Movement_SimpleOneLine(ref NPC.velocity.X, MathF.Sign(controller.Center.X - NPC.Center.X), speed, a, a * 2, 0.97f);
                 }
-                else if (dis.X > RectangleLimit.LimitWidth / 2)
+                else if (dis.X > 80)
                 {
                     //i = 2;
                     Helper.Movement_SimpleOneLine(ref NPC.velocity.X, NPC.direction, speed, a, a * 2, 0.97f);
                 }
-                else if (dis.X < 100)
+                else if (dis.X < 60)
                     Helper.Movement_SimpleOneLine(ref NPC.velocity.X, -NPC.direction, speed, a, a * 2, 0.97f);
                 else
                     NPC.velocity.X *= 0.95f;
@@ -265,6 +281,8 @@ namespace TheTwinsRework.NPCs.QueenBee
                 else
                     NPC.velocity.Y *= 0.96f;
 
+                LimitPos(controller);
+
                 return;
             }
 
@@ -272,9 +290,9 @@ namespace TheTwinsRework.NPCs.QueenBee
             {
                 NPC.velocity *= 0.2f;
                 float p = 0.5f;
-                if (AngerNum>1f)
+                if (AngerNum > 1f)
                     p = 0.75f;
-                Recorder2 = Helper.Lerp(Recorder2, Target.Center.Y-controller.Center.Y, p);
+                Recorder2 = Helper.Lerp(Recorder2, Target.Center.Y - controller.Center.Y, p);
             }
 
             //向后拉，准备冲
@@ -285,25 +303,27 @@ namespace TheTwinsRework.NPCs.QueenBee
                 NPC.spriteDirection = NPC.direction;
 
                 if (MathF.Abs(NPC.Center.X - controller.Center.X) < RectangleLimit.LimitWidth / 2 - NPC.width / 2 - 60
-                    && dis.X > 120)
+                    && dis.X > 40)
                     Helper.Movement_SimpleOneLine(ref NPC.velocity.X, -NPC.direction
-                        , 4.5f + AngerNum * 2f, 0.3f + AngerNum * 0.2f, 0.5f + AngerNum * 0.3f, 0.97f);
+                        , 6.5f + AngerNum * 2f, 0.5f + AngerNum * 0.3f, 0.5f + AngerNum * 0.3f, 0.97f);
                 else
                     NPC.velocity.X *= 0.9f;
 
                 //控制Y方向的移动
                 if (dis.Y > 40)
                     Helper.Movement_SimpleOneLine(ref NPC.velocity.Y, NPC.directionY
-                        , 6.5f + AngerNum * 2f, 0.3f + AngerNum * 0.2f, 0.5f + AngerNum * 0.3f, 0.97f);
+                        , 6.5f + AngerNum * 2f, 0.5f + AngerNum * 0.3f, 0.5f + AngerNum * 0.3f, 0.97f);
                 else
-                    NPC.velocity.Y *= 0.96f;
+                    NPC.velocity.Y *= 0.9f;
+
+                LimitPosY(controller);
 
                 return;
             }
 
             if (Timer == beforeDashTime + makeBackTime)//开始冲刺
             {
-                SetDirection(new Vector2(controller.Center.X, controller.Center.Y + Recorder2), out _);
+                SetDirection(new Vector2(Target.Center.X, controller.Center.Y + Recorder2), out _);
                 NPC.spriteDirection = NPC.direction;
 
                 Helper.PlayPitched("beastfly_horiz_dash_attack", 1, 0, NPC.Center);
@@ -318,6 +338,7 @@ namespace TheTwinsRework.NPCs.QueenBee
             {
                 Helper.Movement_SimpleOneLine(ref NPC.velocity.X, NPC.direction
                     , 16.5f * AngerNum, 0.8f * AngerNum, 1.2f * AngerNum, 0.97f);
+                LimitPosY(controller);
 
                 //撞墙
                 Vector2 tempPos = NPC.Center + NPC.velocity;
@@ -328,7 +349,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                 {
                     if (tempPos.X + NPC.width / 2 > controller.Center.X + RectangleLimit.LimitWidth / 2)
                     {
-                        Particle.NewParticle<Slam>(NPC.Right+new Vector2(-30,30), new Vector2(-1, 0),Scale: 0.6f);
+                        Particle.NewParticle<Slam>(NPC.Right + new Vector2(-30, 30), new Vector2(-1, 0), Scale: 0.6f);
                         (controller.ModNPC as RectangleLimit).CollideRight(NPC.Center.Y, MathF.Abs(NPC.velocity.X));
                         collide = true;
                     }
@@ -354,19 +375,25 @@ namespace TheTwinsRework.NPCs.QueenBee
                     Recorder3 = 25;
 
                     NPC.NewProjectileInAI<SpikeBallProj>(
-                        new Vector2(Math.Clamp(Target.Center.X, controller.Center.X - RectangleLimit.LimitWidth / 2 + 20, controller.Center.X + RectangleLimit.LimitWidth / 2 - 20),controller.Center.Y-RectangleLimit.LimitHeight/2-24)
+                        new Vector2(Math.Clamp(Target.Center.X, controller.Center.X - RectangleLimit.LimitWidth / 2 + 20, controller.Center.X + RectangleLimit.LimitWidth / 2 - 20), controller.Center.Y - RectangleLimit.LimitHeight / 2 - 24)
                         , Vector2.Zero, Helper.GetProjDamage(80, 90, 120), 0, ai0: RectLimitIndex, ai2: Main.rand.Next(10));
 
                     if (AngerNum > 1)
-                        for (int i = 0; i < 2; i++)
+                    {
+                        int count = 2;
+                        if (AngerNum > 1.5f)
+                            count = 3;
+                        for (int i = 0; i < count; i++)
                             NPC.NewProjectileInAI<SpikeBallProj>(
                                 new Vector2(controller.Center.X + Main.rand.NextFloat(-RectangleLimit.LimitWidth / 2 + 20, RectangleLimit.LimitWidth / 2 - 20), controller.Center.Y - RectangleLimit.LimitHeight / 2 - 24)
                                 , Vector2.Zero, Helper.GetProjDamage(80, 90, 120), 0, ai0: RectLimitIndex, ai2: Main.rand.Next(10));
+                    }
                     return;
                 }
 
-                if (MathF.Sign(Target.Center.X - NPC.Center.X) * NPC.direction < 0
-                    && MathF.Abs(Target.Center.X - NPC.Center.X) > 265)
+                float xReverse = 265 / AngerNum;
+                if (Recorder > 1 && MathF.Sign(Target.Center.X - NPC.Center.X) * NPC.direction < 0
+                    && MathF.Abs(Target.Center.X - NPC.Center.X) > xReverse)
                 {
                     NPC.velocity *= 0.3f;
                     Timer = beforeDashTime + makeBackTime + dashTime + 10;
@@ -388,15 +415,17 @@ namespace TheTwinsRework.NPCs.QueenBee
                 NPC.velocity *= 0.95f;
                 if (Recorder3 == 0)
                 {
-                    float factor = (Timer - beforeDashTime + makeBackTime + dashTime + 10) / 20;
+                    float factor = (Timer - beforeDashTime - makeBackTime - dashTime - 10) / 20;
                     NPC.rotation = Helper.SinEase(factor) * -NPC.spriteDirection * 0.5f;
                 }
+
+                LimitPos(controller);
                 return;
             }
 
             Recorder--;
             Timer = 0;
-            if (Recorder <1)
+            if (Recorder < 1)
             {
                 ExchangeState();
             }
@@ -428,7 +457,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                 float a = 0.1f + 0.1f * AngerNum;
 
                 //int i = 0;
-                if (dis.X > RectangleLimit.LimitWidth / 2)
+                if (dis.X > 80)
                 {
                     //i = 2;
                     Helper.Movement_SimpleOneLine(ref NPC.velocity.X, NPC.direction, speed, a, a * 2, 0.97f);
@@ -454,6 +483,8 @@ namespace TheTwinsRework.NPCs.QueenBee
                 if (distance < 300)
                     Timer++;
 
+                LimitPos(controller);
+
                 Timer++;
 
                 if (Timer > beforeDashTime)
@@ -471,7 +502,7 @@ namespace TheTwinsRework.NPCs.QueenBee
             int rollingTime = (int)(35 / AngerNum);
             if (Timer < beforeDashTime + rollingTime)
             {
-                NPC.rotation = NPC.spriteDirection * (MathHelper.TwoPi+MathHelper.PiOver2)
+                NPC.rotation = NPC.spriteDirection * (MathHelper.TwoPi + MathHelper.PiOver2)
                     * (Timer - beforeDashTime) / rollingTime;
 
                 float targetY = controller.Center.Y - RectangleLimit.LimitHeight / 2 - 200;
@@ -480,13 +511,13 @@ namespace TheTwinsRework.NPCs.QueenBee
                 float speed = 4 + AngerNum * 2f;
                 float a = 0.1f + 0.1f * AngerNum;
 
-                if (dis.X > 50)
+                if (dis.X > 60)
                     Helper.Movement_SimpleOneLine(ref NPC.velocity.X, NPC.direction, speed, a, a * 2, 0.97f);
                 else
                     NPC.velocity.X *= 0.93f;
 
-                speed = 6 + AngerNum * 6f;
-                a = 0.8f + 0.8f * AngerNum;
+                speed = 6 + AngerNum * 3f;
+                a = 0.6f + 0.6f * AngerNum;
 
                 //控制Y方向的移动
                 if (NPC.Center.Y > targetY)
@@ -494,6 +525,8 @@ namespace TheTwinsRework.NPCs.QueenBee
                         , speed / 2, a / 2, a, 0.97f);
                 else
                     NPC.velocity.Y *= 0.8f;
+
+                LimitPos(controller);
 
                 return;
             }
@@ -503,16 +536,18 @@ namespace TheTwinsRework.NPCs.QueenBee
             if (Timer < beforeDashTime + rollingTime + Pre)
             {
                 IsDashing = true;
-                float speed = 6 + AngerNum * 6f;
-                float a = 0.8f + 0.8f * AngerNum;
+                float speed = 12 + AngerNum * 12f;
+                float a = 1.4f + 1.4f * AngerNum;
 
                 NPC.velocity.X *= 0.95f;
 
-                if (NPC.Center.Y > controller.Center.Y - RectangleLimit.LimitHeight / 2 - 120)
+                if (NPC.Top.Y > controller.Center.Y - RectangleLimit.LimitHeight / 2 - 30)
                     Helper.Movement_SimpleOneLine(ref NPC.velocity.Y, NPC.directionY
                         , speed / 2, a / 2, a, 0.97f);
                 else
                     NPC.velocity.Y *= 0.8f;
+
+                LimitPos(controller);
 
                 return;
             }
@@ -529,6 +564,18 @@ namespace TheTwinsRework.NPCs.QueenBee
             const int SmashDownTime = 60;
             if (Timer < beforeDashTime + rollingTime + Pre + SmashDownTime)
             {
+                Rectangle r = NPC.getRect();
+                r.X -= 40;
+                r.Width += 80;
+                r.Y -= 20;
+                r.Height += 40;
+                foreach (var npc in Main.ActiveNPCs)
+                {
+                    if (!npc.friendly && r.Intersects(npc.getRect())
+                        && npc.TryGetGlobalNPC(out SavageNPC snpc) && snpc.RectLimitIndex == RectLimitIndex)
+                        npc.SimpleStrikeNPC(npc.lifeMax * 2, 0, true, 0, damageVariation: false);
+                }
+
                 Vector2 tempPos = NPC.Center + NPC.velocity;
 
                 if (tempPos.Y + NPC.height / 2 > controller.Center.Y + RectangleLimit.LimitHeight / 2)
@@ -552,6 +599,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                     Particle.NewParticle<Slam>(NPC.Bottom, new Vector2(0, -1), Scale: 0.6f);
                 }
 
+                LimitPosX(controller);
                 return;
             }
 
@@ -580,6 +628,65 @@ namespace TheTwinsRework.NPCs.QueenBee
             ExchangeState();
         }
 
+        /// <summary>
+        /// 召唤
+        /// </summary>
+        /// <param name="controller"></param>
+        public void Summon(NPC controller)
+        {
+            LimitPos(controller);
+
+            Timer++;
+
+            if (Timer < 35)
+            {
+                SetDirection(Target.Center, out _);
+                NPC.spriteDirection = NPC.direction;
+                NPC.rotation += 0.01f;
+
+                NPC.velocity *= 0.95f;
+                return;
+            }
+
+            if (Timer == 35)//生成蜂巢
+            {
+                NPC.rotation = 0;
+
+                NPC.NewProjectileInAI<Hive>(
+                    new Vector2(Math.Clamp(Target.Center.X, controller.Center.X - RectangleLimit.LimitWidth / 2 + 20, controller.Center.X + RectangleLimit.LimitWidth / 2 - 20), controller.Center.Y - RectangleLimit.LimitHeight / 2 - 24)
+                    , Vector2.Zero, Helper.GetProjDamage(80, 90, 120), 0, ai0: RectLimitIndex, ai1: GetSpawnNPCType(), ai2: Main.rand.Next(10));
+
+                if (AngerNum > 1.5f)
+                {
+                    NPC.NewProjectileInAI<Hive>(
+                        new Vector2(Math.Clamp(controller.Center.X + Main.rand.NextFloat(-RectangleLimit.LimitWidth / 2 + 20, RectangleLimit.LimitWidth / 2 - 20), controller.Center.X - RectangleLimit.LimitWidth / 2 + 20, controller.Center.X + RectangleLimit.LimitWidth / 2 - 20), controller.Center.Y - RectangleLimit.LimitHeight / 2 - 24)
+                        , Vector2.Zero, Helper.GetProjDamage(80, 90, 120), 0, ai0: RectLimitIndex, ai1: GetSpawnNPCType(), ai2: Main.rand.Next(10));
+                }
+
+                Dust.NewDustPerfect(NPC.Center, ModContent.DustType<RoaringWave>()
+                    , Vector2.Zero, 0, Color.White * 0.8f, 0.4f);
+
+                Helper.PlayPitched("beastfly_scream_short", 0.8f, 1, NPC.Center);
+
+                return;
+            }
+
+            if (Timer < 35 + 45)
+            {
+                NPC.rotation += MathF.Sin(Timer * 0.75f) * 0.1f;
+                return;
+            }
+
+            if (Timer < 35 + 45 + 20)
+            {
+                NPC.rotation = NPC.rotation.AngleLerp(0, 0.2f);
+
+                return;
+            }
+
+            ExchangeState();
+        }
+
         public void ExchangeState()
         {
             NPC.TargetClosest();
@@ -590,33 +697,22 @@ namespace TheTwinsRework.NPCs.QueenBee
             IsDashing = false;
 
             AngerNum = 1;
-            if (NPC.life < NPC.lifeMax / 3)
-                AngerNum += 0.1f;
+            if (NPC.life < NPC.lifeMax * 2 / 3)
+                AngerNum += 0.2f;
             if (NPC.life < NPC.lifeMax / 2)
-                AngerNum += 0.15f;
+                AngerNum += 0.25f;
             if (NPC.life < NPC.lifeMax / 5)
-                AngerNum += 0.15f;
+                AngerNum += 0.25f;
 
-            switch (State)
-            {
-                case AIStates.SpawnAnmi:
-                    State = AIStates.Dash;
-                    break;
-                case AIStates.ShootSpikes:
-                    break;
-                case AIStates.SummonMinions:
-                    break;
-                case AIStates.Dash:
-                    State = Main.rand.NextFromList(AIStates.SmashDown);
-                    break;
-                case AIStates.SmashDown:
-                    State = Main.rand.NextFromList(AIStates.Dash);
-                    break;
-                case AIStates.KillAnmi:
-                    break;
-                default:
-                    break;
-            }
+            wr.Clear();
+            if (State != AIStates.Dash)
+                wr.Add(AIStates.Dash);
+            if (State != AIStates.SmashDown)
+                wr.Add(AIStates.SmashDown);
+            if (NPC.life < NPC.lifeMax * 2 / 3 && State != AIStates.SummonMinions)
+                wr.Add(AIStates.SummonMinions, 0.5f);
+
+            State = wr.Get();
 
             OnStateStart();
         }
@@ -684,9 +780,67 @@ namespace TheTwinsRework.NPCs.QueenBee
             }
         }
 
-        public void OpenMusic()
+        public static void OpenMusic()
         {
             Main.musicFade[Main.curMusic] = 1;
+        }
+
+        public void LimitPosX(NPC controller)
+        {
+            if (NPC.Left.X + NPC.velocity.X < controller.Center.X - RectangleLimit.LimitWidth / 2)
+            {
+                NPC.Left = new Vector2(controller.Center.X - RectangleLimit.LimitWidth / 2, NPC.Left.Y);
+                NPC.velocity.X *= 0.5f;
+            }
+            if (NPC.Right.X + NPC.velocity.X > controller.Center.X + RectangleLimit.LimitWidth / 2)
+            {
+                NPC.Right = new Vector2(controller.Center.X + RectangleLimit.LimitWidth / 2, NPC.Right.Y);
+                NPC.velocity.X *= 0.5f;
+            }
+        }
+
+        public void LimitPosY(NPC controller)
+        {
+            if (NPC.Top.Y + NPC.velocity.Y < controller.Center.Y - RectangleLimit.LimitHeight / 2)
+            {
+                NPC.Top = new Vector2(NPC.Top.X, controller.Center.Y - RectangleLimit.LimitHeight / 2);
+                NPC.velocity.Y *= 0.5f;
+            }
+            if (NPC.Bottom.Y + NPC.velocity.Y > controller.Center.Y + RectangleLimit.LimitHeight / 2)
+            {
+                NPC.Bottom = new Vector2(NPC.Bottom.X, controller.Center.Y + RectangleLimit.LimitHeight / 2);
+                NPC.velocity.Y *= 0.5f;
+            }
+        }
+
+        public void LimitPos(NPC controller)
+        {
+            LimitPosX(controller);
+            LimitPosY(controller);
+        }
+
+        public static int GetSpawnNPCType()
+        {
+            if (Main.hardMode)
+            {
+                if (Main.masterMode && Main.getGoodWorld)
+                    return Main.rand.NextFromList(NPCID.QueenBee
+                        , NPCID.TinyMossHornet, NPCID.GiantMossHornet
+                        , NPCID.JungleCreeper, NPCID.GiantTortoise, NPCID.Moth, NPCID.Derpling, NPCID.GiantFlyingFox);
+
+                return Main.rand.NextFromList(NPCID.MossHornet
+                        , NPCID.TinyMossHornet, NPCID.GiantMossHornet, NPCID.GiantTortoise, -1);
+            }
+            else
+            {
+                if (Main.masterMode && Main.getGoodWorld)
+                    return Main.rand.NextFromList(NPCID.SpikedJungleSlime
+                        , NPCID.JungleBat
+                        , NPCID.LittleStinger, NPCID.LittleHornetHoney, NPCID.LittleHornetLeafy, NPCID.LittleHornetSpikey, NPCID.LittleHornetStingy);
+
+                return Main.rand.NextFromList(NPCID.JungleSlime
+                        , NPCID.Hornet, NPCID.HornetHoney, NPCID.HornetLeafy, NPCID.HornetSpikey, NPCID.HornetStingy, -1);
+            }
         }
 
         #endregion

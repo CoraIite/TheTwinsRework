@@ -10,8 +10,8 @@ Items: {
 	}
 
 	Beastfly: {
-		DisplayName: Beastfly
-		Tooltip: ""
+		DisplayName: Call of Beast
+		Tooltip: not finish work, so dont use this item
 	}
 }
 
@@ -36,6 +36,7 @@ Projectiles: {
 	SoundControl.DisplayName: Silencer
 	NameShow.DisplayName: The Twins
 	SpikeBallProj.DisplayName: Spike Ball Proj
+	Hive.DisplayName: Hive
 }
 
 TheTwinsName: The Twins

@@ -57,12 +57,13 @@ namespace TheTwinsRework.Projectiles
 
             if (Timer < ReadyTime)
             {
+                Lighting.AddLight(Projectile.Center, Timer/ReadyTime*new Vector3(1.2f, 0.1f, 0.1f));
                 Projectile.velocity = Vector2.Zero;
 
                 if (Timer % 6 == 0)
                 {
                     Particle.NewParticle<VerticalLine>(Projectile.Center + Main.rand.NextVector2Circular(24, 24)
-                        , new Vector2(0, 1), Scale: Main.rand.NextFloat(0.4f, 1f));
+                        , new Vector2(0, 1), Scale: Main.rand.NextFloat(0.4f, 1.5f));
                 }
 
                 if (Timer % 4 == 0)
@@ -76,6 +77,8 @@ namespace TheTwinsRework.Projectiles
             }
 
             //掉落
+            Lighting.AddLight(Projectile.Center, new Vector3(1.2f, 0.1f, 0.1f)*Alpha);
+
             if (Timer < ReadyTime + 120)
             {
                 Projectile.velocity = new Vector2(0, 15);
@@ -93,7 +96,7 @@ namespace TheTwinsRework.Projectiles
 
                     Timer = ReadyTime + 120;
                     Alpha = 1;
-                    Projectile.velocity = new Vector2(Main.rand.NextFloat(-3, 3), -4);
+                    Projectile.velocity = new Vector2(Main.rand.NextFloat(-6, 6), -7);
                 }
 
                 return;
@@ -108,8 +111,8 @@ namespace TheTwinsRework.Projectiles
                 Projectile.rotation += 0.1f;
 
                 Projectile.velocity.X *= 0.95f;
-                if (Projectile.velocity.Y < 8)
-                    Projectile.velocity.Y += 0.3f;
+                if (Projectile.velocity.Y < 14)
+                    Projectile.velocity.Y += 0.7f;
 
                 return;
             }
@@ -117,8 +120,24 @@ namespace TheTwinsRework.Projectiles
             Projectile.Kill();
         }
 
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if (!target.friendly)
+            {
+                if (target.boss)
+                    modifiers.SourceDamage += 2.5f;
+                else
+                    modifiers.SourceDamage += 5;
+            }
+        }
+
         public override bool PreDraw(ref Color lightColor)
         {
+            Color c = (Color.Red * Alpha) with { A = 0 };
+            Projectile.QuickDraw(c, Projectile.scale * 1.2f, 0f);
+            Projectile.QuickDraw(c, Projectile.scale * 1.2f, 0f);
+            Projectile.QuickDraw(c, Projectile.scale * 1.1f, MathHelper.PiOver4 / 2);
+            Projectile.QuickDraw(c, Projectile.scale * 1.1f, MathHelper.PiOver4 / 2);
             Projectile.QuickDraw(lightColor * Alpha, 0);
 
             return false;

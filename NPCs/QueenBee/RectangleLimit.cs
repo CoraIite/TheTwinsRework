@@ -50,7 +50,7 @@ namespace TheTwinsRework.NPCs.QueenBee
             public int Timer;
             public Color c;
 
-            public Corner(Vector2 ballPos, Vector2 vineDir, float maxLength,bool dark)
+            public Corner(Vector2 ballPos, Vector2 vineDir, float maxLength, bool dark)
             {
                 this.ballPos = ballPos;
                 this.vineDir = vineDir;
@@ -159,7 +159,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                 float halfLineHeight = lineTex.Height / 2;
 
                 Vector2 startPos = TipPos;
-                Vector2 endPos = ballPos-vineDir*10;
+                Vector2 endPos = ballPos - vineDir * 10;
 
                 Vector2 recordPos = startPos;
                 float recordUV = 0;
@@ -202,7 +202,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                 Main.graphics.GraphicsDevice.SamplerStates[0] = state;
 
                 spriteBatch.Draw(TipTex, startPos - screenPos, null, GetStringColor(startPos), (startPos - endPos).ToRotation()
-                    , new Vector2(0, TipTex.Height / 2), 1, 0,0);
+                    , new Vector2(0, TipTex.Height / 2), 1, 0, 0);
             }
 
             public virtual Color GetStringColor(Vector2 pos)
@@ -212,7 +212,7 @@ namespace TheTwinsRework.NPCs.QueenBee
 
             public void DrawBall(SpriteBatch spriteBatch, Vector2 screenPos, Texture2D tex)
             {
-                tex.QuickCenteredDraw(spriteBatch, ballPos - screenPos, Lighting.GetColor(ballPos.ToTileCoordinates(),c)
+                tex.QuickCenteredDraw(spriteBatch, ballPos - screenPos, Lighting.GetColor(ballPos.ToTileCoordinates(), c)
                     , rot, scale);
             }
         }
@@ -233,11 +233,17 @@ namespace TheTwinsRework.NPCs.QueenBee
 
         public override void Unload()
         {
+            if (Main.dedServ)
+                return;
+
+            VineTex = null;
+            VineTipTex = null;
+            VineBallTex = null;
         }
 
         public override void SetDefaults()
         {
-            NPC.lifeMax = 1000;
+            NPC.lifeMax = 100000;
             NPC.width = NPC.height = 16;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
@@ -252,6 +258,21 @@ namespace TheTwinsRework.NPCs.QueenBee
             => false;
         public override bool CanBeHitByNPC(NPC attacker)
             => false;
+
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+            => false;
+
+        public override void ModifyHitByProjectile(Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            modifiers.ModifyHitInfo += Modifiers_ModifyHitInfo;
+        }
+
+        private void Modifiers_ModifyHitInfo(ref NPC.HitInfo info)
+        {
+            info.HideCombatText = true;
+            info.Damage = 1;
+            NPC.life += 1;
+        }
 
         public override bool CanHitPlayer(Player target, ref int cooldownSlot)
         {
@@ -270,6 +291,8 @@ namespace TheTwinsRework.NPCs.QueenBee
                 State = 1;
             }
 
+            NPC.life = NPC.lifeMax;
+
             if (State == 0)
             {
                 //生成刺球
@@ -283,9 +306,9 @@ namespace TheTwinsRework.NPCs.QueenBee
                     Timer = 1;
                 }
 
-                if (Timer>1)
+                if (Timer > 1)
                     Timer--;
-                else if (Timer==1)
+                else if (Timer == 1)
                 {
                     HitPlayer();
                 }
@@ -313,8 +336,8 @@ namespace TheTwinsRework.NPCs.QueenBee
             Vector2 bottomLeft = NPC.Center + new Vector2(-LimitWidth / 2, -LimitHeight / 2);
             Vector2 bottomRight = NPC.Center + new Vector2(LimitWidth / 2, -LimitHeight / 2);
 
-             float Xoffset = 10;
-             float offset = 10;
+            float Xoffset = 10;
+            float offset = 10;
 
             //大概是一个X字
             for (int i = 0; i < 2; i++)
@@ -326,7 +349,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                 Vector2 v1 = topLeft + new Vector2(-Xoffset * (i + 1), r * offset);
                 Vector2 v2 = bottomLeft + new Vector2(-offset * (i + 1), r * offset);
 
-                Lefts[0 + i * 2] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2),i==0);
+                Lefts[0 + i * 2] = new Corner(v1, (v2 - v1).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2), i == 0);
 
                 offset = Main.rand.NextFloat(8, 12);
 
@@ -354,8 +377,8 @@ namespace TheTwinsRework.NPCs.QueenBee
 
             const float offset = 10;
 
-            Vector2 bottomLeft = NPC.Center + new Vector2(-LimitWidth / 2, LimitHeight / 2+offset);
-            Vector2 bottomRight = NPC.Center + new Vector2(LimitWidth / 2, LimitHeight / 2+offset);
+            Vector2 bottomLeft = NPC.Center + new Vector2(-LimitWidth / 2, LimitHeight / 2 + offset);
+            Vector2 bottomRight = NPC.Center + new Vector2(LimitWidth / 2, LimitHeight / 2 + offset);
 
             Vector2 v1 = bottomLeft + new Vector2(0, -offset);
             Vector2 v2 = bottomRight + new Vector2(0, offset);
@@ -378,7 +401,7 @@ namespace TheTwinsRework.NPCs.QueenBee
 
             for (int i = 0; i < 2; i++)
             {
-                offset = Main.rand.NextFloat(18,22);
+                offset = Main.rand.NextFloat(18, 22);
                 yoffset = Main.rand.NextFloat(8, 12);
                 float r = MathF.Cos(i * MathHelper.Pi);
                 Vector2 v1 = topLeft + new Vector2(r * offset, -offset * (i + 1));
@@ -387,7 +410,7 @@ namespace TheTwinsRework.NPCs.QueenBee
 
                 offset = Main.rand.NextFloat(18, 22);
                 yoffset = Main.rand.NextFloat(8, 12);
-                v1 = topLeft + new Vector2(r * offset, - yoffset* (i + 1));
+                v1 = topLeft + new Vector2(r * offset, -yoffset * (i + 1));
                 v2 = topRight + new Vector2(r * offset, -offset * (i + 1));
                 Ups[1 + i * 2] = new Corner(v2, (v1 - v2).SafeNormalize(Vector2.Zero), Vector2.Distance(v1, v2), i == 0);
             }
@@ -409,7 +432,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                     v.Update();
         }
 
-        public void CollideLeft(float y,float speed)
+        public void CollideLeft(float y, float speed)
         {
             if (Lefts != null)
                 foreach (var v in Lefts)
@@ -435,7 +458,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                 foreach (var v in Downs)
                 {
                     v.CalaulateMidPosX(x + Main.rand.NextFloat(-10, 10));
-                    v.Collide(new Vector2( 0, 7.5f + speed / 8));
+                    v.Collide(new Vector2(0, 7.5f + speed / 8));
                 }
         }
 
