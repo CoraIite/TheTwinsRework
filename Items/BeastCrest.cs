@@ -14,8 +14,9 @@ namespace TheTwinsRework.Items
             Item.height = 30;
             Item.maxStack = 1;
             Item.value = Item.sellPrice(0, 2, 0, 0);
-            Item.rare = ItemRarityID.Orange;
+            Item.rare = ItemRarityID.Expert;
             Item.accessory = true;
+            Item.expert = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -58,7 +59,7 @@ namespace TheTwinsRework.Items
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetDamage(DamageClass.Generic) += 0.25f;
+            player.GetDamage(DamageClass.Generic) += 0.3f;
             if (player.buffTime[buffIndex] % (60 + 36) == 0 && Main.myPlayer == player.whoAmI)
             {
                 Helper.PlayPitched("hornet_beast_mode_loop", 1f, 0);

@@ -6,12 +6,16 @@ Items: {
 
 	BeastCrest: {
 		DisplayName: Beast Crest
-		Tooltip: ""
+		Tooltip:
+			'''
+			After using the healing potion, it does not directly heal but give the 'Beast' buff.
+			In this state, attacks drain health, up to the potion's heal value, while also +30% damage.
+			'''
 	}
 
 	Beastfly: {
 		DisplayName: Call of Beast
-		Tooltip: not finish work, so dont use this item
+		Tooltip: make a yell
 	}
 }
 
@@ -20,8 +24,8 @@ NPCs: {
 	FireEye.DisplayName: Spazmatism
 	LaserEye.DisplayName: Retinazer
 	GoldCircleLimit.DisplayName: Gold Circle Limit
-	BeastlyQueenBee.DisplayName: Beastly Queen Bee
-	RectangleLimit.DisplayName: Rectangle Limit
+	BeastlyQueenBee.DisplayName: Savage Queen Bee
+	RectangleLimit.DisplayName: Savage Queen Bee
 }
 
 Projectiles: {
@@ -35,8 +39,14 @@ Projectiles: {
 	FireBreathLine.DisplayName: Path of Cursed Blaze
 	SoundControl.DisplayName: Silencer
 	NameShow.DisplayName: The Twins
-	SpikeBallProj.DisplayName: Spike Ball Proj
+	SpikeBallProj.DisplayName: Spike Ball
 	Hive.DisplayName: Hive
+	BeeStinger.DisplayName: Bee Stinger
+
+	BeastflyRoar: {
+		NothingHappen: Seems nothing happen...
+		DisplayName: Beastfly Roar
+	}
 }
 
 TheTwinsName: The Twins
@@ -68,7 +78,7 @@ Configs: {
 
 Buffs: {
 	BeastCrestBuff: {
-		DisplayName: Beast Crest Buff
-		Description: Mods.TheTwinsRework.Buffs.BeastCrestBuff.Description
+		DisplayName: Beast
+		Description: +30% damage
 	}
 }

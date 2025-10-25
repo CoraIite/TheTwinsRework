@@ -58,6 +58,7 @@ namespace TheTwinsRework.GlobalNPCs
             {
                 npc.BottomRight = new Vector2(npc.BottomRight.X, owner.Center.Y + RectangleLimit.LimitHeight / 2);
                 npc.collideY = true;
+                npc.velocity.Y *= -0.5f;
             }
         }
 

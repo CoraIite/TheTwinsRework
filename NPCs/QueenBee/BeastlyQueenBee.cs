@@ -3,23 +3,29 @@ using Coralite.Helpers;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using TheTwinsRework.Configs;
+using TheTwinsRework.Core;
 using TheTwinsRework.Core.Loader;
 using TheTwinsRework.Core.System_Particle;
+using TheTwinsRework.Dusts;
 using TheTwinsRework.GlobalNPCs;
+using TheTwinsRework.Items;
 using TheTwinsRework.Misc;
 using TheTwinsRework.Particles;
 using TheTwinsRework.Projectiles;
 
 namespace TheTwinsRework.NPCs.QueenBee
 {
+    [AutoloadBossHead()]
     public class BeastlyQueenBee : ModNPC
     {
         public override string Texture => AssetDirectory.Vanilla + "NPC_222";
-
+        public override string BossHeadTexture => AssetDirectory.Assets + Name + "_Head_Boss";
         public AIStates State { get; set; }
 
         public static int SpawnAnmiTime = 100;
@@ -48,10 +54,23 @@ namespace TheTwinsRework.NPCs.QueenBee
 
         #region tml Hooks
 
+        public override void SetStaticDefaults()
+        {
+            NPCID.Sets.HurtingBees[Type] = true;
+        }
+
         public override void SetDefaults()
         {
             NPC.boss = true;
-            NPC.lifeMax = 10000;
+            NPC.lifeMax = 3400;
+            NPC.damage = 60;
+
+            if (Main.hardMode)
+            {
+                NPC.lifeMax = 8000;
+                NPC.damage = 80;
+            }
+
             NPC.width = NPC.height = 80;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
@@ -67,9 +86,110 @@ namespace TheTwinsRework.NPCs.QueenBee
             Music = MusicID.Boss1;
         }
 
-        public override void SetStaticDefaults()
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
-            NPCID.Sets.HurtingBees[Type] = true;
+            int expertBaseLife = 3500;
+            int masterBaseLife = 5400;
+
+            int expertAddLife = 800;
+            int masterAddLife = 1000;
+
+            int expertDamage = 75;
+            int MasterDamage = 95;
+
+            if (Main.hardMode)
+            {
+                expertBaseLife = 9500;
+                masterBaseLife = 11050;
+
+                expertAddLife = 1200;
+                masterAddLife = 2030;
+
+                expertDamage = 105;
+                MasterDamage = 135;
+            }
+
+            NPC.defDamage = 60;
+            if (Helper.GetJourneyModeStrangth(out float journeyScale, out NPCStrengthHelper nPCStrengthHelper))
+            {
+                if (nPCStrengthHelper.IsExpertMode)
+                {
+                    NPC.lifeMax = (int)((expertBaseLife + numPlayers * expertAddLife) / journeyScale);
+                    NPC.damage = (int)(expertDamage / journeyScale);
+                }
+
+                if (nPCStrengthHelper.IsMasterMode)
+                {
+                    NPC.lifeMax = (int)((masterBaseLife + numPlayers * masterAddLife) / journeyScale);
+                    NPC.damage = (int)(MasterDamage / journeyScale);
+                }
+
+                if (Main.getGoodWorld)
+                {
+                    if (Main.hardMode)
+                        NPC.damage = (int)(170 / journeyScale);
+                    else
+                        NPC.damage = (int)(120 / journeyScale);
+                }
+
+                return;
+            }
+
+            NPC.lifeMax = expertBaseLife + numPlayers * expertAddLife;
+            NPC.damage = expertDamage;
+
+            if (Main.masterMode)
+            {
+                NPC.lifeMax = masterBaseLife + numPlayers * masterAddLife;
+                NPC.damage = MasterDamage;
+            }
+
+            if (Main.getGoodWorld)
+            {
+                if (Main.hardMode)
+                {
+                    NPC.lifeMax = 13000 + numPlayers * 2800;
+                    NPC.damage = 170;
+                }
+                else
+                {
+                    NPC.lifeMax = 6500 + numPlayers * 1200;
+                    NPC.damage = 120;
+                }
+            }
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ItemID.QueenBeePetItem, 4));
+
+            npcLoot.Add(ItemDropRule.ByCondition(new Conditions.IsExpert()
+                , ModContent.ItemType<BeastCrest>()));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemID.QueenBeeMasterTrophy));
+            npcLoot.Add(ItemDropRule.BossBag(ItemID.QueenBeeBossBag));
+            npcLoot.Add(ItemDropRule.Common(ItemID.BeeMask, 7));
+            npcLoot.Add(ItemDropRule.Common(ItemID.QueenBeeTrophy, 10));
+
+            LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
+            notExpertRule.OnSuccess(ItemDropRule.OneFromOptions(1, ItemID.BeeGun, ItemID.BeeKeeper, ItemID.BeesKnees));
+            notExpertRule.OnSuccess(ItemDropRule.OneFromOptions(1, ItemID.HiveWand, ItemID.BeeHat, ItemID.BeeShirt, ItemID.BeePants));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.HoneyComb, 3));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.Nectar, 8));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.HoneyedGoggles, 10));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.BeeWax, 1, 20, 30));
+            notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.BottledHoney, 1, 8, 18));
+            notExpertRule.OnSuccess(new CommonDrop(ItemID.Beenade, 4, 20, 40, 5));
+            npcLoot.Add(notExpertRule);
+        }
+
+        public override void ModifyHoverBoundingBox(ref Rectangle boundingBox)
+        {
+            boundingBox = new Rectangle();
+        }
+
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            return false;
         }
 
         public override bool CanBeHitByNPC(NPC attacker)
@@ -128,6 +248,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                     SpawnAnmi(controller);
                     break;
                 case AIStates.ShootSpikes:
+                    ShootSpike(controller);
                     break;
                 case AIStates.SummonMinions:
                     Summon(controller);
@@ -139,6 +260,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                     SmashDown(controller);
                     break;
                 case AIStates.KillAnmi:
+                    KillAnmi(controller);
                     break;
                 default:
                     break;
@@ -149,6 +271,7 @@ namespace TheTwinsRework.NPCs.QueenBee
 
         public void SpawnAnmi(NPC controller)
         {
+            NPC.dontTakeDamage = true;
             Vector2 targetPos = controller.Center;
 
             Vector2 endPos = targetPos
@@ -628,6 +751,112 @@ namespace TheTwinsRework.NPCs.QueenBee
             ExchangeState();
         }
 
+        public void ShootSpike(NPC controller)
+        {
+            Timer++;
+
+            int beforeDashTime = (int)(85 / AngerNum);
+
+            if (Timer < beforeDashTime)
+            {
+                SetDirection(new Vector2(Target.Center.X, controller.Center.Y - RectangleLimit.LimitHeight / 2 + 120), out Vector2 dis);
+                NPC.spriteDirection = NPC.direction;
+
+                NPC.rotation = NPC.rotation.AngleLerp(0, 0.2f);
+
+                float speed = 4 + AngerNum * 2f;
+                float a = 0.1f + 0.1f * AngerNum;
+
+                //int i = 0;
+                if (MathF.Abs(NPC.Center.X - controller.Center.X) > RectangleLimit.LimitWidth / 2 - 140)
+                {
+                    //i = 1;
+                    Helper.Movement_SimpleOneLine(ref NPC.velocity.X, MathF.Sign(controller.Center.X - NPC.Center.X), speed, a, a * 2, 0.97f);
+                }
+                else if (dis.X > 300)
+                {
+                    //i = 2;
+                    Helper.Movement_SimpleOneLine(ref NPC.velocity.X, NPC.direction, speed, a, a * 2, 0.97f);
+                }
+                else if (dis.X < 240)
+                    Helper.Movement_SimpleOneLine(ref NPC.velocity.X, -NPC.direction, speed, a, a * 2, 0.97f);
+                else
+                    NPC.velocity.X *= 0.95f;
+
+                //Main.NewText(i);
+
+                //控制Y方向的移动
+                if (dis.Y > 50)
+                    Helper.Movement_SimpleOneLine(ref NPC.velocity.Y, NPC.directionY
+                        , speed / 2, a / 2, a, 0.97f);
+                else
+                    NPC.velocity.Y *= 0.96f;
+
+                LimitPos(controller);
+
+                return;
+            }
+
+            if (Timer == beforeDashTime)//根据玩家位置做偏移
+            {
+                NPC.velocity *= 0.2f;
+                Recorder2 = Main.rand.NextFloat(MathHelper.TwoPi);
+                IsDashing = false;
+
+                Helper.PlayPitched(CoraliteSoundID.BugsScream_Item173, NPC.Center, pitch: -0.5f);
+
+                return;
+            }
+
+            const int readyTime = 60;
+            if (Timer < beforeDashTime + readyTime)
+            {
+                NPC.velocity *= 0.9f;
+                NPC.rotation += MathF.Sin(Timer * 0.75f) * 0.1f;
+
+                return;
+            }
+
+
+            const int shootTime = 120;
+            int perTime = (int)(20 / AngerNum);
+
+            if (Timer < beforeDashTime + readyTime + shootTime)
+            {
+                NPC.velocity *= 0.9f;
+                NPC.rotation = NPC.rotation.AngleLerp(0, 0.15f);
+
+                if (Timer % perTime == 0)
+                {
+                    if (Timer % (perTime * 5) == 0)
+                    {
+                        Recorder2 = Main.rand.NextFloat(MathHelper.TwoPi);
+                    }
+
+                    Vector2 pos = NPC.Center + new Vector2(NPC.direction * 20, 60);
+                    int damage = Helper.GetProjDamage(80, 90, 100);
+                    for (int i = 0; i < 4; i++)
+                    {
+                        NPC.NewProjectileDirectInAI<BeeStinger>(pos, (Recorder2 + i * MathHelper.PiOver2).ToRotationVector2() * 8f
+                            , damage, 0, ai0: RectLimitIndex, ai1: NPC.whoAmI);
+                    }
+
+                    Helper.PlayPitched(CoraliteSoundID.Stinger_Item17, NPC.Center);
+                    Recorder2 += MathHelper.PiOver4 + Main.rand.NextFloat(-0.1f, 0.1f);
+                }
+
+                return;
+            }
+
+            int restTime = (int)(60 / AngerNum);
+            if (Timer < beforeDashTime + readyTime + shootTime + restTime)
+            {
+                return;
+            }
+
+            ExchangeState();
+        }
+
         /// <summary>
         /// 召唤
         /// </summary>
@@ -687,9 +916,84 @@ namespace TheTwinsRework.NPCs.QueenBee
             ExchangeState();
         }
 
+        public void KillAnmi(NPC controller)
+        {
+            Helper.StopMusic();
+
+            NPC.velocity = Vector2.Zero;
+            NPC.rotation += MathF.Sin(Timer * 0.75f) * 0.2f;
+
+            if (Timer == 0)
+            {
+                Particle.NewParticle(NPC.Center, Vector2.Zero, Contents.ParticleType<FinalHit>()
+                 , newColor: Color.White, Scale: 1.5f);
+            }
+
+            Timer++;
+
+            for (int i = 0; i < 4; i++)
+            {
+                Vector2 pos = Helper.NextVec2Dir(1, 25);
+                Particle.NewParticle(NPC.Center + pos, pos.SafeNormalize(Vector2.Zero) * Main.rand.NextFloat(10, 30), Contents.ParticleType<Fog>()
+                 , newColor: Color.White * 0.35f, Scale: Main.rand.NextFloat(2f, 4f));
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                Vector2 pos = Helper.NextVec2Dir(1, 30);
+                Dust.NewDustPerfect(NPC.Center + pos, DustID.SilverCoin, pos.SafeNormalize(Vector2.Zero) * Main.rand.NextFloat(3, 15)
+                  , Scale: Main.rand.NextFloat(0.6f, 1.3f));
+
+                pos = Helper.NextVec2Dir(20, 40);
+                Dust.NewDustPerfect(NPC.Center + pos, ModContent.DustType<SpeedLine>(), pos.SafeNormalize(Vector2.Zero) * Main.rand.NextFloat(7, 30)
+                  , newColor: Color.White, Scale: Main.rand.NextFloat(0.1f, 0.3f));
+            }
+
+            if (Timer % 10 == 0)
+            {
+                Dust.NewDustPerfect(NPC.Center, ModContent.DustType<RoaringWave>()
+                    , Vector2.Zero, 0, Color.White * 0.2f, 0.4f);
+            }
+
+            if (Timer % 20 == 0)
+            {
+                Helper.PlayPitched(CoraliteSoundID.Fleshy_NPCHit1, NPC.Center);
+            }
+
+            if (Timer > 160)
+            {
+                Helper.PlayPitched("DeathBoom", 1, 0, NPC.Center);
+                Helper.PlayPitched(CoraliteSoundID.QueenBee_NPCDeath66, NPC.Center);
+
+                Dust.NewDustPerfect(NPC.Center, ModContent.DustType<CircleExplode>(), Vector2.Zero
+                    , newColor: Color.White * 0.75f, Scale: 0.1f);
+
+                for (int i = -9; i < 10; i++)
+                {
+                    if (i == 0)
+                        continue;
+                    Dust.NewDustPerfect(NPC.Center, ModContent.DustType<SpeedLine>()
+                        , new Vector2(0, MathF.Sign(i) * 0.1f + i * 2f)
+                      , newColor: Color.White * 0.3f, Scale: 1f - MathF.Abs(i) / 9f * 0.5f);
+                }
+
+                NPC.Kill();
+                Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center + Main.rand.NextVector2Circular(25, 25)
+                    , Helper.NextVec2Dir(3, 6), 303, 1.3f);
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = 0; j < 5; j++)
+                        Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center + Main.rand.NextVector2Circular(25, 25)
+                            , Helper.NextVec2Dir(3, 6), 304 + j, 1.3f);
+                }
+            }
+        }
+
         public void ExchangeState()
         {
             NPC.TargetClosest();
+            NPC.dontTakeDamage = false;
+
             Timer = 0;
             Recorder = 0;
             Recorder2 = 0;
@@ -697,18 +1001,27 @@ namespace TheTwinsRework.NPCs.QueenBee
             IsDashing = false;
 
             AngerNum = 1;
+            float add1 = 0.1f;
+            float add2 = 0.15f;
+            if (Main.hardMode)
+            {
+                add1 = 0.2f;
+                add2 = 0.25f;
+            }
             if (NPC.life < NPC.lifeMax * 2 / 3)
-                AngerNum += 0.2f;
+                AngerNum += add1;
             if (NPC.life < NPC.lifeMax / 2)
-                AngerNum += 0.25f;
+                AngerNum += add2;
             if (NPC.life < NPC.lifeMax / 5)
-                AngerNum += 0.25f;
+                AngerNum += add2;
 
             wr.Clear();
             if (State != AIStates.Dash)
                 wr.Add(AIStates.Dash);
             if (State != AIStates.SmashDown)
                 wr.Add(AIStates.SmashDown);
+            if (State != AIStates.ShootSpikes)
+                wr.Add(AIStates.ShootSpikes);
             if (NPC.life < NPC.lifeMax * 2 / 3 && State != AIStates.SummonMinions)
                 wr.Add(AIStates.SummonMinions, 0.5f);
 
@@ -829,7 +1142,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                         , NPCID.JungleCreeper, NPCID.GiantTortoise, NPCID.Moth, NPCID.Derpling, NPCID.GiantFlyingFox);
 
                 return Main.rand.NextFromList(NPCID.MossHornet
-                        , NPCID.TinyMossHornet, NPCID.GiantMossHornet, NPCID.GiantTortoise, -1);
+                        , NPCID.TinyMossHornet, NPCID.GiantMossHornet, NPCID.Derpling, -1);
             }
             else
             {
@@ -841,6 +1154,39 @@ namespace TheTwinsRework.NPCs.QueenBee
                 return Main.rand.NextFromList(NPCID.JungleSlime
                         , NPCID.Hornet, NPCID.HornetHoney, NPCID.HornetLeafy, NPCID.HornetSpikey, NPCID.HornetStingy, -1);
             }
+        }
+
+        public override bool CheckDead()
+        {
+            if (State != AIStates.KillAnmi)
+            {
+                NPC.life = 1;
+                NPC.dontTakeDamage = true;
+                State = AIStates.KillAnmi;
+                Timer = 0;
+                Recorder = 0;
+                Recorder2 = 0;
+                Recorder3 = 0;
+                IsDashing = false;
+                NPC.rotation = 0;
+
+                Helper.PlayPitched("boss_final_hit", 1, 0, NPC.Center);
+
+                return false;
+            }
+
+            if (State == AIStates.KillAnmi && Timer < 159)
+            {
+                NPC.life = 1;
+                return false;
+            }
+
+            return base.CheckDead();
+        }
+
+        public override void BossLoot(ref int potionType)
+        {
+            potionType = ItemID.BottledHoney;
         }
 
         #endregion

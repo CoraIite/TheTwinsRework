@@ -18,11 +18,19 @@ namespace TheTwinsRework.Particles
             particle.fadeIn++;
             particle.scale += 0.01f;
 
-            if (particle.fadeIn == 10)
+            if (particle.fadeIn < 15)
+            {
+                particle.scale += 0.05f;
+            }
+            else if (particle.fadeIn<25)
+            {
+                particle.scale += 0.025f;
+            }
+            if (particle.fadeIn == 15)
             {
                 particle.frame.Y++;
             }
-            else if (particle.fadeIn > 18)
+            else if (particle.fadeIn > 25)
             {
                 particle.active = false;
             }

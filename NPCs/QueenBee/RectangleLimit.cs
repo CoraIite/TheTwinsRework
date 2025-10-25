@@ -5,7 +5,11 @@ using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
+using TheTwinsRework.Configs;
+using TheTwinsRework.Misc;
+using TheTwinsRework.Projectiles;
 
 namespace TheTwinsRework.NPCs.QueenBee
 {
@@ -22,8 +26,8 @@ namespace TheTwinsRework.NPCs.QueenBee
         public Corner[] Downs;
         public Corner[] Ups;
 
-        public static int LimitWidth = 460;
-        public static int LimitHeight = 340;
+        public static int LimitWidth = 700;
+        public static int LimitHeight = 450;
 
         public class Corner
         {
@@ -62,7 +66,7 @@ namespace TheTwinsRework.NPCs.QueenBee
                     c = Color.White;
             }
 
-            public void Update()
+            public void Update(NPC npc)
             {
                 const int length = 20;
 
@@ -127,6 +131,29 @@ namespace TheTwinsRework.NPCs.QueenBee
                             }
                         }
                         break;
+                    case 4://散落
+                        {
+                            Timer++;
+                            if (Timer<60)
+                            c = Color.Lerp(c, (Color.Gold * 0.65f) with { A = 255 }, 0.1f);
+
+                            if (Timer == 60)
+                            {
+                                int g1 = npc.ModNPC.Mod.Find<ModGore>("VineGore" + 0).Type;
+                                int g2 = npc.ModNPC.Mod.Find<ModGore>("VineGore" + 1).Type;
+                                int g3 = npc.ModNPC.Mod.Find<ModGore>("VineGore" + 2).Type;
+                                for (int i = 0; i < 6; i++)
+                                {
+                                    Vector2 Center = Vector2.Lerp(TipPos, ballPos, Main.rand.NextFloat(0,1));
+
+                                    Gore.NewGore(npc.GetSource_FromAI(), Center
+                                        , Helper.NextVec2Dir(0.5f, 2), Main.rand.NextFromList(g1, g2, g3), 1.3f);
+                                }
+
+                                c = Color.Transparent;
+                            }
+                        }
+                        break;
                 }
             }
 
@@ -152,8 +179,18 @@ namespace TheTwinsRework.NPCs.QueenBee
                 State = 3;
             }
 
+            public void Fade()
+            {
+                State = 4;
+                Timer = 0;
+            }
+
             public void DrawVineLine(SpriteBatch spriteBatch, Vector2 screenPos, Texture2D lineTex, Texture2D TipTex)
             {
+                if (c==Color.Transparent)
+                {
+                    return;
+                }
                 List<ColoredVertex> bars = new();
 
                 float halfLineHeight = lineTex.Height / 2;
@@ -229,6 +266,9 @@ namespace TheTwinsRework.NPCs.QueenBee
             VineTex = ModContent.Request<Texture2D>(AssetDirectory.Assets + "Vine");
             VineTipTex = ModContent.Request<Texture2D>(AssetDirectory.Assets + "VineTip");
             VineBallTex = ModContent.Request<Texture2D>(AssetDirectory.Assets + "VineBall");
+
+            for (int i = 0; i < 3; i++)
+                GoreLoader.AddGoreFromTexture<SimpleModGore>(Mod, AssetDirectory.Assets + "VineGore" + i);
         }
 
         public override void Unload()
@@ -289,6 +329,8 @@ namespace TheTwinsRework.NPCs.QueenBee
             if (State == 0 && !QueenBeeIndex.GetNPCOwner<BeastlyQueenBee>(out _))
             {
                 State = 1;
+                NPC.NewProjectileInAI<SoundControl>(NPC.Center, Vector2.Zero, 0, 0);
+                TurnToFade();
             }
 
             NPC.life = NPC.lifeMax;
@@ -298,8 +340,15 @@ namespace TheTwinsRework.NPCs.QueenBee
                 //生成刺球
                 if (Timer == 0)
                 {
-                    LimitWidth = 700;
-                    LimitHeight = 450;
+                    if (Main.netMode != NetmodeID.Server
+                        && VisualConfigSystem.ScreenMove)
+                    {
+                        BeastflyCameraMove move = new BeastflyCameraMove();
+                        move.MainIndex = NPC.whoAmI;
+
+                        Main.instance.CameraModifiers.Add(move);
+                    }
+
                     InitSideVine();
                     InitBottonVine();
                     InitTopVine();
@@ -316,8 +365,10 @@ namespace TheTwinsRework.NPCs.QueenBee
             else
             {
                 Timer++;
-                if (Timer > 400)
+                if (Timer > 65)
                 {
+                    Helper.PlayPitched("Defeat", 1, 0, NPC.Center);
+
                     NPC.Kill();
                     return;
                 }
@@ -420,16 +471,16 @@ namespace TheTwinsRework.NPCs.QueenBee
         {
             if (Ups != null)
                 foreach (var v in Ups)
-                    v.Update();
+                    v.Update(NPC);
             if (Downs != null)
                 foreach (var v in Downs)
-                    v.Update();
+                    v.Update(NPC);
             if (Lefts != null)
                 foreach (var v in Lefts)
-                    v.Update();
+                    v.Update(NPC);
             if (Rights != null)
                 foreach (var v in Rights)
-                    v.Update();
+                    v.Update(NPC);
         }
 
         public void CollideLeft(float y, float speed)
@@ -462,7 +513,21 @@ namespace TheTwinsRework.NPCs.QueenBee
                 }
         }
 
-
+        public void TurnToFade()
+        {
+            if (Ups != null)
+                foreach (var v in Ups)
+                    v.Fade();
+            if (Downs != null)
+                foreach (var v in Downs)
+                    v.Fade();
+            if (Lefts != null)
+                foreach (var v in Lefts)
+                    v.Fade();
+            if (Rights != null)
+                foreach (var v in Rights)
+                    v.Fade();
+        }
 
         public void HitPlayer()
         {

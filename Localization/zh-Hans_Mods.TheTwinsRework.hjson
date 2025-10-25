@@ -9,13 +9,13 @@ Items: {
 		Tooltip:
 			'''
 			使用回复药后不直接回复血量，而是给予“野兽化”增益
-			该状态下攻击吸取血量，上限为回复药的恢复值，同时 +25%伤害
+			该状态下攻击吸取血量，上限为回复药的恢复值，同时 +30%伤害
 			'''
 	}
 
 	Beastfly: {
 		DisplayName: 野性的呼唤
-		Tooltip: 没做完，所以即使使用也没有效果！
+		Tooltip: 发出野性的叫喊声
 	}
 }
 
@@ -39,8 +39,14 @@ Projectiles: {
 	FireBreathLine.DisplayName: 咒焰之路
 	SoundControl.DisplayName: 消音器
 	NameShow.DisplayName: 双子魔眼名字
-	// SpikeBallProj.DisplayName: Spike Ball Proj
-	// Hive.DisplayName: Hive
+	SpikeBallProj.DisplayName: 荆棘球
+	Hive.DisplayName: 蜂巢
+	BeeStinger.DisplayName: 蜂刺
+
+	BeastflyRoar: {
+		NothingHappen: 似乎什么都没发生
+		DisplayName: Beastfly Roar
+	}
 }
 
 TheTwinsName: 双 子 魔 眼
@@ -73,6 +79,6 @@ Configs: {
 Buffs: {
 	BeastCrestBuff: {
 		DisplayName: 野兽化
-		Description: +25%伤害
+		Description: +30%伤害
 	}
 }

@@ -3,6 +3,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TheTwinsRework.NPCs.QueenBee;
+using TheTwinsRework.Projectiles;
 
 namespace TheTwinsRework.Items
 {
@@ -39,22 +40,31 @@ namespace TheTwinsRework.Items
         {
             if (player.whoAmI == Main.myPlayer)
             {
-                //if (!player.ZoneJungle)//不在丛林给予玩家效果
-                //{
+                if (!player.ZoneJungle && player.TryGetModPlayer(out BeastflyPlayer bp))//不在丛林给予玩家效果
+                {
+                    if (bp.BeastTimer == 0)
+                    {
+                        Projectile.NewProjectile(player.GetSource_ItemUse(Item), player.Center, Vector2.Zero
+                            , ModContent.ProjectileType<BeastflyRoar>(), 0, 0);
 
+                        bp.BeastTimer = 300;
+                    }
 
-                //    return true;
-                //}
+                    return true;
+                }
 
-                SpawnBoss(player, player.Center);
+                SpawnBoss(player);
             }
 
             return true;
         }
 
-        public static void SpawnBoss(Player player, Vector2 playerCenter)
+        public static void SpawnBoss(Player player)
         {
             int type = ModContent.NPCType<BeastlyQueenBee>();
+
+            if (NPC.AnyNPCs(type))
+                return;
 
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
@@ -76,6 +86,23 @@ namespace TheTwinsRework.Items
             CreateRecipe()
                 .AddIngredient(ItemID.Wood, 15)
                 .Register();
+        }
+    }
+
+    public class BeastflyPlayer : ModPlayer
+    {
+        public int BeastTimer;
+
+        public override void PostUpdate()
+        {
+            if (BeastTimer > 0 && Player.ZoneJungle)
+            {
+                BeastTimer--;
+                if (BeastTimer == 0)
+                {
+                    Beastfly.SpawnBoss(Player);
+                }
+            }
         }
     }
 }

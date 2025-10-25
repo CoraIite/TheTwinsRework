@@ -620,8 +620,6 @@ namespace TheTwinsRework.NPCs.TheTwins
 
         public void KillAnmi()
         {
-            Timer++;
-
             NPC.velocity = Vector2.Zero;
             NPC.rotation += MathF.Sin(Timer * 0.75f) * 0.3f;
 
@@ -630,6 +628,8 @@ namespace TheTwinsRework.NPCs.TheTwins
                 Particle.NewParticle(NPC.Center, Vector2.Zero, Contents.ParticleType<FinalHit>()
                  , newColor: Color.White, Scale: 1.25f);
             }
+
+            Timer++;
 
             for (int i = 0; i < 4; i++)
             {
