@@ -1,4 +1,4 @@
 displayName = 双子舞者与残暴的蜂后
 author = 瓶中微光
-version = 2.0
+version = 2.2
 buildIgnore = Olds/*

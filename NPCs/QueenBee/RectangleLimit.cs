@@ -334,6 +334,7 @@ namespace TheTwinsRework.NPCs.QueenBee
             }
 
             NPC.life = NPC.lifeMax;
+            NPC.dontTakeDamage = true;
 
             if (State == 0)
             {

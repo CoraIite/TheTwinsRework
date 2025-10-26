@@ -71,11 +71,12 @@ namespace TheTwinsRework.NPCs.QueenBee
                 NPC.damage = 80;
             }
 
-            NPC.width = NPC.height = 80;
+            NPC.width = NPC.height = 88;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.knockBackResist = 0;
             NPC.damage = 95;
+            NPC.defense = 15;
             //NPC.hide = true;
 
             if (!VisualConfigSystem.ShowBossBar)
@@ -1015,6 +1016,8 @@ namespace TheTwinsRework.NPCs.QueenBee
             if (NPC.life < NPC.lifeMax / 5)
                 AngerNum += add2;
 
+            NPC.defense = (int)(NPC.defDefense * AngerNum);
+
             wr.Clear();
             if (State != AIStates.Dash)
                 wr.Add(AIStates.Dash);
@@ -1023,7 +1026,7 @@ namespace TheTwinsRework.NPCs.QueenBee
             if (State != AIStates.ShootSpikes)
                 wr.Add(AIStates.ShootSpikes);
             if (NPC.life < NPC.lifeMax * 2 / 3 && State != AIStates.SummonMinions)
-                wr.Add(AIStates.SummonMinions, 0.5f);
+                wr.Add(AIStates.SummonMinions, 0.75f);
 
             State = wr.Get();
 
@@ -1198,6 +1201,10 @@ namespace TheTwinsRework.NPCs.QueenBee
             Texture2D tex = NPC.GetTexture();
 
             Vector2 pos = NPC.Center - screenPos;
+
+            if (IsDashing)
+                pos += (NPC.rotation - MathHelper.PiOver2).ToRotationVector2() * 20;
+
             Rectangle frame = tex.Frame(1, 12, 0, NPC.frame.Y);
             SpriteEffects eff = NPC.spriteDirection > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             float scale = NPC.scale;
